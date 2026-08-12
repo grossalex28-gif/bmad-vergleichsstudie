@@ -1,0 +1,68 @@
+{
+  "workflow_version": "1.2.0",
+  "timestamps": {
+    "started": "2026-08-11T00:00:00Z",
+    "last_updated": "2026-08-11T00:20:00Z",
+    "completed": "2026-08-11T00:20:00Z"
+  },
+  "mode": "initial_scan",
+  "scan_level": "deep_targeted",
+  "scan_scope_note": "Scan scoped to domain/business understanding (entities, controllers, business rules) for feature-catalog derivation, not a full architecture documentation pass. Requested explicitly by caller.",
+  "project_root": "repo/",
+  "project_knowledge": "docs/",
+  "repository_type": "multi-part",
+  "project_parts": [
+    { "part_id": "backend-api", "root_path": "repo/Godsend", "project_type_id": "backend", "primary_tech": "ASP.NET Core 2.1 (C#), Entity Framework Core, MS-SQL, SignalR, ASP.NET Identity/JWT" },
+    { "part_id": "shared-domain", "root_path": "repo/SharedProject", "project_type_id": "library", "primary_tech": "Shared C# domain models/repositories referenced by backend-api" },
+    { "part_id": "web-client", "root_path": "repo/Client", "project_type_id": "web", "primary_tech": "Angular 6, TypeScript, ngx-translate (RU/EN)" },
+    { "part_id": "mobile-client", "root_path": "repo/MobileClient", "project_type_id": "mobile", "primary_tech": "Xamarin.Forms, calls same backend-api (secondary/alternate client, product browsing subset)" },
+    { "part_id": "telegram-bot", "root_path": "repo/TelegramBot", "project_type_id": "backend", "primary_tech": "Telegram Bot API client, calls same backend-api (secondary/alternate client, product browsing subset)" },
+    { "part_id": "api-tests", "root_path": "repo/API.Tests", "project_type_id": "backend", "primary_tech": "Automated backend tests" }
+  ],
+  "findings": {
+    "domain_entities": [
+      "Product (with Category tree, EAV int/decimal/string properties, images, supplier price links)",
+      "Category (recursive tree, no depth limit)",
+      "Supplier (offers products at a supplier-specific price)",
+      "Article (tagged, authored)",
+      "Order (items reference product+supplier+quantity, status lifecycle: Processing/Ready/Shipped/Cancelled)",
+      "Comment (generic, attachable to product/supplier/article, threaded/nested, no depth limit)",
+      "Rating (generic, attachable to product/supplier/article, 1 rating per user per entity, average recalculated)",
+      "User (registration, profile, roles: Administrator/Moderator/Supplier/customer default)"
+    ],
+    "generic_entity_behavior": "ProductController, SupplierController, ArticleController all derive from a shared EntityController<T> exposing: paginated list, count, create/update (role-gated), delete (role-gated), rating (set/get/list), threaded comments (add/edit/delete with author-or-moderator ownership check), view-count tracking ('Watch').",
+    "business_rules_observed": [
+      "Editing a comment is rejected unless the requester is the comment's original author or has moderator/administrator role (EditForeignCommentAsync throws, action returns error to caller).",
+      "Placing an order fails validation if a cart line item has no valid supplier selected for that product (ArgumentException -> order rejected, client notified of failure).",
+      "Order status transition to 'Shipped' stamps a completion timestamp; any authorized role can change status; both the acting user and the order owner are notified (possibly differently) via real-time notification.",
+      "No stock/inventory quantity is tracked or checked anywhere in the order flow (explicit code comment acknowledges this); price is taken from the chosen supplier link at order time, not re-validated server-side against current supplier price.",
+      "Product edit/delete/list filtering supports arbitrary combinations of category, numeric range properties, text properties, free-text search and multi-field sorting (name/rating/views/custom property)."
+    ],
+    "user_facing_capabilities": [
+      "Browse/paginate products, suppliers, articles",
+      "Category tree navigation (unlimited depth) with per-category dynamic filter properties",
+      "Product comparison across selected products (side-by-side dynamic property diff)",
+      "Full-text search across products and suppliers combined or separately",
+      "Threaded comments with add/edit/delete on products, suppliers, articles",
+      "5-star style rating with per-user rating and recalculated average",
+      "Shopping cart (client-side) -> checkout -> order creation -> order list/detail -> status tracking",
+      "Image gallery per product",
+      "User registration/login (local + Facebook), profile editing",
+      "Administrator role management and broadcast messaging to a user (admin console)",
+      "Real-time (SignalR) success/error/info notifications for actions performed",
+      "Bilingual static UI text (RU/EN)",
+      "Alternate access channels (mobile app, Telegram bot) exposing a reduced product-browsing subset of the same backend"
+    ],
+    "excluded_from_deep_read": [
+      "Full architecture/deployment documentation (Dockerfile, CI config) - out of scope for the feature catalog goal",
+      "MobileClient/TelegramBot full source - sampled only, confirmed as thin alternate clients over the same product/supplier API",
+      "Exhaustive file-by-file read of every Angular component - representative feature folders sampled instead (cart, products, comments, rating, admin, statistics)"
+    ]
+  },
+  "outputs_generated": [
+    "project-scan-report.json",
+    "index.md"
+  ],
+  "current_step": "completed",
+  "resume_instructions": "Scan complete; feature catalog derived to ../katalog-entwurf.md"
+}

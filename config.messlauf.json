@@ -1,0 +1,114 @@
+{
+  "_kommentar": "Konfiguration der zwoelf Messlaeufe. Ab dem ersten init eingefroren: jede spaetere Aenderung macht die bereits gelaufenen Zellen unvergleichbar. Gehoert vollstaendig ins Replikationspaket. Das Datenbankkennwort steht bewusst nicht hier, sondern in der Umgebungsvariablen aus database.password_env.",
+
+  "runs_root": "~/dev/Bachelor/bmad-vergleichsstudie/runs",
+  "bmad_source": "~/dev/Bachelor/bmad-vergleichsstudie/bmad-core-bmm",
+
+  "seed_repos": {
+    "A": "~/dev/Bachelor/bmad-vergleichsstudie/seed/A",
+    "B": "~/dev/Bachelor/bmad-vergleichsstudie/seed/B"
+  },
+
+  "input_files": {
+    "A": "~/dev/Bachelor/bmad-vergleichsstudie/inputs/projekt-a.md",
+    "B": "~/dev/Bachelor/bmad-vergleichsstudie/inputs/projekt-b.md"
+  },
+
+  "_freeze_hinweis": "Sollwerte aus catalogs/{A,B}/katalog.meta.json und seed/{A,B}/seed.meta.json. Der Harness prueft sie vor jedem init und bricht bei Abweichung ab. Der Katalog-Hash wird nicht geprueft, sondern nur mitgefuehrt: der Katalog geht ueber die Eingabedatei in den Lauf ein, deren Hash bereits geprueft wird.",
+  "freeze": {
+    "A": {
+      "seed_commit": "8e01fdd0de989bc0173d798c95ef43ca03d77797",
+      "anfangsdatenbestand_datei": "seed-a-backend.Api/Data/anfangsdatenbestand.json",
+      "anfangsdatenbestand_sha256": "95584afe66d255399f88a333d8b0f4c20aacef73240a92e2eefc560c0522fdc8",
+      "input_sha256": "de5009c37fa84f7ddeac41c8c35e56592a9a2f88518edde6a4233b533adb390c",
+      "katalog_sha256": "4b52e7212916d0a54fd0b575ad075fb93c73968c55f6e9b7c9497292b4f85097",
+      "feature_anzahl": 13
+    },
+    "B": {
+      "seed_commit": "1416c1220fe04b4205b0a53987b586c605a7496a",
+      "anfangsdatenbestand_datei": "seed-b-backend.Api/Data/anfangsdatenbestand.json",
+      "anfangsdatenbestand_sha256": "c2707bf3e4a0930028321a0d41824203b7760fedabd3fe9cea2c54b6e7928869",
+      "input_sha256": "3f5f1e47500b32957e209f7abb37ce99599b19bc4b64cb2cd6613d3bfd5a22b1",
+      "katalog_sha256": "b2fa337b9c10ebee465053c7c95626f0aa3852a3e21b1d32e5cfbcb9ed5c5cbe",
+      "feature_anzahl": 14
+    }
+  },
+
+  "_datenbank_hinweis": "Eine SQL-Server-Instanz fuer beide Projekte, eine leere Datenbank je Lauf. Der Harness legt sie beim init an und reicht die Verbindungszeichenfolge beim run ueber die Umgebung an die CLI weiter. Das Schema entsteht durch die Migrationen, die der jeweilige Arm selbst schreibt, und ist damit Teil dessen, was gemessen wird. Erreichbarkeit vorab pruefen mit: python3 harness.py dbcheck --config config.messlauf.json",
+  "database": {
+    "enabled": true,
+    "mode": "docker",
+    "container": "sqlserver-bachelor",
+    "docker_bin": "docker",
+    "sqlcmd": "/opt/mssql-tools18/bin/sqlcmd",
+    "server": "localhost,1433",
+    "user": "sa",
+    "password_env": "MSSQL_SA_PASSWORD",
+    "trust_server_certificate": true,
+    "name_template": "{project}_{condition}_{repetition}",
+    "env_var": "ConnectionStrings__Default",
+    "connection_template": "Server={server};Database={database};User Id={user};Password={password};TrustServerCertificate=True;Encrypt=True"
+  },
+
+  "model": "claude-sonnet-5",
+  "_modell_hinweis": "Ermittelt am 07.08.2026. Die CLI liefert keine datierte Kennung, nur den kanonischen Alias - deshalb traegt das Zugriffsdatum die Beweislast. Der Harness protokolliert je Schritt das tatsaechlich verwendete Modell und meldet Abweichungen. Die Erhebung ist ueber den Zeitraum zu datieren, nicht ueber einen Tag.",
+
+  "claude_bin": "claude",
+  "permission_mode": "bypassPermissions",
+  "_werkzeug_hinweis": "Unveraendert aus config.probe.json uebernommen. Sperrliste statt Erlaubnisliste, weil eine zu enge Erlaubnisliste einen Lauf nach Stunden an einem fehlenden Werkzeug scheitern laesst. WebSearch und WebFetch bleiben gesperrt: ob BMADs Versionspruefung ohne sie eine Pruefung behauptet, die nicht stattgefunden hat, ist eine Messgroesse fuer das Defizitregister C9.",
+  "allowed_tools": [],
+  "disallowed_tools": [
+    "WebSearch",
+    "WebFetch",
+    "ScheduleWakeup",
+    "ListAgents",
+    "SendMessage",
+    "Monitor",
+    "TaskCreate",
+    "TaskUpdate",
+    "CronCreate",
+    "CronList",
+    "CronDelete",
+    "NotebookEdit",
+    "ExitPlanMode",
+    "EnterPlanMode"
+  ],
+  "require_no_hooks": true,
+  "progress": true,
+
+  "_limit_hinweis": "T1/T2/T3 nach der Festlegung im Zeitregime. Hochrechnung aus dem Probelauf (5 Features, 146 min, 48,55 USD): Planung rund 29 min und 9 USD je Lauf, danach 15,8 min und 5,85 USD je Story bei etwa 1,2 Stories je Feature. Fuer 13 Features also grob 7 h je BMAD-Lauf, weshalb T1 mit 8 h knapp ueber der Erwartung liegt und als Deckel wirken kann. Das ist beabsichtigt: greift T1 in mehr als einem von drei BMAD-Laeufen, gilt das Design als zeitfixiert statt umfangsfixiert.",
+  "limits": {
+    "t1_active_hours": 8,
+    "t2_calendar_hours": 36,
+    "t3_step_minutes": 180,
+    "token_budget": 20000000,
+    "cost_budget_usd": null,
+    "max_steps": 120
+  },
+  "_budget_hinweis": "token_budget zaehlt ohne Cache-Reads, weil im Probelauf 94 Prozent der 63,8 Mio. Tokens Cache-Reads waren und die Rohsumme im Wesentlichen die Zahl der Turns misst. Abrechenbar blieben dort 3,8 Mio. bei 5 Features. Hochgerechnet auf 13 bis 14 Features sind rund 10 Mio. zu erwarten, weshalb 20 Mio. das Doppelte der Erwartung sind und nur bei einem entgleisten Lauf greifen. cost_budget_usd bleibt bewusst leer: der Zugang laeuft ueber ein Abonnement, die Kostenangabe der CLI ist eine Anbieterschaetzung und keine Abrechnung, und ein Kostendeckel wuerde einen Lauf aus einem Grund beenden, der methodisch nichts bedeutet.",
+
+  "_rate_limit_hinweis": "2,1 h Aktivzeit haben im Probelauf 50 Prozent des Fuenf-Stunden-Fensters verbraucht, ein Acht-Stunden-Lauf braucht also mindestens zwei Fenster. 24 Versuche zu 20 min decken acht Stunden Wartezeit ab. Der Harness rechnet diese Wartezeit nicht auf T1 an und protokolliert sie getrennt, damit sie aus C1c herausgerechnet werden kann.",
+  "rate_limit": {
+    "wait_minutes": 20,
+    "max_retries": 24
+  },
+
+  "sequence": {
+    "routing_mode": "help",
+    "route_within_cycle": false,
+    "story_cycle": ["bmad-create-story", "bmad-dev-story", "bmad-code-review"],
+    "solo_max_iterations": 15,
+    "fallback_chain": [
+      { "skill": "bmad-prd" },
+      { "skill": "bmad-architecture" },
+      { "skill": "bmad-create-epics-and-stories" },
+      { "skill": "bmad-check-implementation-readiness" },
+      { "skill": "bmad-sprint-planning" },
+      { "skill": "bmad-create-story", "action": "create" },
+      { "skill": "bmad-create-story", "action": "validate" },
+      { "skill": "bmad-dev-story" },
+      { "skill": "bmad-code-review" }
+    ]
+  },
+  "_sequenz_hinweis": "max_steps 120 als Notbremse: der Probelauf brauchte 25 Schritte fuer 5 Features, hochgerechnet sind fuer 13 bis 14 Features rund 60 bis 70 zu erwarten. solo_max_iterations 15 statt der 20 aus dem Probelauf: die Solo-Bedingung terminierte dort nach zwei Schritten und packt alles in eine Session, weshalb in der Praxis T1 oder T3 zuerst binden. Der Deckel verhindert allein eine Endlosschleife aus FERTIG: NEIN und ist kein erwarteter Terminierungsgrund."
+}

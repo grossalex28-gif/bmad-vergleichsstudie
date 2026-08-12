@@ -1,0 +1,83 @@
+{
+  "_hinweis": "Arbeitsentwurf fuer den Anfangsdatenbestand Projekt A. Format (JSON) ist nicht bindend - massgeblich ist der Inhalt, siehe claude/Anfangsdatenbestand_Spezifikation.md im Projekt. Status: ENTWURF, noch nicht bestaetigt/eingefroren.",
+  "spielstaetten": [
+    {
+      "id": "V1",
+      "name": "Stadthalle Nordpark",
+      "raeume": [
+        { "id": "R1", "name": "Großer Saal", "reihen": ["A","B","C","D","E","F","G","H","I","J"], "spalten": 14, "gang_spalten": [8] },
+        { "id": "R2", "name": "Kleiner Saal", "reihen": ["A","B","C","D","E","F"], "spalten": 10, "gang_spalten": [6] }
+      ]
+    },
+    {
+      "id": "V2",
+      "name": "Kulturhaus Südtor",
+      "raeume": [
+        { "id": "R3", "name": "Konzertsaal", "reihen": ["A","B","C","D","E","F","G","H","I","J","K","L"], "spalten": 16, "gang_spalten": [1, 16] },
+        { "id": "R4", "name": "Studio", "reihen": ["A","B","C","D"], "spalten": 8, "gang_spalten": [] }
+      ]
+    }
+  ],
+  "veranstaltungen": [
+    {
+      "id": "E1", "titel": "Kammerkonzert Frühling", "spielstaetteId": "V1", "raumId": "R2",
+      "beginn": "2026-09-05T19:30:00", "dauerMin": 90, "altersfreigabe": 0,
+      "beschreibung": "Ein Abend mit kammermusikalischen Stücken in kleiner Besetzung.",
+      "preiskategorien": [
+        { "id": "K1", "name": "Kategorie A", "preis": 32.00 },
+        { "id": "K2", "name": "Kategorie B", "preis": 22.00 }
+      ],
+      "belegteSitzplaetze": ["B3", "B4", "C7"]
+    },
+    {
+      "id": "E2", "titel": "Sinfonisches Openair-Programm", "spielstaetteId": "V2", "raumId": "R3",
+      "beginn": "2026-09-12T20:00:00", "dauerMin": 120, "altersfreigabe": 0,
+      "beschreibung": "Ein Orchesterprogramm mit bekannten sinfonischen Werken.",
+      "preiskategorien": [
+        { "id": "K1", "name": "Kategorie A", "preis": 45.00 },
+        { "id": "K2", "name": "Kategorie B", "preis": 30.00 }
+      ],
+      "belegteSitzplaetze": []
+    },
+    {
+      "id": "E3", "titel": "Comedy-Abend", "spielstaetteId": "V1", "raumId": "R1",
+      "beginn": "2026-09-20T21:00:00", "dauerMin": 100, "altersfreigabe": 16,
+      "beschreibung": "Ein Programm mit wechselnden Auftritten aus der Comedy-Szene.",
+      "preiskategorien": [
+        { "id": "K1", "name": "Kategorie A", "preis": 28.00 },
+        { "id": "K2", "name": "Kategorie B", "preis": 18.00 }
+      ],
+      "belegteSitzplaetze": []
+    },
+    {
+      "id": "E4", "titel": "Kindertheater: Die Reise zum Mond", "spielstaetteId": "V2", "raumId": "R4",
+      "beginn": "2026-09-25T15:00:00", "dauerMin": 60, "altersfreigabe": 0,
+      "beschreibung": "Ein familienfreundliches Theaterstück für jüngeres Publikum.",
+      "preiskategorien": [
+        { "id": "K1", "name": "Kategorie A", "preis": 15.00 },
+        { "id": "K2", "name": "Kategorie B", "preis": 10.00 }
+      ],
+      "belegteSitzplaetze": []
+    },
+    {
+      "id": "E5", "titel": "Jazz-Session", "spielstaetteId": "V1", "raumId": "R2",
+      "beginn": "2026-10-03T20:30:00", "dauerMin": 110, "altersfreigabe": 0,
+      "beschreibung": "Ein Abend mit improvisierter Musik in kleiner Besetzung.",
+      "preiskategorien": [
+        { "id": "K1", "name": "Kategorie A", "preis": 26.00 },
+        { "id": "K2", "name": "Kategorie B", "preis": 17.00 }
+      ],
+      "belegteSitzplaetze": []
+    },
+    {
+      "id": "E6", "titel": "Late-Night-Show", "spielstaetteId": "V2", "raumId": "R3",
+      "beginn": "2026-10-10T22:00:00", "dauerMin": 90, "altersfreigabe": 18,
+      "beschreibung": "Eine späte Talk- und Unterhaltungssendung vor Publikum.",
+      "preiskategorien": [
+        { "id": "K1", "name": "Kategorie A", "preis": 24.00 },
+        { "id": "K2", "name": "Kategorie B", "preis": 16.00 }
+      ],
+      "belegteSitzplaetze": []
+    }
+  ]
+}

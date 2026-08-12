@@ -1,0 +1,41 @@
+{
+  "projekt": "A",
+  "repository": "https://github.com/adamlarner/angularbooking",
+  "commit": "51f528375aab838e066bfb5b4f40dba973cd79a0",
+  "modell": "claude-sonnet-5",
+  "abgeleitet_am": "2026-08-11T08:58:27+0200",
+  "dauer_min": 3.7,
+  "kosten_usd": 1.1106,
+  "usage": {
+    "input_tokens": 36,
+    "cache_creation_input_tokens": 88527,
+    "cache_read_input_tokens": 950693,
+    "output_tokens": 19517,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 88527,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "not_available",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 772,
+        "cache_read_input_tokens": 96066,
+        "cache_creation_input_tokens": 8999,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 8999
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "bmad_manifest_sha256": "828e4c6b8bd338e87ad9a0f6c2988bf9bb39d44467b78902cb883511cd608322",
+  "hinweis": "Einmaliger Vorbereitungsschritt ausserhalb der Messlaeufe. Das Ergebnis ist ein Entwurf und vor dem Einfrieren manuell zu pruefen (siehe pruefliste.md)."
+}

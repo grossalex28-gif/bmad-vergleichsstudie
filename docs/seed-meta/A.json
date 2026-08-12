@@ -1,0 +1,12 @@
+{
+  "projekt": "A",
+  "seedCommitHash": "8e01fdd0de989bc0173d798c95ef43ca03d77797",
+  "node": "24.19.0",
+  "angularCli": "22.1.3",
+  "dotnet": "10.0.110",
+  "xunit": "3.2.2",
+  "frontendTestrunner": "Vitest",
+  "dbImage": "mcr.microsoft.com/mssql/server@sha256:86cc6144ef39bb0fbed2329e1ad79b13ee82e7b2e4739213a0db0800e668a74a",
+  "anfangsdatenbestandDatei": "seed-a-backend.Api/Data/anfangsdatenbestand.json",
+  "anfangsdatenbestandHash": "95584afe66d255399f88a333d8b0f4c20aacef73240a92e2eefc560c0522fdc8"
+}

@@ -1,0 +1,6 @@
+[submodule "seed/A"]
+	path = seed/A
+	url = git@github.com:DEINNAME/seed-projekt-a.git
+[submodule "seed/B"]
+	path = seed/B
+	url = git@github.com:DEINNAME/seed-projekt-b.git

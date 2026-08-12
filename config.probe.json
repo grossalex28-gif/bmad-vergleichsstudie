@@ -1,0 +1,69 @@
+{
+  "_kommentar": "Konfiguration fuer den Probelauf. Alle Pfade relativ zu diesem Ordner gedacht, aber absolut geschrieben - der Harness loest ~ auf. Fuer die zwoelf Messlaeufe eine eigene Datei anlegen und die Werte danach nicht mehr aendern.",
+
+  "runs_root": "~/dev/Bachelor/bmad-vergleichsstudie/runs",
+  "seed_repo": "~/dev/Bachelor/bmad-vergleichsstudie/seed-probe",
+  "bmad_source": "~/dev/Bachelor/bmad-vergleichsstudie/bmad-core-bmm",
+
+  "input_files": {
+    "P": "~/dev/Bachelor/bmad-vergleichsstudie/inputs/probe.md"
+  },
+
+  "model": "claude-sonnet-5",
+  "_modell_hinweis": "Ermittelt am 07.08.2026. Die CLI liefert keine datierte Kennung, nur den kanonischen Alias - deshalb traegt das Zugriffsdatum die Beweislast. Der Harness protokolliert je Schritt das tatsaechlich verwendete Modell und meldet Abweichungen.",
+
+  "claude_bin": "claude",
+  "permission_mode": "bypassPermissions",
+  "_werkzeug_hinweis": "Sperrliste statt Erlaubnisliste: eine zu enge Erlaubnisliste laesst einen Lauf nach Stunden an einem fehlenden Werkzeug scheitern. Gesperrt sind ausschliesslich Werkzeuge zur Sitzungs- und Aufgabenverwaltung, die mit Softwareentwicklung nichts zu tun haben und im Probelauf nachweislich ohne Wirkung aufgerufen wurden. Das tatsaechlich genutzte Werkzeugset wird je Lauf in state.json gezaehlt.",
+  "allowed_tools": [],
+  "disallowed_tools": [
+    "WebSearch",
+    "WebFetch",
+    "ScheduleWakeup",
+    "ListAgents",
+    "SendMessage",
+    "Monitor",
+    "TaskCreate",
+    "TaskUpdate",
+    "CronCreate",
+    "CronList",
+    "CronDelete",
+    "NotebookEdit",
+    "ExitPlanMode",
+    "EnterPlanMode"
+  ],
+  "require_no_hooks": true,
+  "progress": true,
+
+  "limits": {
+    "t1_active_hours": 3,
+    "t2_calendar_hours": 8,
+    "t3_step_minutes": 180,
+    "token_budget": null,
+    "cost_budget_usd": null,
+    "max_steps": 40
+  },
+
+  "rate_limit": {
+    "wait_minutes": 20,
+    "max_retries": 24
+  },
+
+  "sequence": {
+    "routing_mode": "help",
+    "route_within_cycle": false,
+    "story_cycle": ["bmad-create-story", "bmad-dev-story", "bmad-code-review"],
+    "solo_max_iterations": 20,
+    "fallback_chain": [
+      { "skill": "bmad-prd" },
+      { "skill": "bmad-architecture" },
+      { "skill": "bmad-create-epics-and-stories" },
+      { "skill": "bmad-check-implementation-readiness" },
+      { "skill": "bmad-sprint-planning" },
+      { "skill": "bmad-create-story", "action": "create" },
+      { "skill": "bmad-create-story", "action": "validate" },
+      { "skill": "bmad-dev-story" },
+      { "skill": "bmad-code-review" }
+    ]
+  }
+}

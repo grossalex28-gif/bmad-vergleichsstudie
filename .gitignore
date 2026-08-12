@@ -1,0 +1,21 @@
+# Laufdaten. Bewusst nicht in diesem Repository: es enthaelt die Vorgabe und
+# das Werkzeug, also das, was vor der Erhebung feststeht. Die Ergebnisse sind
+# ein eigenes Ding und werden je Lauf als git bundle plus gepackte Logs
+# archiviert (siehe README, Abschnitt zur Archivierung).
+runs/
+
+# Archive einzelner Laeufe. Werden ueber Releases bzw. Zenodo
+# veroeffentlicht, nicht ueber die Repository-Historie.
+archiv/
+
+# BMAD-Installation. Fremdcode ohne mitgelieferte Lizenzdatei, deshalb nicht
+# mitveroeffentlicht. Reproduzierbar ueber die gepinnte Version
+# bmad-method@6.10.0; der Manifest-Hash steht in jeder config.json je Lauf.
+bmad-core-bmm/
+
+# Python
+__pycache__/
+*.pyc
+
+# Sicherungskopien aus der Bearbeitung
+.backup/
