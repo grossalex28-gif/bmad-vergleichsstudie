@@ -51,9 +51,25 @@ _NET_PACKAGE = re.compile(
     re.I)
 
 
+# Aufrufe gegen die eigene laufende Anwendung sind Selbsttests und kein
+# Datenabfluss. Sie werden als "local" gezaehlt, damit C9 keinen externen
+# Abruf behauptet, den es nicht gab.
+_NET_URL = re.compile(r"https?://([^/\s'\"]+)", re.I)
+_LOCAL_HOSTS = re.compile(
+    r"^(localhost|127\.0\.0\.1|0\.0\.0\.0|\[::1\]|host\.docker\.internal)"
+    r"(:\d+)?$", re.I)
+
+
+def _only_local_urls(cmd: str) -> bool:
+    urls = _NET_URL.findall(cmd)
+    return bool(urls) and all(_LOCAL_HOSTS.match(u) for u in urls)
+
+
 def classify_command(cmd: str) -> Optional[str]:
     if not cmd:
         return None
+    if _only_local_urls(cmd) and not _NET_PACKAGE.match(cmd.strip()):
+        return "local"
     if _NET_FETCH.search(cmd):
         # Paketmanager-Aufrufe mit eingebetteter URL bleiben Paketmanager.
         if _NET_PACKAGE.match(cmd.strip()):

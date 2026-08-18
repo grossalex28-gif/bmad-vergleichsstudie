@@ -78,8 +78,8 @@
 
   "_limit_hinweis": "T1/T2/T3 nach der Festlegung im Zeitregime. Hochrechnung aus dem Probelauf (5 Features, 146 min, 48,55 USD): Planung rund 29 min und 9 USD je Lauf, danach 15,8 min und 5,85 USD je Story bei etwa 1,2 Stories je Feature. Fuer 13 Features also grob 7 h je BMAD-Lauf, weshalb T1 mit 8 h knapp ueber der Erwartung liegt und als Deckel wirken kann. Das ist beabsichtigt: greift T1 in mehr als einem von drei BMAD-Laeufen, gilt das Design als zeitfixiert statt umfangsfixiert.",
   "limits": {
-    "t1_active_hours": 8,
-    "t2_calendar_hours": 36,
+    "t1_active_hours": 16,
+    "t2_calendar_hours": 72,
     "t3_step_minutes": 180,
     "token_budget": 20000000,
     "cost_budget_usd": null,

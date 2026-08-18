@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import datetime as _dt
 import hashlib
 import json
 import os
@@ -43,7 +44,7 @@ from prompts import (HEADLESS_PREFIX, ROUTER_PROMPT, bmad_first_prompt,
                      bmad_step_prompt, solo_continue_prompt, solo_first_prompt)
 
 SCHEMA_VERSION = "1"
-HARNESS_VERSION = "0.2.0-messlauf"
+HARNESS_VERSION = "0.2.4-messlauf"
 
 # ---------------------------------------------------------------------------
 # Signalbehandlung: laufenden Schritt zu Ende fuehren, danach anhalten.
@@ -317,14 +318,76 @@ def protokoll_append(cfg: Config, st: RunState, row: dict) -> None:
 # ---------------------------------------------------------------------------
 
 RATE_LIMIT_PATTERNS = [
-    r"rate.?limit", r"usage limit", r"limit reached", r"resets? at",
+    r"rate.?limit", r"usage limit", r"session limit", r"weekly limit",
+    r"limit reached", r"resets?\s+(at\s+)?\d", r"resets? at",
     r"too many requests", r"\b429\b", r"quota",
+    r"hit your [a-z ]{0,20}limit",
 ]
+
+# Die Meldung nennt haeufig die Uhrzeit der Ruecksetzung, etwa
+# "resets 1:50am (Europe/Berlin)". Wird sie erkannt, wartet der Harness genau
+# bis dahin statt in festen Zwanzigminutenschritten. Scheitert das Auslesen,
+# bleibt es beim festen Intervall.
+_RESET_RE = re.compile(
+    r"resets?\s+(?:at\s+)?(\d{1,2})(?::(\d{2}))?\s*([ap])\.?m\.?", re.I)
+
+
+def parse_reset_seconds(text: str, max_seconds: float) -> Optional[float]:
+    m = _RESET_RE.search(text or "")
+    if not m:
+        return None
+    stunde = int(m.group(1)) % 12
+    minute = int(m.group(2) or 0)
+    if m.group(3).lower() == "p":
+        stunde += 12
+    jetzt = _dt.datetime.now()
+    ziel = jetzt.replace(hour=stunde, minute=minute, second=0, microsecond=0)
+    if ziel <= jetzt:
+        ziel += _dt.timedelta(days=1)
+    sekunden = (ziel - jetzt).total_seconds() + 120.0
+    if sekunden <= 0 or sekunden > max_seconds:
+        return None
+    return sekunden
 
 
 def looks_like_rate_limit(text: str) -> bool:
     t = (text or "").lower()
     return any(re.search(p, t) for p in RATE_LIMIT_PATTERNS)
+
+
+# Der Ausgabendeckel der Usage Credits ist KEIN Zeitfenster: Warten hilft nicht,
+# er setzt sich erst zum Monatswechsel oder durch eine Aenderung im Konto
+# zurueck. Er wird deshalb getrennt erkannt und beendet den Lauf mit eigener
+# Ursache, statt in die Wartelogik zu laufen.
+SPEND_LIMIT_PATTERNS = [
+    r"spend limit", r"spending limit", r"cc_cli_limit_message",
+    r"credit balance", r"insufficient credit", r"out of credit",
+]
+
+
+def looks_like_spend_limit(text: str) -> bool:
+    t = (text or "").lower()
+    return any(re.search(p, t) for p in SPEND_LIMIT_PATTERNS)
+
+
+# Voruebergehende Stoerungen der Verbindung oder der API. Sie sagen nichts ueber
+# das Werkzeug aus und duerfen einen unbeaufsichtigten Lauf nicht als Blocker
+# beenden. Der Schritt wird hoechstens zweimal wiederholt, mit demselben
+# Vorbehalt wie nach einer Limitpause: das Arbeitsverzeichnis wird dabei nicht
+# zurueckgesetzt.
+TRANSIENT_PATTERNS = [
+    r"connection closed", r"connection reset", r"econnreset",
+    r"socket hang up", r"\bapi error\b", r"overloaded",
+    r"\b50[023]\b", r"internal server error", r"service unavailable",
+    r"timed out", r"timeout",
+]
+TRANSIENT_MAX = 2
+TRANSIENT_WAIT_S = 60.0
+
+
+def looks_like_transient(text: str) -> bool:
+    t = (text or "").lower()
+    return any(re.search(p, t) for p in TRANSIENT_PATTERNS)
 
 
 @dataclass
@@ -340,7 +403,9 @@ class StepResult:
     model_seen: Optional[str] = None
     tools: dict = field(default_factory=lambda: {"main": {}, "sub": {}})
     network: dict = field(default_factory=lambda: {"fetch": 0, "package": 0,
-                                                   "commands": []})
+                                                   "local": 0, "commands": []})
+    is_spend_limited: bool = False
+    is_transient: bool = False
 
 
 def invoke_claude(cfg: Config, workdir: Path, prompt: str,
@@ -374,7 +439,7 @@ def invoke_claude(cfg: Config, workdir: Path, prompt: str,
     cost_usd = 0.0
     model_seen = None
     tools: dict = {"main": {}, "sub": {}}
-    network: dict = {"fetch": 0, "package": 0, "commands": []}
+    network: dict = {"fetch": 0, "package": 0, "local": 0, "commands": []}
     started = now()
 
     with log_path.open("w", encoding="utf-8") as log:
@@ -432,6 +497,8 @@ def invoke_claude(cfg: Config, workdir: Path, prompt: str,
                                 kind = classify_command(cmd)
                                 if kind == "package":
                                     network["package"] += 1
+                                elif kind == "local":
+                                    network["local"] += 1
                                 elif kind == "fetch":
                                     network["fetch"] += 1
                                     if len(network["commands"]) < 50:
@@ -510,8 +577,12 @@ def invoke_claude(cfg: Config, workdir: Path, prompt: str,
     haystack = f"{result_text}\n{subtype}\n{stderr}"
     rl = looks_like_rate_limit(haystack) and (code != 0 or subtype.startswith("error"))
     ok = code == 0 and not subtype.startswith("error")
-    return StepResult(ok, rl, result_text, session_id, duration, usage,
-                      turns, cost_usd, model_seen, tools, network)
+    sl = looks_like_spend_limit(haystack)
+    return StepResult(ok, rl and not sl, result_text, session_id, duration, usage,
+                      turns, cost_usd, model_seen, tools, network,
+                      is_spend_limited=sl,
+                      is_transient=(not ok) and not sl and not rl
+                      and looks_like_transient(haystack))
 
 
 # ---------------------------------------------------------------------------
@@ -611,8 +682,12 @@ def cmd_init(cfg: Config, run_id: str) -> None:
         shutil.rmtree(workdir)
     seed_src = cfg.seed_repo_for(project)
     verify_seed(cfg, project, seed_src)
+    # seed.meta.json ist die Buchfuehrung des Untersuchenden ueber das
+    # Einfrieren, nicht Teil des Seeds. Sie darf nicht im Arbeitsverzeichnis
+    # liegen, weil der jeweilige Arm sie sonst lesen kann.
     shutil.copytree(seed_src, workdir,
-                    ignore=shutil.ignore_patterns(".git", "node_modules", "bin", "obj"))
+                    ignore=shutil.ignore_patterns(".git", "node_modules", "bin",
+                                                  "obj", "seed.meta.json"))
 
     # BMAD-Definitionen nur in der BMAD-Bedingung einspielen: einziger struktureller
     # Unterschied zwischen den Bedingungen.
@@ -716,16 +791,24 @@ def check_limits(cfg: Config, st: RunState) -> Optional[str]:
     return None
 
 
-def wait_for_rate_limit(cfg: Config, st: RunState, attempt: int) -> None:
+def wait_for_rate_limit(cfg: Config, st: RunState, attempt: int,
+                        hint: str = "") -> None:
     """Wartezeit zaehlt NICHT auf T1 - sie ist ein Umgebungseffekt, kein Aufwand
     des Werkzeugs. Sie wird getrennt protokolliert, damit C1c bereinigt werden
     kann."""
     wait = cfg.rate_limit_wait_seconds
+    genau = parse_reset_seconds(hint, 8 * 3600)
+    quelle = "festes Intervall"
+    if genau is not None:
+        wait = genau
+        quelle = "Ruecksetzzeit aus der Meldung"
     t0 = now()
-    print(f"[limit] Rate-Limit erkannt (Versuch {attempt}). Warte {wait/60:.0f} min.")
+    print(f"[limit] Rate-Limit erkannt (Versuch {attempt}). "
+          f"Warte {wait/60:.0f} min ({quelle}).")
     protokoll_append(cfg, st, {
         "timestamp": iso(t0), "run_id": st.run_id, "step_index": st.step_index,
-        "event": "rate_limit_wait_start", "detail": f"attempt={attempt}"})
+        "event": "rate_limit_wait_start",
+        "detail": f"attempt={attempt} wait_min={wait/60:.0f} quelle={quelle}"})
     end = t0 + wait
     while now() < end:
         if should_stop(cfg, st):
@@ -778,7 +861,16 @@ def next_step_bmad(cfg: Config, st: RunState, workdir: Path,
         **usage_fields(res)})
 
     if res.is_rate_limited:
-        return {"kind": "rate_limited"}
+        return {"kind": "rate_limited", "hint": res.result_text}
+    if res.is_spend_limited:
+        return {"kind": "spend_limited"}
+    if res.is_transient:
+        return {"kind": "transient"}
+    if not res.ok:
+        # Ein fehlgeschlagener Router darf nicht als regulaerer Abschluss
+        # durchgehen. Die Rueckfallebene liefert am Ende der Pflichtkette
+        # None, was cmd_run sonst als "Workflow durch" deutet.
+        return {"kind": "router_error"}
     payload = extract_json(res.result_text) or {}
     if payload.get("done") is True:
         return None
@@ -810,6 +902,18 @@ def next_step_solo(cfg: Config, st: RunState, input_text: str) -> Optional[dict]
         return None
     return {"kind": "step", "skill": "solo", "action": None,
             "prompt": solo_continue_prompt(input_text)}
+
+
+def log_transient(cfg: Config, st: RunState, idx: int, skill: str,
+                  res_text: str, final: bool = False) -> None:
+    """Voruebergehende Stoerung protokollieren (C4-Nachweis)."""
+    art = "aufgegeben" if final else "wiederholt"
+    protokoll_append(cfg, st, {
+        "timestamp": iso(now()), "run_id": st.run_id, "step_index": idx,
+        "event": "transient_error", "skill": skill,
+        "status": art,
+        "detail": (res_text or "")[:200].replace("\n", " ")})
+    print(f"[transient] Voruebergehende Stoerung in Schritt {idx} ({skill}) - {art}.")
 
 
 def cmd_run(cfg: Config, run_id: str) -> None:
@@ -854,6 +958,7 @@ def cmd_run(cfg: Config, run_id: str) -> None:
           f"T1 {st.active_seconds/3600:.2f}/{cfg.t1_active_seconds/3600:.1f} h")
 
     rl_attempts = 0
+    tr_attempts = 0
 
     while True:
         reason = check_limits(cfg, st)
@@ -873,12 +978,32 @@ def cmd_run(cfg: Config, run_id: str) -> None:
         if nxt is None:
             terminate(cfg, st, "regular")
             return
+        if nxt.get("kind") == "transient":
+            tr_attempts += 1
+            if tr_attempts > TRANSIENT_MAX:
+                log_transient(cfg, st, st.step_index, "router", res_text="", final=True)
+                terminate(cfg, st, "blocker")
+                return
+            log_transient(cfg, st, st.step_index, "router", res_text="")
+            time.sleep(TRANSIENT_WAIT_S)
+            st.wait_seconds += TRANSIENT_WAIT_S
+            continue
+        if nxt.get("kind") == "spend_limited":
+            print("[limit] Monatlicher Ausgabendeckel erreicht. "
+                  "Der Lauf terminiert, Warten hilft hier nicht.")
+            terminate(cfg, st, "spend_limit")
+            return
+        if nxt.get("kind") == "router_error":
+            print("[blocker] Router-Schritt fehlgeschlagen. Kein regulaerer "
+                  "Abschluss, der Lauf haelt an.")
+            terminate(cfg, st, "blocker")
+            return
         if nxt.get("kind") == "rate_limited":
             rl_attempts += 1
             if rl_attempts > cfg.rate_limit_max_retries:
                 terminate(cfg, st, "blocker")
                 return
-            wait_for_rate_limit(cfg, st, rl_attempts)
+            wait_for_rate_limit(cfg, st, rl_attempts, nxt.get("hint", ""))
             continue
 
         # --- Schritt ausfuehren -----------------------------------------
@@ -889,12 +1014,33 @@ def cmd_run(cfg: Config, run_id: str) -> None:
         print(f"[step {idx:03d}] {skill} ...")
         res = invoke_claude(cfg, workdir, nxt["prompt"], log, cfg.t3_step_seconds)
 
+        if res.is_transient:
+            tr_attempts += 1
+            if tr_attempts > TRANSIENT_MAX:
+                log_transient(cfg, st, idx, skill, res.result_text, final=True)
+                terminate(cfg, st, "blocker")
+                return
+            log_transient(cfg, st, idx, skill, res.result_text)
+            time.sleep(TRANSIENT_WAIT_S)
+            st.wait_seconds += TRANSIENT_WAIT_S
+            st.save(cfg)
+            continue
+        tr_attempts = 0
+        if res.is_spend_limited:
+            protokoll_append(cfg, st, {
+                "timestamp": iso(now()), "run_id": st.run_id, "step_index": idx,
+                "event": "spend_limit", "skill": skill, "status": "abbruch",
+                "detail": (res.result_text or "")[:300].replace("\n", " ")})
+            print("[limit] Monatlicher Ausgabendeckel erreicht. "
+                  "Der Lauf terminiert, Warten hilft hier nicht.")
+            terminate(cfg, st, "spend_limit")
+            return
         if res.is_rate_limited:
             rl_attempts += 1
             if rl_attempts > cfg.rate_limit_max_retries:
                 terminate(cfg, st, "blocker")
                 return
-            wait_for_rate_limit(cfg, st, rl_attempts)
+            wait_for_rate_limit(cfg, st, rl_attempts, res.result_text)
             continue
         rl_attempts = 0
 
@@ -904,6 +1050,7 @@ def cmd_run(cfg: Config, run_id: str) -> None:
                 st.tools[bucket][name] = st.tools[bucket].get(name, 0) + cnt
         st.network["fetch"] += res.network.get("fetch", 0)
         st.network["package"] += res.network.get("package", 0)
+        st.network["local"] = st.network.get("local", 0) + res.network.get("local", 0)
         st.network["commands"].extend(res.network.get("commands", [])[:20])
         if res.network.get("fetch"):
             # Fremdinhalte geholt: Befund, kein Abbruch. Relevant fuer die
@@ -918,7 +1065,8 @@ def cmd_run(cfg: Config, run_id: str) -> None:
 
         # Modelldrift ist ein Befund, kein Detail: der Anbieter kann einen
         # Alias jederzeit umhaengen.
-        if res.model_seen and res.model_seen != cfg.model:
+        if (res.model_seen and res.model_seen != cfg.model
+                and not res.model_seen.startswith("<")):
             protokoll_append(cfg, st, {
                 "timestamp": iso(now()), "run_id": st.run_id, "step_index": idx,
                 "event": "model_mismatch", "status": "warn",
@@ -1012,7 +1160,8 @@ def cmd_status(cfg: Config, run_id: str) -> None:
         "tokens": st.tokens, "tokens_total": st.total_tokens,
         "tokens_billable": st.billable_tokens,
         "cost_usd": round(st.cost_usd, 4),
-        "network": {"fetch": st.network["fetch"], "package": st.network["package"]},
+        "network": {"fetch": st.network["fetch"], "package": st.network["package"],
+                    "local": st.network.get("local", 0)},
         "tools": {k: dict(sorted(v.items(), key=lambda x: -x[1]))
                   for k, v in st.tools.items()},
         "last_skills": [s["skill"] for s in st.completed_steps[-5:]],
