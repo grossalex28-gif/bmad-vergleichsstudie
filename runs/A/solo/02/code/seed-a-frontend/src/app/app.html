@@ -1,0 +1,11 @@
+<header class="app-header">
+  <a class="app-header__brand" routerLink="/events">{{ title }}</a>
+  <nav class="app-header__nav">
+    <a routerLink="/events" routerLinkActive="is-active" [routerLinkActiveOptions]="{ exact: false }">Programm</a>
+    <a routerLink="/bookings" routerLinkActive="is-active">Buchung abrufen</a>
+  </nav>
+</header>
+
+<main class="app-main">
+  <router-outlet />
+</main>

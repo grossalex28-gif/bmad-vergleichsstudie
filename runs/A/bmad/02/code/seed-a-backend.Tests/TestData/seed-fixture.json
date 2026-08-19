@@ -1,0 +1,58 @@
+{
+  "spielstaetten": [
+    {
+      "id": "V1",
+      "name": "Test-Spielstaette Nord",
+      "raeume": [
+        {
+          "id": "R1", "name": "Kleiner Saal",
+          "reihen": ["A","B","C","D","E","F"],
+          "spalten": 10,
+          "gang": { "spalten": [6], "hinweis": "Mittelgang" }
+        },
+        {
+          "id": "R2", "name": "Studio",
+          "reihen": ["A","B","C","D"],
+          "spalten": 8,
+          "gang": null
+        }
+      ]
+    },
+    {
+      "id": "V2",
+      "name": "Test-Spielstaette Sued",
+      "raeume": [
+        {
+          "id": "R3", "name": "Konzertsaal",
+          "reihen": ["A","B","C","D","E","F","G","H","I","J","K","L"],
+          "spalten": 16,
+          "gang": { "spalten": [1, 16], "hinweis": "beidseitige Seitengaenge" }
+        }
+      ]
+    }
+  ],
+  "veranstaltungen": [
+    {
+      "id": "E1", "titel": "Kammerkonzert Fruehling",
+      "beschreibung": "Ein intimes Konzert mit klassischen und modernen Stuecken fuer ein kleines Ensemble.",
+      "spielstaetteId": "V1", "raumId": "R1",
+      "zeitpunkt": "2026-09-05T19:30:00", "dauerMinuten": 90, "altersfreigabe": 0,
+      "preiskategorien": [
+        { "id": "E1-A", "name": "Kategorie A", "preis": 32.00 },
+        { "id": "E1-B", "name": "Kategorie B", "preis": 22.00 }
+      ],
+      "belegteSitzplaetze": ["B3", "B4", "C7"]
+    },
+    {
+      "id": "E2", "titel": "Sinfonisches Openair-Programm",
+      "beschreibung": "Ein abendfuellendes Programm mit grossem Orchester unter freiem Himmel.",
+      "spielstaetteId": "V2", "raumId": "R3",
+      "zeitpunkt": "2026-09-12T20:00:00", "dauerMinuten": 120, "altersfreigabe": 0,
+      "preiskategorien": [
+        { "id": "E2-A", "name": "Kategorie A", "preis": 45.00 },
+        { "id": "E2-B", "name": "Kategorie B", "preis": 30.00 }
+      ],
+      "belegteSitzplaetze": []
+    }
+  ]
+}

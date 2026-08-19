@@ -1,0 +1,47 @@
+<section class="seite">
+  <a routerLink="/veranstaltungen" class="zurueck">&larr; Zur Übersicht</a>
+
+  @if (ladeFehler()) {
+    <p class="fehler" role="alert">{{ ladeFehler() }}</p>
+  }
+
+  @if (veranstaltung(); as v) {
+    <h1>{{ v.titel }}</h1>
+
+    <dl class="details">
+      <div>
+        <dt>Spielstätte</dt>
+        <dd>{{ v.spielstaetteName }}</dd>
+      </div>
+      <div>
+        <dt>Raum</dt>
+        <dd>{{ v.raumName }}</dd>
+      </div>
+      <div>
+        <dt>Zeitpunkt</dt>
+        <dd>{{ v.zeitpunkt | date: 'EEEE, d. MMMM y, HH:mm' }} Uhr</dd>
+      </div>
+      <div>
+        <dt>Dauer</dt>
+        <dd>{{ v.dauerMinuten }} Minuten</dd>
+      </div>
+      <div>
+        <dt>Altersfreigabe</dt>
+        <dd>{{ v.altersfreigabe === 0 ? 'Ohne Altersbeschränkung' : 'Ab ' + v.altersfreigabe + ' Jahren' }}</dd>
+      </div>
+    </dl>
+
+    <p class="beschreibung">{{ v.beschreibung }}</p>
+
+    <h2>Preiskategorien</h2>
+    <ul class="preiskategorien">
+      @for (kategorie of v.preiskategorien; track kategorie.id) {
+        <li>{{ kategorie.name }}: {{ kategorie.preis | number: '1.2-2' }} €</li>
+      }
+    </ul>
+
+    <a class="button-primary" [routerLink]="['/veranstaltungen', v.id, 'sitzplatzwahl']">
+      Sitzplätze auswählen
+    </a>
+  }
+</section>

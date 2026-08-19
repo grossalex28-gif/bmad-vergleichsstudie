@@ -1,0 +1,86 @@
+.programmuebersicht {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: var(--spacing-margin-mobile);
+}
+
+@media (min-width: 768px) {
+  .programmuebersicht {
+    padding: var(--spacing-margin-desktop);
+  }
+}
+
+.programmuebersicht__titel {
+  font-family: var(--font-headline-md-family);
+  font-size: var(--font-headline-md-size);
+  font-weight: var(--font-headline-md-weight);
+  line-height: var(--font-headline-md-line-height);
+  color: var(--color-on-surface);
+  margin: 0 0 var(--spacing-section-gap) 0;
+}
+
+.programmuebersicht__filter {
+  display: block;
+  margin: 0 0 var(--spacing-section-gap) 0;
+}
+
+.programmuebersicht__liste {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-unit);
+}
+
+.programmuebersicht__leerzustand {
+  font-family: var(--font-body-lg-family);
+  font-size: var(--font-body-lg-size);
+  line-height: var(--font-body-lg-line-height);
+  color: var(--color-on-surface-variant);
+}
+
+.programmuebersicht__filter-zuruecksetzen {
+  font-family: var(--font-body-lg-family);
+  font-size: var(--font-body-lg-size);
+  line-height: var(--font-body-lg-line-height);
+  color: var(--color-primary);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.programmuebersicht__fehler {
+  font-family: var(--font-body-lg-family);
+  font-size: var(--font-body-lg-size);
+  line-height: var(--font-body-lg-line-height);
+  color: var(--color-on-error-container);
+  background: var(--color-error-container);
+  border-radius: var(--radius-default);
+  padding: var(--spacing-gutter);
+  margin: 0;
+}
+
+.event-card-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-unit);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-container-low);
+  padding: var(--spacing-gutter);
+}
+
+.event-card-skeleton__titel,
+.event-card-skeleton__meta {
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-container-high);
+}
+
+.event-card-skeleton__titel {
+  width: 60%;
+  height: calc(var(--font-headline-sm-size) * var(--font-headline-sm-line-height));
+}
+
+.event-card-skeleton__meta {
+  width: 40%;
+  height: calc(var(--font-body-md-size) * var(--font-body-md-line-height));
+}

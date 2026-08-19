@@ -1,0 +1,53 @@
+<nav class="category-nav" aria-label="Kategorien">
+  @if (error()) {
+    <p class="category-nav__error">Die Kategorien konnten nicht geladen werden. Bitte versuchen Sie es später erneut.</p>
+  }
+
+  <button
+    type="button"
+    class="category-nav__all"
+    [class.category-nav__all--active]="!selection().categoryId && !selection().subcategoryId"
+    [disabled]="loading() || disabled()"
+    (click)="selectAll()"
+  >
+    Alle Kategorien
+  </button>
+
+  <ul class="category-nav__list">
+    @for (category of categories(); track category.id) {
+      <li class="category-nav__category">
+        <button
+          type="button"
+          class="category-nav__category-name"
+          [class.category-nav__category-name--active]="
+            selection().categoryId === category.id && !selection().subcategoryId
+          "
+          [disabled]="loading() || disabled()"
+          (click)="selectCategory(category.id)"
+        >
+          {{ category.name }}
+        </button>
+
+        @if (category.subcategories.length > 0) {
+          <ul class="category-nav__subcategories">
+            @for (subcategory of category.subcategories; track subcategory.id) {
+              <li
+                class="category-nav__subcategory"
+                [class.category-nav__subcategory--active]="selection().subcategoryId === subcategory.id"
+              >
+                <button
+                  type="button"
+                  class="category-nav__subcategory-name"
+                  [disabled]="loading() || disabled()"
+                  (click)="selectSubcategory(category.id, subcategory.id)"
+                >
+                  {{ subcategory.name }}
+                </button>
+              </li>
+            }
+          </ul>
+        }
+      </li>
+    }
+  </ul>
+</nav>

@@ -1,0 +1,93 @@
+.back-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.buchung {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+
+  &__kopf {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+
+    h1 {
+      margin: 0 0 0.25rem;
+    }
+  }
+
+  &__facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin: 0;
+
+    dt {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--color-text-muted);
+      margin-bottom: 0.2rem;
+    }
+
+    dd {
+      margin: 0;
+      font-weight: 600;
+    }
+  }
+
+  h2 {
+    font-size: 1.1rem;
+    margin: 0 0 0.75rem;
+  }
+
+  .btn {
+    align-self: flex-start;
+  }
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-success) 12%, white);
+  color: var(--color-success);
+  font-weight: 600;
+  font-size: 0.85rem;
+  white-space: nowrap;
+
+  &--storniert {
+    background: color-mix(in srgb, var(--color-danger) 12%, white);
+    color: var(--color-danger);
+  }
+}
+
+.sitzplaetze-tabelle {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+
+  th,
+  td {
+    text-align: left;
+    padding: 0.5rem 0.4rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  th:last-child,
+  td:last-child {
+    text-align: right;
+  }
+
+  tfoot td {
+    font-weight: 700;
+    border-bottom: none;
+    border-top: 2px solid var(--color-border);
+  }
+}

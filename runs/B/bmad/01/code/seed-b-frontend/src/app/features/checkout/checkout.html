@@ -1,0 +1,47 @@
+@if (items().length === 0) {
+  <p class="checkout__empty">Ihr Warenkorb ist leer. Es kann keine Bestellung abgeschlossen werden.</p>
+} @else {
+  <form class="checkout" (submit)="$event.preventDefault(); submit()">
+    <h1>Bestellung abschließen</h1>
+    <label>
+      Name
+      <input [value]="delivery().name" (input)="updateField('name', $any($event.target).value)" required />
+    </label>
+    <label>
+      Straße
+      <input [value]="delivery().street" (input)="updateField('street', $any($event.target).value)" required />
+    </label>
+    <label>
+      PLZ
+      <input [value]="delivery().postalCode" (input)="updateField('postalCode', $any($event.target).value)" required />
+    </label>
+    <label>
+      Ort
+      <input [value]="delivery().city" (input)="updateField('city', $any($event.target).value)" required />
+    </label>
+    <label>
+      Land
+      <input [value]="delivery().country" (input)="updateField('country', $any($event.target).value)" required />
+    </label>
+    <label>
+      E-Mail
+      <input type="email" [value]="delivery().email" (input)="updateField('email', $any($event.target).value)" required />
+    </label>
+    <label>
+      Telefon (optional)
+      <input [value]="delivery().phone" (input)="updateField('phone', $any($event.target).value)" />
+    </label>
+    <p class="checkout__total">Gesamtsumme: {{ totalAmount() }} €</p>
+    <button type="submit" [disabled]="!canSubmit()">Kaufen</button>
+    @if (submitError()) {
+      <p class="checkout__error">{{ submitError() }}</p>
+      @if (invalidLines().length > 0) {
+        <ul class="checkout__invalid-lines">
+          @for (line of invalidLines(); track line.productId + ':' + line.supplierId) {
+            <li>{{ productNameFor(line) }}: {{ labelFor(line) }}</li>
+          }
+        </ul>
+      }
+    }
+  </form>
+}

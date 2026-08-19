@@ -1,0 +1,7 @@
+<div class="price-summary">
+  <app-price-category-list [priceCategories]="priceCategories()" />
+  <p class="price-summary__total">
+    <span class="price-summary__total-label">Gesamtpreis</span>
+    <span class="price-summary__total-amount">{{ selection.totalPrice() | currency: 'EUR' }}</span>
+  </p>
+</div>

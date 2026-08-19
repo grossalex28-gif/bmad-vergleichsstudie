@@ -1,0 +1,31 @@
+@if (error()) {
+  <p class="order-confirmation__error">Die Bestellung konnte nicht geladen werden.</p>
+} @else if (notFound()) {
+  <p class="order-confirmation__not-found">Diese Bestellung wurde nicht gefunden.</p>
+} @else if (order(); as o) {
+  <h1>Bestellbestätigung</h1>
+  <p class="order-confirmation__status">Status: {{ o.status }}</p>
+  <table class="order-confirmation__table">
+    <thead>
+      <tr>
+        <th>Produkt</th>
+        <th>Lieferant</th>
+        <th>Einzelpreis</th>
+        <th>Menge</th>
+        <th>Gesamt</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of o.items; track $index) {
+        <tr>
+          <td>{{ item.productName }}</td>
+          <td>{{ item.supplierName }}</td>
+          <td>{{ item.unitPrice | currency: 'EUR' }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.unitPrice * item.quantity | currency: 'EUR' }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  <p class="order-confirmation__total">Gesamtsumme: {{ o.totalAmount | currency: 'EUR' }}</p>
+}

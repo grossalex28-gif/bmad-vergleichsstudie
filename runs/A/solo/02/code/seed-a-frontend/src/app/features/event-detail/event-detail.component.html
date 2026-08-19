@@ -1,0 +1,42 @@
+@if (loading()) {
+  <p>Veranstaltung wird geladen…</p>
+} @else if (error()) {
+  <p class="error">{{ error() }}</p>
+} @else if (event(); as event) {
+  <a class="back-link" routerLink="/events">← Zurück zum Programm</a>
+
+  <h1>{{ event.title }}</h1>
+  <p class="event-detail__description">{{ event.description }}</p>
+
+  <dl class="event-detail__facts">
+    <div>
+      <dt>Spielstätte</dt>
+      <dd>{{ event.venueName }}</dd>
+    </div>
+    <div>
+      <dt>Raum</dt>
+      <dd>{{ event.roomName }}</dd>
+    </div>
+    <div>
+      <dt>Zeitpunkt</dt>
+      <dd>{{ event.startsAt | date: 'dd.MM.yyyy, HH:mm' }} Uhr</dd>
+    </div>
+    <div>
+      <dt>Dauer</dt>
+      <dd>{{ event.durationMinutes }} Minuten</dd>
+    </div>
+    <div>
+      <dt>Altersfreigabe</dt>
+      <dd>{{ event.ageRating === 0 ? 'ohne Altersbeschränkung' : 'ab ' + event.ageRating + ' Jahren' }}</dd>
+    </div>
+  </dl>
+
+  <h2>Preiskategorien</h2>
+  <ul class="event-detail__prices">
+    @for (category of event.priceCategories; track category.id) {
+      <li>{{ category.name }}: {{ category.price | number: '1.2-2' }} €</li>
+    }
+  </ul>
+
+  <a class="button button--primary" [routerLink]="['/events', event.id, 'seats']">Plätze auswählen</a>
+}

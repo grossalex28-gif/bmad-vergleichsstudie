@@ -1,0 +1,25 @@
+@if (loading()) {
+  <p class="event-detail__loading">Veranstaltung wird geladen…</p>
+} @else if (notFound()) {
+  <p class="event-detail__error" role="alert">Veranstaltung nicht gefunden.</p>
+} @else if (loadError()) {
+  <p class="event-detail__error" role="alert">Veranstaltungsdetails konnten nicht geladen werden. Bitte versuchen Sie es später erneut.</p>
+} @else if (event(); as e) {
+  <article class="event-detail">
+    <h1 class="event-detail__title">{{ e.titel }}</h1>
+    <p class="event-detail__description">{{ e.beschreibung }}</p>
+    <dl class="event-detail__meta">
+      <dt>Spielstätte</dt>
+      <dd>{{ e.spielstaette }}</dd>
+      <dt>Raum</dt>
+      <dd>{{ e.raum }}</dd>
+      <dt>Zeitpunkt</dt>
+      <dd>{{ e.zeitpunkt | date:'EEEE, d. MMMM y, HH:mm' }} Uhr</dd>
+      <dt>Dauer</dt>
+      <dd>{{ e.dauerMinuten }} Minuten</dd>
+      <dt>Altersfreigabe</dt>
+      <dd>{{ e.altersfreigabe === 0 ? 'Keine Altersbeschränkung' : 'Ab ' + e.altersfreigabe + ' Jahren' }}</dd>
+    </dl>
+    <a class="event-detail__book-button button-primary" [routerLink]="['/veranstaltungen', e.id, 'buchung']">Plätze wählen</a>
+  </article>
+}

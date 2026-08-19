@@ -1,0 +1,50 @@
+@use '../../../breakpoints' as *;
+
+.program-overview__heading {
+  margin: var(--space-3) var(--margin-mobile) 0;
+  font-family: var(--font-display);
+  font-size: var(--text-title-size);
+  font-weight: var(--text-title-weight);
+  color: var(--color-on-surface);
+}
+
+.program-overview__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gutter);
+  padding: var(--margin-mobile);
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .program-overview__heading {
+    margin: var(--space-3) var(--margin-desktop) 0;
+  }
+
+  .program-overview__grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: var(--margin-desktop);
+  }
+}
+
+@media (min-width: $breakpoint-desktop) {
+  .program-overview__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.program-overview__empty {
+  padding: var(--space-4) var(--margin-mobile);
+  color: var(--color-on-surface-variant);
+  font-family: var(--font-body);
+  font-size: var(--text-body-size);
+}
+
+.program-overview__error {
+  margin: var(--space-3) var(--margin-mobile);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-error-container);
+  color: var(--color-on-error-container);
+  border-radius: var(--radius-default);
+  font-family: var(--font-body);
+  font-size: var(--text-body-size);
+}

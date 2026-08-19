@@ -1,0 +1,17 @@
+<nav>
+  <button type="button" (click)="selectionCleared.emit()">Alle Kategorien</button>
+  <ul>
+    @for (category of categories(); track category.id) {
+      <li>
+        <button type="button" (click)="categorySelected.emit(category.id)">{{ category.name }}</button>
+        <ul>
+          @for (subcategory of category.subcategories; track subcategory.id) {
+            <li>
+              <button type="button" (click)="subcategorySelected.emit(subcategory.id)">{{ subcategory.name }}</button>
+            </li>
+          }
+        </ul>
+      </li>
+    }
+  </ul>
+</nav>

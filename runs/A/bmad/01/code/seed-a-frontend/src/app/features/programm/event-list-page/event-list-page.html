@@ -1,0 +1,42 @@
+<h1 class="event-list-page__heading">Programm</h1>
+
+<app-filter-bar [(von)]="von" [(bis)]="bis" [(venueId)]="venueId" [venues]="venues()" />
+
+@if (activeFilterChips().length > 0) {
+  <div class="event-list-page__chips">
+    @for (chip of activeFilterChips(); track chip.key) {
+      <button
+        type="button"
+        class="event-list-page__chip"
+        [attr.aria-label]="'Filter entfernen: ' + chip.label"
+        (click)="chip.onClear()"
+      >{{ chip.label }} ×</button>
+    }
+  </div>
+}
+
+@if (loadError()) {
+  <p class="event-list-page__error" role="alert">Veranstaltungen konnten nicht geladen werden.</p>
+} @else if (events(); as loadedEvents) {
+  @if (loadedEvents.length === 0 && hasActiveFilter()) {
+    <p class="event-list-page__empty">Keine Veranstaltungen im gewählten Zeitraum.</p>
+    <button type="button" class="event-list-page__reset" (click)="resetFilters()">Filter zurücksetzen</button>
+  } @else {
+    <div class="event-list-page__grid">
+      @for (event of loadedEvents; track event.id) {
+        <app-event-card
+          [id]="event.id"
+          [title]="event.title"
+          [venueName]="event.venueName"
+          [startsAt]="event.startsAt"
+        />
+      }
+    </div>
+  }
+} @else {
+  <div class="event-list-page__grid" aria-busy="true" aria-label="Veranstaltungen werden geladen">
+    @for (placeholder of placeholders; track $index) {
+      <div class="event-list-page__placeholder-card"></div>
+    }
+  </div>
+}

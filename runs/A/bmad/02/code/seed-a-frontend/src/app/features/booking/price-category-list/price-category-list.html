@@ -1,0 +1,24 @@
+@if (selection.selectedSeats().length > 0) {
+  <ul class="price-category-list">
+    @for (seat of selection.selectedSeats(); track seat.rowLabel + '-' + seat.columnNumber) {
+      <li class="price-category-list__row">
+        <label class="price-category-list__label" [for]="'preiskategorie-' + seat.rowLabel + '-' + seat.columnNumber">
+          Sitzplatz {{ seat.rowLabel }}{{ seat.columnNumber }}
+        </label>
+        <select
+          [id]="'preiskategorie-' + seat.rowLabel + '-' + seat.columnNumber"
+          class="price-category-list__select"
+          [value]="seat.priceCategoryId ?? ''"
+          (change)="onCategoryChange(seat.rowLabel, seat.columnNumber, $any($event.target).value)"
+        >
+          <option value="" disabled>Bitte wählen</option>
+          @for (category of priceCategories(); track category.id) {
+            <option [value]="category.id">{{ category.name }} – {{ category.preis | currency: 'EUR' }}</option>
+          }
+        </select>
+      </li>
+    }
+  </ul>
+} @else {
+  <p class="price-category-list__empty">Wählen Sie Sitzplätze im Sitzplan aus, um Preiskategorien zuzuordnen.</p>
+}

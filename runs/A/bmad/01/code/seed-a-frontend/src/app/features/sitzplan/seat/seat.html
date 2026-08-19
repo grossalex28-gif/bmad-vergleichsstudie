@@ -1,0 +1,22 @@
+<div
+  class="seat"
+  [class.seat--free]="status() === 'Free' && !selected()"
+  [class.seat--selected]="selected()"
+  [class.seat--occupied]="status() === 'Occupied'"
+  [attr.aria-label]="ariaLabel()"
+  [attr.aria-disabled]="status() === 'Occupied' ? true : null"
+  [attr.role]="status() === 'Occupied' ? null : 'button'"
+  [attr.aria-pressed]="status() === 'Occupied' ? null : selected()"
+  [attr.tabindex]="status() === 'Occupied' ? null : (focused() ? 0 : -1)"
+  (click)="onActivate()"
+  (keydown.enter)="onActivate()"
+  (keydown.space)="onSpace($event)"
+>
+  @if (selected()) {
+    <span class="seat__check" aria-hidden="true">✓</span>
+  } @else if (status() === 'Free') {
+    <span class="seat__symbol" aria-hidden="true">🪑</span>
+  } @else {
+    <span class="seat__cross" aria-hidden="true">×</span>
+  }
+</div>

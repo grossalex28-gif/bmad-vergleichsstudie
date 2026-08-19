@@ -1,0 +1,129 @@
+@use '../../../../breakpoints' as *;
+
+.seat-map__scroll {
+  overflow-x: auto;
+  padding-block: var(--space-1);
+}
+
+.seat-map {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--seat-gap);
+}
+
+.seat-map__row {
+  display: flex;
+  gap: var(--seat-gap);
+}
+
+.seat-cell {
+  width: var(--seat-cell-size);
+  height: var(--seat-cell-size);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  border-radius: var(--radius-sm);
+  padding: 0;
+  font-family: var(--font-body);
+}
+
+.seat-cell--free {
+  background: var(--color-seat-free-bg);
+  border: 1px solid var(--color-seat-free-border);
+  color: var(--color-on-surface);
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+.seat-cell--selected {
+  background: var(--color-seat-selected-bg);
+  color: var(--color-seat-selected-on);
+  border: none;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+.seat-cell--occupied {
+  background: var(--color-seat-occupied-bg);
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--color-seat-occupied-mark) 0,
+    var(--color-seat-occupied-mark) 1px,
+    transparent 1px,
+    transparent 6px
+  );
+  color: var(--color-seat-occupied-mark);
+  border: none;
+  cursor: default;
+}
+
+.seat-cell--aisle {
+  background: var(--color-seat-aisle-bg);
+  border: none;
+}
+
+.seat-cell--unknown {
+  background: var(--color-seat-occupied-bg);
+  border: 1px dashed var(--color-seat-occupied-mark);
+}
+
+.seat-map__empty {
+  padding: var(--space-3) 0;
+  color: var(--color-on-surface-variant);
+  font-family: var(--font-body);
+  font-size: var(--text-body-size);
+}
+
+.seat-cell__icon {
+  width: 12px;
+  height: 12px;
+}
+
+.seat-cell__icon--seat {
+  border: 1.5px solid currentColor;
+  border-radius: 2px;
+}
+
+.seat-cell__icon--check {
+  width: 10px;
+  height: 5px;
+  border-left: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(-45deg);
+  margin-top: -2px;
+}
+
+.seat-cell__icon--lock {
+  position: relative;
+  border: 1.5px solid currentColor;
+  border-radius: 2px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 2px;
+    width: 6px;
+    height: 5px;
+    border: 1.5px solid currentColor;
+    border-bottom: none;
+    border-radius: 3px 3px 0 0;
+  }
+}
+
+.seat-cell__label {
+  font-size: var(--text-seat-label-size);
+  font-weight: var(--text-seat-label-weight);
+  line-height: 1;
+}

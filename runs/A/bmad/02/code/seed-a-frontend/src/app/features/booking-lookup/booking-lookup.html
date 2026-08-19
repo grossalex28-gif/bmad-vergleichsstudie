@@ -1,0 +1,28 @@
+<h1 class="booking-lookup__heading">Buchung abrufen</h1>
+
+<form class="booking-lookup__form" (submit)="onSubmit(); $event.preventDefault()">
+  <div class="booking-lookup__field">
+    <label class="booking-lookup__label" for="buchung-referenz">Buchungsreferenz</label>
+    <input
+      id="buchung-referenz"
+      class="booking-lookup__input"
+      type="text"
+      autocomplete="off"
+      [value]="reference()"
+      (input)="reference.set($any($event.target).value)"
+      (blur)="touched.set(true)"
+      [attr.aria-describedby]="referenceError() ? 'buchung-referenz-fehler' : null"
+    />
+    @if (referenceError(); as error) {
+      <p id="buchung-referenz-fehler" class="booking-lookup__field-error">{{ error }}</p>
+    }
+  </div>
+
+  @if (submitError(); as error) {
+    <p class="booking-lookup__error" role="alert" aria-live="assertive">{{ error }}</p>
+  }
+
+  <button type="submit" class="booking-lookup__submit button-primary" [disabled]="submitting()">
+    {{ submitting() ? 'Buchung wird gesucht…' : 'Buchung anzeigen' }}
+  </button>
+</form>

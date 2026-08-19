@@ -1,11 +1,28 @@
-# Laufdaten. Bewusst nicht in diesem Repository: es enthaelt die Vorgabe und
-# das Werkzeug, also das, was vor der Erhebung feststeht. Die Ergebnisse sind
-# ein eigenes Ding und werden je Lauf als git bundle plus gepackte Logs
-# archiviert (siehe README, Abschnitt zur Archivierung).
-runs/
+# Laufdaten. Aufgenommen ins Repository, damit die zwoelf Implementierungen
+# auf einem anderen Rechner getestet und analysiert werden koennen. Nur die
+# Build-Ausgabe und die gespiegelten Framework-Kopien sind ausgeschlossen,
+# nicht Quellcode, Konfiguration, Sperrdateien oder Migrationen: Lock-Dateien
+# und EF-Core-Migrationen werden fuer einen reproduzierbaren Build auf einem
+# anderen Rechner gebraucht. Die vollstaendige Phasenhistorie samt Tags bleibt
+# unabhaengig davon je Lauf als Bundle unter archiv/ erhalten (siehe unten).
+runs/**/node_modules/
+runs/**/bin/
+runs/**/obj/
+runs/**/dist/
+runs/**/wwwroot/lib/
 
-# Archive einzelner Laeufe. Werden ueber Releases bzw. Zenodo
-# veroeffentlicht, nicht ueber die Repository-Historie.
+# Gespiegelte BMAD-Installation innerhalb der BMAD-Laeufe. Fremdcode ohne
+# mitgelieferte Lizenzdatei, siehe Begruendung bei bmad-core-bmm/ unten.
+# Zugleich der Befund aus der Erhebung, dass diese Kopie faelschlich als
+# Produktivcode mitgezaehlt wuerde, waere sie nicht ausgeschlossen.
+runs/**/.claude/
+runs/**/.agents/
+runs/**/_bmad/
+runs/**/_bmad-output/
+
+# Archive einzelner Laeufe (vollstaendige Git-Historie samt Phasen-Tags als
+# Bundle, gepackte Logs, Manifest mit SHA-256). Werden ueber Releases bzw.
+# Zenodo veroeffentlicht, nicht ueber die Repository-Historie.
 archiv/
 
 # BMAD-Installation. Fremdcode ohne mitgelieferte Lizenzdatei, deshalb nicht
@@ -19,3 +36,7 @@ __pycache__/
 
 # Sicherungskopien aus der Bearbeitung
 .backup/
+
+# Vom Harness entfernte, veraltete Verzeichnisinhalte, zum manuellen Loeschen
+# vorgemerkt (siehe Hinweis in der jeweiligen Unterhaltung).
+_to_delete/

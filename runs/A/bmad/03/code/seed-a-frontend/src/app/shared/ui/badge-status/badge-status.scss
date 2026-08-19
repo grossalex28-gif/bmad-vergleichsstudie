@@ -1,0 +1,18 @@
+.badge-status {
+  display: inline-block;
+  border-radius: var(--radius-full);
+  padding: 2px var(--spacing-unit);
+  font-family: var(--font-label-family);
+  font-size: var(--font-label-size);
+  font-weight: var(--font-label-weight);
+}
+
+.badge-status--aktiv {
+  background: var(--color-success-container);
+  color: var(--color-on-surface);
+}
+
+.badge-status--storniert {
+  background: var(--color-surface-container-highest);
+  color: var(--color-on-surface-variant);
+}

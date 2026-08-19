@@ -1,0 +1,47 @@
+[
+  {
+    "id": "1",
+    "name": "Bohrmaschine",
+    "inventoryNumber": "INV-1001",
+    "condition": "gut",
+    "status": "available",
+    "borrowedBy": null,
+    "borrowedAt": null
+  },
+  {
+    "id": "2",
+    "name": "Schlagschrauber",
+    "inventoryNumber": "INV-1002",
+    "condition": "neuwertig",
+    "status": "available",
+    "borrowedBy": null,
+    "borrowedAt": null
+  },
+  {
+    "id": "3",
+    "name": "Winkelschleifer",
+    "inventoryNumber": "INV-1003",
+    "condition": "abgenutzt",
+    "status": "borrowed",
+    "borrowedBy": "M. Keller",
+    "borrowedAt": "2026-08-05T07:30:00.000Z"
+  },
+  {
+    "id": "4",
+    "name": "Stichsäge",
+    "inventoryNumber": "INV-1004",
+    "condition": "gut",
+    "status": "available",
+    "borrowedBy": null,
+    "borrowedAt": null
+  },
+  {
+    "id": "5",
+    "name": "Nivelliergerät",
+    "inventoryNumber": "INV-1005",
+    "condition": "gut",
+    "status": "borrowed",
+    "borrowedBy": "S. Roth",
+    "borrowedAt": "2026-08-08T13:15:00.000Z"
+  }
+]

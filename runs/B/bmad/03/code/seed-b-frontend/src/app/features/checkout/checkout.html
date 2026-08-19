@@ -1,0 +1,35 @@
+<form (submit)="$event.preventDefault(); onSubmit()">
+  <label>
+    Name
+    <input type="text" [value]="name()" (input)="name.set($any($event.target).value)" required />
+  </label>
+  <label>
+    Straße/Hausnummer
+    <input type="text" [value]="street()" (input)="street.set($any($event.target).value)" required />
+  </label>
+  <label>
+    PLZ
+    <input type="text" [value]="postalCode()" (input)="postalCode.set($any($event.target).value)" required />
+  </label>
+  <label>
+    Ort
+    <input type="text" [value]="city()" (input)="city.set($any($event.target).value)" required />
+  </label>
+  <label>
+    Land
+    <input type="text" [value]="country()" (input)="country.set($any($event.target).value)" required />
+  </label>
+  <label>
+    E-Mail
+    <input type="text" [value]="email()" (input)="email.set($any($event.target).value)" required />
+  </label>
+
+  @if (cartIsEmpty()) {
+    <p class="checkout__empty">Der Warenkorb ist leer.</p>
+  }
+  @if (errorMessage(); as msg) {
+    <p class="checkout__error">{{ msg }}</p>
+  }
+
+  <button type="submit" [disabled]="cartIsEmpty() || submitting()">Bestellung abschließen</button>
+</form>

@@ -1,0 +1,83 @@
+@if (loading()) {
+  <p>Sitzplan wird geladen…</p>
+} @else if (loadError()) {
+  <p class="error">{{ loadError() }}</p>
+} @else if (event(); as event) {
+  <a class="back-link" [routerLink]="['/events', event.id]">← Zurück zur Veranstaltung</a>
+  <h1>{{ event.title }}</h1>
+  <p class="seat-selection__subtitle">{{ event.roomName }} · {{ event.venueName }}</p>
+
+  <div class="seat-selection__legend">
+    <span><i class="seat seat--free"></i> frei</span>
+    <span><i class="seat seat--selected"></i> ausgewählt</span>
+    <span><i class="seat seat--occupied"></i> belegt</span>
+    <span><i class="seat seat--aisle"></i> Gang</span>
+  </div>
+
+  @if (seatMap(); as seatMap) {
+    <div class="seat-plan">
+      @for (row of seatMap.rows; track row.row) {
+        <div class="seat-plan__row">
+          <span class="seat-plan__row-label">{{ row.row }}</span>
+          @for (seat of row.seats; track seat.column) {
+            <button
+              type="button"
+              class="seat-cell"
+              [class]="seatClasses(seat, row.row)"
+              [disabled]="seat.type === 'aisle' || seat.status === 'occupied'"
+              [attr.aria-label]="seat.type === 'aisle' ? 'Gang' : row.row + seat.column"
+              (click)="onSeatClick(seat, row.row)"
+            >
+              @if (seat.type === 'seat') {
+                {{ seat.column }}
+              }
+            </button>
+          }
+        </div>
+      }
+    </div>
+  }
+
+  @if (selectedSeatList().length > 0) {
+    <section class="selection-summary">
+      <h2>Ausgewählte Plätze</h2>
+      <ul class="selection-summary__list">
+        @for (seat of selectedSeatList(); track seat.row + '-' + seat.column) {
+          <li>
+            <span>{{ seat.row }}{{ seat.column }}</span>
+            <select
+              [ngModel]="seat.priceCategoryId"
+              (ngModelChange)="onCategoryChange(seat, $event)"
+              name="category-{{ seat.row }}-{{ seat.column }}"
+            >
+              @for (category of event.priceCategories; track category.id) {
+                <option [value]="category.id">{{ category.name }} ({{ category.price | number: '1.2-2' }} €)</option>
+              }
+            </select>
+          </li>
+        }
+      </ul>
+
+      <p class="selection-summary__total">Gesamtpreis: <strong>{{ totalPrice() | number: '1.2-2' }} €</strong></p>
+
+      <form class="checkout-form" (ngSubmit)="submitBooking()">
+        <label>
+          Name
+          <input type="text" name="customerName" [(ngModel)]="customerName" required />
+        </label>
+        <label>
+          E-Mail
+          <input type="email" name="customerEmail" [(ngModel)]="customerEmail" required />
+        </label>
+
+        @if (submitError()) {
+          <p class="error">{{ submitError() }}</p>
+        }
+
+        <button type="submit" class="button button--primary" [disabled]="submitting()">
+          {{ submitting() ? 'Wird gebucht…' : 'Verbindlich buchen' }}
+        </button>
+      </form>
+    </section>
+  }
+}

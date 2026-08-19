@@ -1,0 +1,75 @@
+@if (error()) {
+  <p class="product-detail__error">Das Produkt konnte nicht geladen werden.</p>
+} @else if (notFound()) {
+  <p class="product-detail__not-found">Dieses Produkt wurde nicht gefunden.</p>
+} @else if (product(); as p) {
+  <h1>{{ p.name }}</h1>
+  <p class="product-detail__category">{{ p.categoryName }} / {{ p.subcategoryName }}</p>
+  <p class="product-detail__description">{{ p.description }}</p>
+
+  @if (p.attributes.length > 0) {
+    <dl class="product-detail__attributes">
+      @for (attr of p.attributes; track attr.name) {
+        <dt>{{ attr.name }}</dt>
+        <dd>{{ attr.value }}</dd>
+      }
+    </dl>
+  }
+
+  <p class="product-detail__rating">
+    @if (p.ratingCount > 0) {
+      {{ p.averageRating | number: '1.1-1' }} ({{ p.ratingCount }} Bewertungen)
+    } @else {
+      Keine Bewertungen
+    }
+  </p>
+
+  <form class="product-detail__rating-form" (submit)="$event.preventDefault(); onRatingSubmit()">
+    <label>
+      Bewertung:
+      <select (change)="onRatingValueChange($event)">
+        <option value="" [selected]="ratingValue() === null">Bitte wählen</option>
+        @for (star of [1, 2, 3, 4, 5]; track star) {
+          <option [value]="star" [selected]="ratingValue() === star">{{ star }}</option>
+        }
+      </select>
+    </label>
+    <label>
+      Name:
+      <input type="text" [value]="ratingAuthorName()" (input)="onRatingAuthorNameChange($event)" />
+    </label>
+    <button type="submit" [disabled]="ratingValue() === null || !ratingAuthorName().trim() || ratingSubmitting()">Bewertung abgeben</button>
+    @if (ratingError()) {
+      <p class="product-detail__rating-error">Die Bewertung konnte nicht gespeichert werden.</p>
+    }
+  </form>
+
+  <ul class="product-detail__offers">
+    @for (offer of p.offers; track offer.supplierId) {
+      <li>
+        <label>
+          <input
+            type="radio"
+            name="supplier"
+            [value]="offer.supplierId"
+            [checked]="selectedSupplierId() === offer.supplierId"
+            (change)="onSupplierChange(offer.supplierId)"
+          />
+          <span>{{ offer.supplierName }}</span>
+          <span>{{ offer.price | currency: 'EUR' }}</span>
+        </label>
+      </li>
+    }
+  </ul>
+
+  <div class="product-detail__add-to-cart">
+    <label>
+      Menge:
+      <input type="number" min="1" [value]="quantity()" (input)="onQuantityChange($event)" />
+    </label>
+    <button type="button" [disabled]="selectedSupplierId() === null" (click)="onAddToCart()">In den Warenkorb</button>
+    @if (addedToCart()) {
+      <p class="product-detail__add-to-cart-confirmation" aria-live="polite">In den Warenkorb gelegt.</p>
+    }
+  </div>
+}

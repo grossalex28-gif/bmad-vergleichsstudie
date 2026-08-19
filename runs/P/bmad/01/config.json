@@ -1,0 +1,42 @@
+{
+  "run_id": "P-BMAD-1",
+  "project": "P",
+  "arm": "bmad",
+  "repetition": 1,
+  "created_at": "2026-08-08T18:40:56+0200",
+  "harness_version": "0.1.0-probe",
+  "model": "claude-sonnet-5",
+  "permission_mode": "bypassPermissions",
+  "allowed_tools": [],
+  "disallowed_tools": [],
+  "input_file": "/home/alex/dev/Bachelor/HarnessTesting/inputs/probe.md",
+  "input_sha256": "5636c53aa1139957c83c59bda1b542f78ccd81a0b131f1c7ad67a6a15581c674",
+  "seed_repo": "/home/alex/dev/Bachelor/HarnessTesting/seed-probe",
+  "seed_commit": "852322fa4322239b1684ef4f63bcb40334b13adc",
+  "limits": {
+    "t1_active_hours": 2,
+    "t2_calendar_hours": 8,
+    "t3_step_minutes": 45,
+    "token_budget": null,
+    "max_steps": 40
+  },
+  "routing_mode": "help",
+  "claude_settings": {
+    "files": [
+      {
+        "path": "/home/alex/.claude/settings.json",
+        "sha256": "00457787a02bdcf33cf2a9ec6eafbdaecdefb00b5fea463d6f519d9d244879f1",
+        "hooks": {},
+        "hook_events": [],
+        "content": {
+          "theme": "dark",
+          "tui": "fullscreen"
+        }
+      }
+    ],
+    "active_hook_events": []
+  },
+  "bmad_manifest_sha256": "828e4c6b8bd338e87ad9a0f6c2988bf9bb39d44467b78902cb883511cd608322",
+  "bmad_manifest": "installation:\n  version: 6.10.0\n  installDate: 2026-08-08T12:21:36.423Z\n  lastUpdated: 2026-08-08T16:39:05.777Z\nmodules:\n  - name: core\n    version: 6.10.0\n    installDate: 2026-08-08T12:21:36.402Z\n    lastUpdated: 2026-08-08T16:39:05.777Z\n    source: built-in\n    npmPackage: null\n    repoUrl: null\n  - name: bmm\n    version: 6.10.0\n    installDate: 2026-08-08T12:21:36.395Z\n    lastUpdated: 2026-08-08T16:39:05.777Z\n    source: built-in\n    npmPackage: null\n    repoUrl: null\nides:\n  - claude-code\n",
+  "bmad_files_manifest_sha256": "55b01b7c5c4b8b9f9ba7358e9bf4e59b53e2fd548be70ac7e5c2f9eace8bad9d"
+}

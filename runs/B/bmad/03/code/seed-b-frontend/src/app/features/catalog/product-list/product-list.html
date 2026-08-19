@@ -1,0 +1,65 @@
+<app-category-nav (selectionChange)="onCategorySelectionChange($event)" />
+
+<form class="product-list__search" (submit)="$event.preventDefault(); onSearchSubmit()">
+  <label>
+    Suche:
+    <input type="text" [value]="search()" (input)="onSearchInputChange($event)" />
+  </label>
+  <button type="submit">Suchen</button>
+</form>
+
+<div class="product-list__sort">
+  <label>
+    Sortieren nach:
+    <select (change)="onSortByChange($event)">
+      <option value="name" [selected]="sortBy() === 'name'">Name</option>
+      <option value="price" [selected]="sortBy() === 'price'">Preis</option>
+      <option value="views" [selected]="sortBy() === 'views'">Beliebtheit</option>
+    </select>
+  </label>
+  @if (sortBy() !== 'views') {
+    <label>
+      Richtung:
+      <select (change)="onSortDirectionChange($event)">
+        <option value="asc" [selected]="sortDirection() === 'asc'">Aufsteigend</option>
+        <option value="desc" [selected]="sortDirection() === 'desc'">Absteigend</option>
+      </select>
+    </label>
+  }
+</div>
+
+@if (error()) {
+  <p class="product-list__error">Die Produktliste konnte nicht geladen werden.</p>
+} @else if (result(); as r) {
+  @if (r.availableAttributeFilters && r.availableAttributeFilters.length > 0) {
+    <div class="product-list__attribute-filters">
+      @for (option of r.availableAttributeFilters; track option.name) {
+        <label>
+          {{ option.name }}:
+          <select (change)="onAttributeFilterChange(option.name, $event)">
+            <option value="" [selected]="!attributeFilterSelections()[option.name]">Alle</option>
+            @for (value of option.values; track value) {
+              <option [value]="value" [selected]="attributeFilterSelections()[option.name] === value">{{ value }}</option>
+            }
+          </select>
+        </label>
+      }
+    </div>
+  }
+
+  <ul class="product-list">
+    @for (item of r.items; track item.id) {
+      <li class="product-list__item">
+        <a class="product-list__name" [routerLink]="['/products', item.id]">{{ item.name }}</a>
+        <span class="product-list__subcategory">{{ item.subcategoryName }}</span>
+        <span class="product-list__price">{{ item.minPrice | currency: 'EUR' }}</span>
+      </li>
+    }
+  </ul>
+
+  <nav class="product-list__pagination">
+    <button type="button" [disabled]="page() <= 1" (click)="loadPage(page() - 1)">Vorherige</button>
+    <span>Seite {{ page() }} von {{ r.totalPages }}</span>
+    <button type="button" [disabled]="page() >= r.totalPages" (click)="loadPage(page() + 1)">Nächste</button>
+  </nav>
+}

@@ -1,0 +1,53 @@
+<div class="container order-confirmation-page">
+  @if (loading()) {
+    <p>Lädt…</p>
+  }
+  @if (error()) {
+    <div class="alert alert-error">{{ error() }}</div>
+  }
+
+  @if (order(); as o) {
+    <div class="alert alert-success">Vielen Dank! Ihre Bestellung Nr. {{ o.id }} wurde erfolgreich aufgegeben.</div>
+
+    <section class="card order-details">
+      <h2>Bestellung Nr. {{ o.id }}</h2>
+      <p class="meta">Status: <strong>{{ o.status }}</strong> · aufgegeben am {{ o.createdAt | date: 'medium' }}</p>
+
+      <h3>Lieferadresse</h3>
+      <p>
+        {{ o.contact.recipientName }}<br />
+        {{ o.contact.street }}<br />
+        {{ o.contact.postalCode }} {{ o.contact.city }}<br />
+        {{ o.contact.email }}
+      </p>
+
+      <h3>Positionen</h3>
+      <table class="order-table">
+        <thead>
+          <tr>
+            <th>Produkt</th>
+            <th>Lieferant</th>
+            <th>Einzelpreis</th>
+            <th>Menge</th>
+            <th>Gesamt</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of o.items; track item.productId + '-' + item.supplierId) {
+            <tr>
+              <td>{{ item.productName }}</td>
+              <td>{{ item.supplierName }}</td>
+              <td>{{ item.unitPrice | number: '1.2-2' }} €</td>
+              <td>{{ item.quantity }}</td>
+              <td>{{ item.lineTotal | number: '1.2-2' }} €</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+
+      <p class="total">Gesamtsumme: {{ o.total | number: '1.2-2' }} €</p>
+    </section>
+
+    <a routerLink="/products" class="btn">Weiter einkaufen</a>
+  }
+</div>

@@ -1,0 +1,18 @@
+@if (loadError()) {
+  <p class="event-detail-page__error" role="alert">Veranstaltung konnte nicht geladen werden.</p>
+} @else if (event(); as e) {
+  <h1 class="event-detail-page__title">{{ e.title }}</h1>
+  <p class="event-detail-page__meta">
+    {{ e.venueName }} · {{ e.roomName }} · {{ e.startsAt | date: 'dd.MM.yyyy, HH:mm' }}
+  </p>
+  <p class="event-detail-page__description">{{ e.description }}</p>
+  <dl class="event-detail-page__facts">
+    <dt class="event-detail-page__fact-label">Dauer</dt>
+    <dd class="event-detail-page__fact-value">{{ e.durationMinutes }} Minuten</dd>
+    <dt class="event-detail-page__fact-label">Altersfreigabe</dt>
+    <dd class="event-detail-page__fact-value">{{ e.ageRating === 0 ? 'Ohne Altersbeschränkung' : 'Ab ' + e.ageRating + ' Jahren' }}</dd>
+  </dl>
+  <a class="event-detail-page__cta" [routerLink]="['/veranstaltungen', e.id, 'sitzplan']">Plätze wählen</a>
+} @else {
+  <p>Wird geladen…</p>
+}

@@ -1,0 +1,15 @@
+<form (submit)="$event.preventDefault(); onSubmit(searchInput)">
+  <label>
+    Suche
+    <input
+      #searchInput
+      type="search"
+      name="search"
+      aria-label="Suche"
+      placeholder="Produkte durchsuchen"
+      [disabled]="disabled()"
+      (search)="onNativeClear(searchInput)"
+    />
+  </label>
+  <button type="submit" [disabled]="disabled()">Suchen</button>
+</form>

@@ -1,0 +1,8 @@
+namespace seed_a_backend.Api.Domain;
+
+public class Venue
+{
+    public int Id { get; set; }
+    public required string Name { get; set; }
+    public ICollection<Room> Rooms { get; set; } = new List<Room>();
+}

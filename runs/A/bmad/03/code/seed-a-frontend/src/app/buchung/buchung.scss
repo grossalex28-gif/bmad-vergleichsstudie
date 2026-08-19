@@ -1,0 +1,319 @@
+.sitzplan {
+  overflow-x: auto;
+}
+
+.sitzplan__reihe {
+  display: flex;
+  gap: var(--spacing-seat-gap);
+  margin-bottom: var(--spacing-seat-gap);
+}
+
+.sitzplan__reihen-label {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  flex: 0 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-surface);
+  font-family: var(--font-label-family);
+  font-size: var(--font-label-size);
+  font-weight: var(--font-label-weight);
+  line-height: var(--font-label-line-height);
+  color: var(--color-on-surface-variant);
+}
+
+.sitzplan__luecke {
+  flex: 0 0 32px;
+  height: 32px;
+}
+
+.sitzplan__skeleton-kachel {
+  flex: 0 0 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-container-high);
+}
+
+.buchung__fehler {
+  font-family: var(--font-body-lg-family);
+  font-size: var(--font-body-lg-size);
+  line-height: var(--font-body-lg-line-height);
+  color: var(--color-on-error-container);
+  background: var(--color-error-container);
+  border-radius: var(--radius-default);
+  padding: var(--spacing-gutter);
+  margin: 0;
+}
+
+.sitzplatz-auswahl {
+  margin-top: var(--spacing-section-gap);
+}
+
+.sitzplatz-auswahl__titel {
+  font-family: var(--font-headline-sm-family);
+  font-size: var(--font-headline-sm-size);
+  font-weight: var(--font-headline-sm-weight);
+  line-height: var(--font-headline-sm-line-height);
+  color: var(--color-on-surface);
+  margin: 0 0 var(--spacing-gutter);
+}
+
+.sitzplatz-auswahl__liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-unit);
+}
+
+.sitzplatz-auswahl__zeile {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-unit);
+}
+
+.sitzplatz-auswahl__code {
+  font-family: var(--font-body-md-family);
+  font-size: var(--font-body-md-size);
+  font-weight: 600;
+  color: var(--color-on-surface);
+  min-width: 40px;
+}
+
+.sitzplatz-auswahl__label {
+  font-family: var(--font-label-family);
+  font-size: var(--font-label-size);
+  color: var(--color-on-surface-variant);
+}
+
+.sitzplatz-auswahl__select {
+  font-family: var(--font-body-md-family);
+  font-size: var(--font-body-md-size);
+  color: var(--color-on-surface);
+  background: var(--color-surface);
+  border: 1px solid var(--color-outline);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-unit);
+}
+
+.sitzplatz-auswahl__select:focus-visible {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.sitzplatz-auswahl__select--fehlt {
+  border-color: var(--color-error);
+}
+
+.sitzplatz-auswahl__hinweis {
+  font-family: var(--font-caption-family);
+  font-size: var(--font-caption-size);
+  color: var(--color-error);
+}
+
+.kontaktformular {
+  margin-top: var(--spacing-section-gap);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-gutter);
+}
+
+.kontaktformular__titel {
+  font-family: var(--font-headline-sm-family);
+  font-size: var(--font-headline-sm-size);
+  font-weight: var(--font-headline-sm-weight);
+  line-height: var(--font-headline-sm-line-height);
+  color: var(--color-on-surface);
+  margin: 0;
+}
+
+.kontaktformular__feld {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-unit);
+  max-width: 360px;
+}
+
+.kontaktformular__label {
+  font-family: var(--font-label-family);
+  font-size: var(--font-label-size);
+  font-weight: var(--font-label-weight);
+  line-height: var(--font-label-line-height);
+  letter-spacing: var(--font-label-letter-spacing);
+  color: var(--color-on-surface-variant);
+}
+
+.kontaktformular__input {
+  font-family: var(--font-body-md-family);
+  font-size: var(--font-body-md-size);
+  line-height: var(--font-body-md-line-height);
+  color: var(--color-on-surface);
+  background: var(--color-surface);
+  border: 1px solid var(--color-outline);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-unit);
+}
+
+.kontaktformular__input:focus-visible {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.kontaktformular__input--fehlt {
+  border-color: var(--color-error);
+}
+
+.kontaktformular__fehler {
+  font-family: var(--font-caption-family);
+  font-size: var(--font-caption-size);
+  color: var(--color-error);
+}
+
+.price-summary-bar__zurueck {
+  font-family: var(--font-body-md-family);
+  font-size: var(--font-body-md-size);
+  color: var(--color-primary);
+  background: transparent;
+  border: 1px solid var(--color-outline);
+  border-radius: var(--radius-default);
+  padding: var(--spacing-unit) var(--spacing-gutter);
+  cursor: pointer;
+}
+
+.price-summary-bar__zurueck:disabled {
+  color: var(--color-on-surface-variant);
+  cursor: not-allowed;
+}
+
+.price-summary-bar {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-gutter);
+  margin-top: var(--spacing-gutter);
+  padding: var(--spacing-gutter);
+  background: var(--color-surface-container-highest);
+  box-shadow: 0 -2px 8px rgba(27, 31, 36, 0.08);
+}
+
+.price-summary-bar__details-toggle {
+  display: none;
+}
+
+.price-summary-bar__anzahl {
+  font-family: var(--font-body-md-family);
+  font-size: var(--font-body-md-size);
+  color: var(--color-on-surface-variant);
+}
+
+.price-summary-bar__preis {
+  font-family: var(--font-headline-sm-family);
+  font-size: var(--font-headline-sm-size);
+  font-weight: var(--font-headline-sm-weight);
+  line-height: var(--font-headline-sm-line-height);
+  color: var(--color-on-surface);
+  margin-right: auto;
+}
+
+.price-summary-bar__weiter,
+.price-summary-bar__abschliessen {
+  font-family: var(--font-body-md-family);
+  font-size: var(--font-body-md-size);
+  font-weight: 600;
+  color: var(--color-on-primary);
+  background: var(--color-primary);
+  border: none;
+  border-radius: var(--radius-default);
+  padding: var(--spacing-unit) var(--spacing-gutter);
+  cursor: pointer;
+}
+
+.price-summary-bar__weiter:disabled,
+.price-summary-bar__abschliessen:disabled {
+  background: var(--color-surface-container-highest);
+  color: var(--color-on-surface-variant);
+  cursor: not-allowed;
+}
+
+.buchungsbestaetigung {
+  margin-top: var(--spacing-section-gap);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-gutter);
+}
+
+.buchungsbestaetigung__titel {
+  font-family: var(--font-display-lg-family);
+  font-size: var(--font-display-lg-size);
+  font-weight: var(--font-display-lg-weight);
+  line-height: var(--font-display-lg-line-height);
+  color: var(--color-on-surface);
+  margin: 0;
+}
+
+.buchungsbestaetigung__positionen {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-unit);
+}
+
+.buchungsbestaetigung__position {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-gutter);
+  font-family: var(--font-body-md-family);
+  font-size: var(--font-body-md-size);
+  color: var(--color-on-surface);
+}
+
+.buchungsbestaetigung__code {
+  font-weight: 600;
+  min-width: 40px;
+}
+
+.buchungsbestaetigung__kategorie {
+  flex: 1;
+  color: var(--color-on-surface-variant);
+}
+
+.buchungsbestaetigung__gesamtpreis {
+  font-family: var(--font-headline-sm-family);
+  font-size: var(--font-headline-sm-size);
+  font-weight: var(--font-headline-sm-weight);
+  color: var(--color-on-surface);
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .sitzplatz-auswahl--eingeklappt {
+    display: none;
+  }
+
+  .price-summary-bar__anzahl {
+    display: none;
+  }
+
+  .price-summary-bar__details-toggle {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-body-md-family);
+    font-size: var(--font-body-md-size);
+    color: var(--color-primary);
+    background: none;
+    border: 1px solid var(--color-outline);
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-unit);
+    cursor: pointer;
+    order: -1;
+  }
+}

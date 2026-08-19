@@ -1,0 +1,44 @@
+@if (loading()) {
+  <p class="order-confirmation__loading">Lädt…</p>
+}
+
+@if (notFound()) {
+  <p class="order-confirmation__not-found">Diese Bestellung wurde nicht gefunden.</p>
+}
+
+@if (error()) {
+  <p class="order-confirmation__error">Die Bestellung konnte nicht geladen werden. Bitte versuchen Sie es später erneut.</p>
+}
+
+@if (order(); as order) {
+  <section class="order-confirmation">
+    <h1>Vielen Dank für Ihre Bestellung!</h1>
+    <p>Ihre Bestell-ID lautet: <strong>{{ order.publicId }}</strong></p>
+    <p class="order-confirmation__status">Status: {{ statusLabel(order.status) }}</p>
+    <p class="order-confirmation__created-at">Bestellt am: {{ order.createdAt | date: 'dd.MM.yyyy HH:mm' }}</p>
+
+    <h2>Lieferadresse</h2>
+    <address class="order-confirmation__delivery">
+      {{ order.delivery.name }}<br />
+      {{ order.delivery.street }}<br />
+      {{ order.delivery.postalCode }} {{ order.delivery.city }}<br />
+      {{ order.delivery.country }}<br />
+      {{ order.delivery.email }}
+      @if (order.delivery.phone) {
+        <br />{{ order.delivery.phone }}
+      }
+    </address>
+
+    <h2>Positionen</h2>
+    <ul class="order-confirmation__items">
+      @for (item of order.items; track item.productId + ':' + item.supplierId) {
+        <li class="order-confirmation__item">
+          {{ item.productName }} ({{ item.supplierName }}) — {{ item.quantity }} × {{ item.unitPrice | number: '1.2-2' }} € =
+          {{ item.lineTotal | number: '1.2-2' }} €
+        </li>
+      }
+    </ul>
+
+    <p class="order-confirmation__total">Gesamtsumme: {{ order.totalAmount | number: '1.2-2' }} €</p>
+  </section>
+}

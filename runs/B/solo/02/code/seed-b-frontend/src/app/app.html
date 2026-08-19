@@ -1,0 +1,16 @@
+<header class="app-header">
+  <a class="brand" routerLink="/products">ShopSeed</a>
+  <nav class="app-nav">
+    <a routerLink="/products" routerLinkActive="active">Produkte</a>
+    <a routerLink="/cart" routerLinkActive="active" class="cart-link">
+      Warenkorb
+      @if (cart.itemCount() > 0) {
+        <span class="cart-badge">{{ cart.itemCount() }}</span>
+      }
+    </a>
+  </nav>
+</header>
+
+<main class="app-main">
+  <router-outlet />
+</main>

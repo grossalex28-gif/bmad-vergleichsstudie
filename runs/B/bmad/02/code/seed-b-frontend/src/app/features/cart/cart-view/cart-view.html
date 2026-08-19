@@ -1,0 +1,46 @@
+@if (loading()) {
+  <p>Lädt…</p>
+} @else if (cart(); as c) {
+  <h1>Warenkorb</h1>
+
+  @if (c.items.length === 0) {
+    <p>Ihr Warenkorb ist leer.</p>
+  } @else {
+    <ul>
+      @for (item of c.items; track item.productId + ':' + item.supplierId) {
+        <li>
+          {{ item.productName }} ({{ item.supplierName }}) —
+          {{ item.unitPrice.toFixed(2).replace('.', ',') }} € ×
+          <label>
+            Menge
+            <input
+              type="number"
+              min="1"
+              [value]="item.quantity"
+              #qtyInput
+              aria-label="Menge"
+              [disabled]="isBusy(item.productId, item.supplierId)"
+              (change)="updateQuantity(item.productId, item.supplierId, qtyInput.value)"
+            />
+          </label>
+          = {{ item.lineTotal.toFixed(2).replace('.', ',') }} €
+          <button
+            type="button"
+            [disabled]="isBusy(item.productId, item.supplierId)"
+            (click)="removeItem(item.productId, item.supplierId)"
+          >
+            Entfernen
+          </button>
+        </li>
+      }
+    </ul>
+    <p>Gesamtsumme: {{ c.totalPrice.toFixed(2).replace('.', ',') }} €</p>
+    <a routerLink="/checkout">Zur Kasse</a>
+  }
+
+  @if (error(); as e) {
+    <p>{{ e }}</p>
+  }
+} @else if (error(); as e) {
+  <p>{{ e }}</p>
+}

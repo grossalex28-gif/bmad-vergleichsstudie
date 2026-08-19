@@ -1,0 +1,44 @@
+<h1>Warenkorb</h1>
+
+@if (cartService.cartItems().length === 0) {
+  <p class="empty">Der Warenkorb ist leer. <a routerLink="/products">Jetzt Produkte entdecken</a></p>
+} @else {
+  <table class="cart-table">
+    <thead>
+      <tr>
+        <th>Produkt</th>
+        <th>Lieferant</th>
+        <th>Einzelpreis</th>
+        <th>Menge</th>
+        <th>Gesamt</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of cartService.cartItems(); track item.produktId + item.lieferantId) {
+        <tr>
+          <td>{{ item.produktName }}</td>
+          <td>{{ item.lieferantName }}</td>
+          <td>{{ item.preis | number: '1.2-2' }} €</td>
+          <td>
+            <input
+              type="number"
+              min="1"
+              [ngModel]="item.menge"
+              (ngModelChange)="updateQuantity(item.produktId, item.lieferantId, $event)"
+            />
+          </td>
+          <td>{{ item.preis * item.menge | number: '1.2-2' }} €</td>
+          <td>
+            <button type="button" class="remove" (click)="removeItem(item.produktId, item.lieferantId)">Entfernen</button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  <div class="summary">
+    <span>Gesamtsumme: <strong>{{ cartService.total() | number: '1.2-2' }} €</strong></span>
+    <a routerLink="/checkout" class="checkout-button">Zur Kasse</a>
+  </div>
+}

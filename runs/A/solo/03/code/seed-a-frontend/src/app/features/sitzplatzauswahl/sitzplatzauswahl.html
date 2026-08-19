@@ -1,0 +1,113 @@
+<a class="back-link" [routerLink]="['/veranstaltungen', veranstaltungId]">&larr; Zurück zur Veranstaltung</a>
+
+@if (veranstaltung(); as v) {
+  <h1>{{ v.titel }}</h1>
+  <p class="muted">{{ v.spielstaette.name }} · {{ v.raum.name }} · {{ v.zeitpunkt | date: 'EEEE, d. MMMM y, HH:mm' }} Uhr</p>
+}
+
+@if (loading()) {
+  <p class="muted">Sitzplan wird geladen …</p>
+}
+
+@if (ladeFehler()) {
+  <p class="error-banner">{{ ladeFehler() }}</p>
+}
+
+@if (sitzplan(); as plan) {
+  <div class="sitzplatzauswahl">
+    <section class="sitzplan-bereich card">
+      @if (plan.raum.gangHinweis) {
+        <p class="muted sitzplan-hinweis">{{ plan.raum.gangHinweis }}</p>
+      }
+
+      <div class="buehne">Bühne</div>
+
+      <div class="sitzplan">
+        @for (zeile of sitzplatzZeilen(); track zeile.reihe) {
+          <div class="sitzplan__zeile">
+            <span class="sitzplan__reihenlabel">{{ zeile.reihe }}</span>
+            @for (sitzplatz of zeile.plaetze; track sitzplatz.spalte) {
+              @if (sitzplatz.typ === 'Gang') {
+                <span class="sitz sitz--gang"></span>
+              } @else {
+                <button
+                  type="button"
+                  class="{{ sitzplatzKlasse(sitzplatz) }}"
+                  [disabled]="sitzplatz.status === 'Belegt'"
+                  [attr.aria-pressed]="istAusgewaehlt(sitzplatz)"
+                  [attr.title]="zeile.reihe + sitzplatz.spalte"
+                  (click)="sitzplatzKlicken(sitzplatz)"
+                >
+                  {{ sitzplatz.spalte }}
+                </button>
+              }
+            }
+          </div>
+        }
+      </div>
+
+      <div class="legende">
+        <span><i class="sitz sitz--frei"></i> Frei</span>
+        <span><i class="sitz sitz--ausgewaehlt"></i> Ausgewählt</span>
+        <span><i class="sitz sitz--belegt"></i> Belegt</span>
+        <span><i class="sitz sitz--gang"></i> Gang</span>
+      </div>
+    </section>
+
+    <section class="warenkorb card">
+      <h2>Ihre Auswahl</h2>
+
+      @if (ausgewaehlteListe().length === 0) {
+        <p class="muted">Wählen Sie mindestens einen freien Sitzplatz aus.</p>
+      }
+
+      <ul class="warenkorb__liste">
+        @for (sitzplatz of ausgewaehlteListe(); track sitzplatz.reihe + sitzplatz.spalte) {
+          <li>
+            <span class="warenkorb__platz">{{ sitzplatz.reihe }}{{ sitzplatz.spalte }}</span>
+            <select
+              [ngModel]="sitzplatz.preiskategorieId"
+              (ngModelChange)="kategorieAendern(sitzplatz, $event)"
+              [name]="'kategorie-' + sitzplatz.reihe + sitzplatz.spalte"
+            >
+              @for (kategorie of plan.preiskategorien; track kategorie.id) {
+                <option [value]="kategorie.id">{{ kategorie.name }} ({{ kategorie.preis | currency: 'EUR' }})</option>
+              }
+            </select>
+            <button type="button" class="warenkorb__entfernen" (click)="entfernen(sitzplatz)" aria-label="Sitzplatz entfernen">
+              ✕
+            </button>
+          </li>
+        }
+      </ul>
+
+      <div class="warenkorb__summe">
+        <span>Gesamtpreis</span>
+        <strong>{{ gesamtpreis() | currency: 'EUR' }}</strong>
+      </div>
+
+      <form class="buchungsformular" (ngSubmit)="jetztBuchen()">
+        <div class="form-field">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" required [(ngModel)]="name" autocomplete="name" />
+        </div>
+        <div class="form-field">
+          <label for="email">E-Mail</label>
+          <input id="email" name="email" type="email" required [(ngModel)]="email" autocomplete="email" />
+        </div>
+
+        @if (buchungsFehler()) {
+          <p class="error-banner">{{ buchungsFehler() }}</p>
+        }
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="ausgewaehlteListe().length === 0 || !name.trim() || !email.trim() || wirdGebucht()"
+        >
+          {{ wirdGebucht() ? 'Buchung wird abgeschlossen …' : 'Jetzt buchen' }}
+        </button>
+      </form>
+    </section>
+  </div>
+}

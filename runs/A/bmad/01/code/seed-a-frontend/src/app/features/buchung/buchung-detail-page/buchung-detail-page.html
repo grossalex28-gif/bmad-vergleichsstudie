@@ -1,0 +1,41 @@
+@if (booking(); as b) {
+  @if (justBooked()) {
+    <p class="buchung-detail-page__confirmation">Buchung bestätigt.</p>
+  }
+  @if (justCancelled()) {
+    <p class="buchung-detail-page__confirmation">Buchung storniert. Die Plätze sind wieder frei.</p>
+  }
+  <p class="buchung-detail-page__event">{{ b.eventTitle }} · {{ b.venueName }} · {{ b.startsAt | date: 'dd.MM.yyyy, HH:mm' }}</p>
+  <app-status-badge class="buchung-detail-page__status" [status]="b.status" />
+  <div class="buchung-detail-page__reference" aria-label="Buchungsreferenz">
+    <span>{{ referenz() }}</span>
+    <button type="button" (click)="copyReference()">{{ copied() ? 'Kopiert.' : 'Kopieren' }}</button>
+  </div>
+  <ul class="buchung-detail-page__seats">
+    @for (seat of b.seats; track seat.seatId) {
+      <li>Reihe {{ seat.row }}, Platz {{ seat.column }} · {{ seat.priceCategoryName }} — {{ formatEuroAmount(seat.price) }}</li>
+    }
+  </ul>
+  <p class="buchung-detail-page__total">Gesamtpreis: {{ formatEuroAmount(b.totalPrice) }}</p>
+  @if (b.status === 'Active') {
+    <button type="button" class="buchung-detail-page__cancel-trigger" (click)="openCancelDialog()">Stornieren</button>
+  }
+  @if (cancelError(); as message) {
+    <app-error-banner [message]="message" />
+  }
+} @else if (loadError() === 'not-found') {
+  <p role="alert">Keine Buchung mit dieser Referenz gefunden.</p>
+} @else if (loadError() === 'failed') {
+  <p role="alert">Buchung konnte nicht geladen werden. Bitte versuchen Sie es erneut.</p>
+} @else {
+  <div class="buchung-detail-page__skeleton" aria-busy="true" aria-label="Buchung wird geladen">
+    <div class="buchung-detail-page__skeleton-block buchung-detail-page__skeleton-block--reference"></div>
+    <div class="buchung-detail-page__skeleton-block"></div>
+    <div class="buchung-detail-page__skeleton-block"></div>
+    <div class="buchung-detail-page__skeleton-block buchung-detail-page__skeleton-block--total"></div>
+  </div>
+}
+
+@if (showCancelDialog()) {
+  <app-cancel-dialog [cancelling]="cancelling()" (confirm)="confirmCancel()" (cancel)="closeCancelDialog()" />
+}

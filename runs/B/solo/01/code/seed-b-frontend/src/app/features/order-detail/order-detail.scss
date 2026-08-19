@@ -1,0 +1,46 @@
+.status {
+  font-size: 1.05rem;
+}
+
+.date {
+  color: #666;
+  margin-top: -0.5rem;
+}
+
+section {
+  margin-bottom: 1.75rem;
+
+  h2 {
+    font-size: 1.05rem;
+    margin-bottom: 0.6rem;
+  }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+
+  th,
+  td {
+    text-align: left;
+    padding: 0.5rem 0.6rem;
+    border-bottom: 1px solid #e5e5e5;
+  }
+}
+
+.total {
+  font-size: 1.05rem;
+}
+
+.continue {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #1a1a1a;
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

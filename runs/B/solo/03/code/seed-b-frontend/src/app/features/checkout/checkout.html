@@ -1,0 +1,99 @@
+<h1>Kasse</h1>
+
+@if (items().length === 0) {
+  <p class="empty-state card">
+    Dein Warenkorb ist leer. <a routerLink="/produkte">Zu den Produkten</a>
+  </p>
+} @else {
+  <div class="checkout-layout">
+    <form class="card checkout-form" (ngSubmit)="submit()">
+      <h2>Liefer- und Kontaktdaten</h2>
+
+      <div class="field">
+        <label for="contactName">Name</label>
+        <input
+          id="contactName"
+          type="text"
+          required
+          name="contactName"
+          [ngModel]="contactName()"
+          (ngModelChange)="contactName.set($event)"
+        />
+      </div>
+
+      <div class="field">
+        <label for="email">E-Mail</label>
+        <input
+          id="email"
+          type="email"
+          required
+          name="email"
+          [ngModel]="email()"
+          (ngModelChange)="email.set($event)"
+        />
+      </div>
+
+      <div class="field">
+        <label for="street">Straße und Hausnummer</label>
+        <input
+          id="street"
+          type="text"
+          required
+          name="street"
+          [ngModel]="street()"
+          (ngModelChange)="street.set($event)"
+        />
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="postalCode">PLZ</label>
+          <input
+            id="postalCode"
+            type="text"
+            required
+            name="postalCode"
+            [ngModel]="postalCode()"
+            (ngModelChange)="postalCode.set($event)"
+          />
+        </div>
+
+        <div class="field">
+          <label for="city">Ort</label>
+          <input
+            id="city"
+            type="text"
+            required
+            name="city"
+            [ngModel]="city()"
+            (ngModelChange)="city.set($event)"
+          />
+        </div>
+      </div>
+
+      @if (errorMessage()) {
+        <p class="error-text">{{ errorMessage() }}</p>
+      }
+
+      <button type="submit" class="btn" [disabled]="submitting()">
+        {{ submitting() ? 'Wird gesendet…' : 'Bestellung abschicken' }}
+      </button>
+    </form>
+
+    <aside class="card order-summary">
+      <h2>Bestellübersicht</h2>
+      <ul>
+        @for (item of items(); track item.productId + item.supplierId) {
+          <li>
+            <span>{{ item.quantity }}× {{ item.productName }} ({{ item.supplierName }})</span>
+            <span>{{ item.unitPrice * item.quantity | number: '1.2-2' }} €</span>
+          </li>
+        }
+      </ul>
+      <div class="summary-total">
+        <span>Gesamtsumme</span>
+        <span>{{ total() | number: '1.2-2' }} €</span>
+      </div>
+    </aside>
+  </div>
+}

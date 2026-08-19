@@ -1,0 +1,114 @@
+<a class="back-link" routerLink="/products">← Zurück zur Übersicht</a>
+
+@if (loading()) {
+  <p>Lädt…</p>
+} @else if (notFound()) {
+  <p>Dieses Produkt wurde nicht gefunden.</p>
+} @else if (product(); as p) {
+  <article class="product-detail">
+    <header>
+      <p class="breadcrumb">{{ p.kategorieName }} / {{ p.unterkategorieName }}</p>
+      <h1>{{ p.name }}</h1>
+      <p class="rating-summary">
+        @if (p.durchschnittsBewertung !== null) {
+          {{ p.durchschnittsBewertung | number: '1.1-1' }} ★ ({{ p.anzahlBewertungen }} Bewertungen)
+        } @else {
+          Noch keine Bewertungen
+        }
+        · {{ p.aufrufe }} Aufrufe
+      </p>
+    </header>
+
+    <p class="description">{{ p.beschreibung }}</p>
+
+    @if ((p.eigenschaften | keyvalue).length > 0) {
+      <section class="properties">
+        <h2>Eigenschaften</h2>
+        <dl>
+          @for (entry of p.eigenschaften | keyvalue; track entry.key) {
+            <dt>{{ entry.key }}</dt>
+            <dd>{{ entry.value }}</dd>
+          }
+        </dl>
+      </section>
+    }
+
+    <section class="offers">
+      <h2>Angebote</h2>
+      @if (p.angebote.length === 0) {
+        <p>Aktuell bietet kein Lieferant dieses Produkt an.</p>
+      } @else {
+        <table>
+          <thead>
+            <tr>
+              <th>Lieferant</th>
+              <th>Preis</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (offer of p.angebote; track offer.lieferantId) {
+              <tr>
+                <td>{{ offer.lieferantName }}</td>
+                <td>{{ offer.preis | number: '1.2-2' }} €</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+
+        <div class="add-to-cart">
+          <label>
+            Lieferant
+            <select [ngModel]="selectedSupplierId()" (ngModelChange)="selectedSupplierId.set($event)">
+              @for (offer of p.angebote; track offer.lieferantId) {
+                <option [value]="offer.lieferantId">{{ offer.lieferantName }} – {{ offer.preis | number: '1.2-2' }} €</option>
+              }
+            </select>
+          </label>
+
+          <label>
+            Menge
+            <input
+              type="number"
+              min="1"
+              [ngModel]="quantity()"
+              (ngModelChange)="quantity.set($event)"
+            />
+          </label>
+
+          <button type="button" (click)="addToCart()">In den Warenkorb</button>
+        </div>
+
+        @if (addedMessage()) {
+          <p class="confirmation">{{ addedMessage() }}</p>
+        }
+      }
+    </section>
+
+    <section class="rating-form">
+      <h2>Produkt bewerten</h2>
+      <div class="fields">
+        <label>
+          Name
+          <input type="text" [ngModel]="ratingAuthor()" (ngModelChange)="ratingAuthor.set($event)" placeholder="Dein Name" />
+        </label>
+
+        <label>
+          Bewertung
+          <select [ngModel]="ratingValue()" (ngModelChange)="ratingValue.set($event)">
+            <option [ngValue]="5">5 – sehr gut</option>
+            <option [ngValue]="4">4 – gut</option>
+            <option [ngValue]="3">3 – okay</option>
+            <option [ngValue]="2">2 – schlecht</option>
+            <option [ngValue]="1">1 – sehr schlecht</option>
+          </select>
+        </label>
+
+        <button type="button" (click)="submitRating()">Bewertung abschicken</button>
+      </div>
+
+      @if (ratingMessage()) {
+        <p class="confirmation">{{ ratingMessage() }}</p>
+      }
+    </section>
+  </article>
+}

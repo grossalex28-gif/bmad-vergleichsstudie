@@ -1,0 +1,53 @@
+<a class="back-link" routerLink="/">&larr; Zurück zum Programm</a>
+
+@if (loading()) {
+  <p class="muted">Veranstaltung wird geladen …</p>
+}
+
+@if (error()) {
+  <p class="error-banner">{{ error() }}</p>
+}
+
+@if (veranstaltung(); as veranstaltung) {
+  <article class="detail card">
+    <h1>{{ veranstaltung.titel }}</h1>
+
+    <dl class="detail__facts">
+      <div>
+        <dt>Spielstätte</dt>
+        <dd>{{ veranstaltung.spielstaette.name }}</dd>
+      </div>
+      <div>
+        <dt>Raum</dt>
+        <dd>{{ veranstaltung.raum.name }}</dd>
+      </div>
+      <div>
+        <dt>Zeitpunkt</dt>
+        <dd>{{ veranstaltung.zeitpunkt | date: 'EEEE, d. MMMM y, HH:mm' }} Uhr</dd>
+      </div>
+      <div>
+        <dt>Dauer</dt>
+        <dd>{{ veranstaltung.dauerMinuten }} Minuten</dd>
+      </div>
+      <div>
+        <dt>Altersfreigabe</dt>
+        <dd>{{ veranstaltung.altersfreigabe > 0 ? 'ab ' + veranstaltung.altersfreigabe + ' Jahren' : 'ohne Altersbeschränkung' }}</dd>
+      </div>
+    </dl>
+
+    <p class="detail__beschreibung">{{ veranstaltung.beschreibung }}</p>
+
+    <section class="detail__preise">
+      <h2>Preiskategorien</h2>
+      <ul>
+        @for (kategorie of veranstaltung.preiskategorien; track kategorie.id) {
+          <li><span>{{ kategorie.name }}</span><span>{{ kategorie.preis | currency: 'EUR' }}</span></li>
+        }
+      </ul>
+    </section>
+
+    <a class="btn btn-primary" [routerLink]="['/veranstaltungen', veranstaltung.id, 'sitzplan']">
+      Sitzplätze auswählen
+    </a>
+  </article>
+}

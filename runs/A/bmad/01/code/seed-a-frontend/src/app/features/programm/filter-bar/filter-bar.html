@@ -1,0 +1,38 @@
+<div class="filter-bar">
+  <div class="filter-bar__field-group">
+    <div class="filter-bar__field">
+      <label class="filter-bar__label" for="filter-bar-von">Von</label>
+      <input
+        id="filter-bar-von"
+        class="filter-bar__input"
+        type="date"
+        [value]="von() ?? ''"
+        (change)="onVonChange($any($event.target).value)"
+      />
+    </div>
+    <div class="filter-bar__field">
+      <label class="filter-bar__label" for="filter-bar-bis">Bis</label>
+      <input
+        id="filter-bar-bis"
+        class="filter-bar__input"
+        type="date"
+        [value]="bis() ?? ''"
+        (change)="onBisChange($any($event.target).value)"
+      />
+    </div>
+  </div>
+  <div class="filter-bar__field">
+    <label class="filter-bar__label" for="filter-bar-venue">Spielstätte</label>
+    <select
+      id="filter-bar-venue"
+      class="filter-bar__input"
+      [value]="venueId() ?? ''"
+      (change)="onVenueChange($any($event.target).value)"
+    >
+      <option value="">Alle Spielstätten</option>
+      @for (venue of venues(); track venue.id) {
+        <option [value]="venue.id">{{ venue.name }}</option>
+      }
+    </select>
+  </div>
+</div>

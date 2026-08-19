@@ -1,0 +1,76 @@
+<a class="back-link" routerLink="/">&larr; Zum Programm</a>
+
+@if (loading()) {
+  <p class="muted">Buchung wird geladen …</p>
+}
+
+@if (fehler()) {
+  <p class="error-banner">{{ fehler() }}</p>
+}
+
+@if (buchung(); as buchung) {
+  <article class="buchung card">
+    <header class="buchung__kopf">
+      <div>
+        <h1>Buchung {{ buchung.referenz }}</h1>
+        <p class="muted">{{ buchung.veranstaltungTitel }} · {{ buchung.veranstaltungZeitpunkt | date: 'EEEE, d. MMMM y, HH:mm' }} Uhr</p>
+      </div>
+      <span class="status" [class.status--storniert]="buchung.status === 'Storniert'">
+        {{ buchung.status === 'Storniert' ? 'Storniert' : 'Bestätigt' }}
+      </span>
+    </header>
+
+    <dl class="buchung__facts">
+      <div>
+        <dt>Name</dt>
+        <dd>{{ buchung.name }}</dd>
+      </div>
+      <div>
+        <dt>E-Mail</dt>
+        <dd>{{ buchung.email }}</dd>
+      </div>
+      <div>
+        <dt>Gebucht am</dt>
+        <dd>{{ buchung.erstelltAm | date: 'd. MMMM y, HH:mm' }} Uhr</dd>
+      </div>
+    </dl>
+
+    <section>
+      <h2>Sitzplätze</h2>
+      <table class="sitzplaetze-tabelle">
+        <thead>
+          <tr>
+            <th>Platz</th>
+            <th>Kategorie</th>
+            <th>Preis</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (position of buchung.sitzplaetze; track position.reihe + position.spalte) {
+            <tr>
+              <td>{{ position.reihe }}{{ position.spalte }}</td>
+              <td>{{ position.preiskategorieName }}</td>
+              <td>{{ position.preis | currency: 'EUR' }}</td>
+            </tr>
+          }
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2">Gesamtpreis</td>
+            <td>{{ buchung.gesamtpreis | currency: 'EUR' }}</td>
+          </tr>
+        </tfoot>
+      </table>
+    </section>
+
+    @if (stornierenFehler()) {
+      <p class="error-banner">{{ stornierenFehler() }}</p>
+    }
+
+    @if (buchung.status !== 'Storniert') {
+      <button type="button" class="btn btn-danger" [disabled]="wirdStorniert()" (click)="stornieren()">
+        {{ wirdStorniert() ? 'Wird storniert …' : 'Buchung stornieren' }}
+      </button>
+    }
+  </article>
+}

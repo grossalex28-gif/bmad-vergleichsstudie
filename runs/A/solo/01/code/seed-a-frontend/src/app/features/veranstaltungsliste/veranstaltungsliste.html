@@ -1,0 +1,49 @@
+<section class="seite">
+  <h1>Veranstaltungen</h1>
+
+  <form class="filter" (ngSubmit)="suchen()">
+    <label>
+      Von
+      <input type="date" name="von" [(ngModel)]="von" />
+    </label>
+    <label>
+      Bis
+      <input type="date" name="bis" [(ngModel)]="bis" />
+    </label>
+    <label>
+      Spielstätte
+      <select name="spielstaetteId" [(ngModel)]="spielstaetteId">
+        <option value="">Alle Spielstätten</option>
+        @for (spielstaette of spielstaetten(); track spielstaette.id) {
+          <option [value]="spielstaette.id">{{ spielstaette.name }}</option>
+        }
+      </select>
+    </label>
+    <button type="submit">Filtern</button>
+    <button type="button" (click)="filterZuruecksetzen()">Zurücksetzen</button>
+  </form>
+
+  @if (laedt()) {
+    <p>Veranstaltungen werden geladen …</p>
+  }
+
+  @if (ladeFehler()) {
+    <p class="fehler" role="alert">{{ ladeFehler() }}</p>
+  }
+
+  @if (!laedt() && veranstaltungen().length === 0 && !ladeFehler()) {
+    <p>Keine Veranstaltungen für die gewählten Filter gefunden.</p>
+  }
+
+  <ul class="veranstaltungsliste">
+    @for (veranstaltung of veranstaltungen(); track veranstaltung.id) {
+      <li>
+        <a [routerLink]="['/veranstaltungen', veranstaltung.id]" class="veranstaltungs-karte">
+          <span class="titel">{{ veranstaltung.titel }}</span>
+          <span class="spielstaette">{{ veranstaltung.spielstaetteName }}</span>
+          <span class="zeitpunkt">{{ veranstaltung.zeitpunkt | date: 'EEEE, d. MMMM y, HH:mm' }} Uhr</span>
+        </a>
+      </li>
+    }
+  </ul>
+</section>

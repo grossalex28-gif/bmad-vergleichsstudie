@@ -1,0 +1,21 @@
+@if (loading()) {
+  <p class="booking__loading">Sitzplan wird geladen…</p>
+} @else if (notFound()) {
+  <p class="booking__error" role="alert">Veranstaltung nicht gefunden.</p>
+} @else if (loadError()) {
+  <p class="booking__error" role="alert">Sitzplan konnte nicht geladen werden. Bitte versuchen Sie es später erneut.</p>
+} @else if (seatMap(); as sm) {
+  <div class="booking__main">
+    <h1 class="booking__heading">Sitzplan wählen</h1>
+    @if (submitError(); as error) {
+      <p class="booking__error" role="alert" aria-live="assertive">{{ error }}</p>
+    }
+    <app-seat-map [seatMap]="sm" />
+  </div>
+  <aside class="booking__summary">
+    @if (event(); as ev) {
+      <app-price-summary [priceCategories]="ev.preiskategorien" />
+      <app-booking-form [submitting]="submitting()" (submitted)="onFormSubmitted($event)" />
+    }
+  </aside>
+}

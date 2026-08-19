@@ -1,0 +1,109 @@
+<div class="layout">
+  <aside class="filters">
+    <h2>Kategorien</h2>
+    <ul class="category-tree">
+      <li>
+        <button type="button" class="tree-link" [class.active]="!categoryId()" (click)="clearCategory()">
+          Alle Kategorien
+        </button>
+      </li>
+      @for (category of categories(); track category.id) {
+        <li>
+          <button
+            type="button"
+            class="tree-link"
+            [class.active]="categoryId() === category.id && !subcategoryId()"
+            (click)="selectCategory(category.id)"
+          >
+            {{ category.name }}
+          </button>
+          <ul>
+            @for (subcategory of category.unterkategorien; track subcategory.id) {
+              <li>
+                <button
+                  type="button"
+                  class="tree-link"
+                  [class.active]="subcategoryId() === subcategory.id"
+                  (click)="selectSubcategory(category.id, subcategory.id)"
+                >
+                  {{ subcategory.name }}
+                </button>
+              </li>
+            }
+          </ul>
+        </li>
+      }
+    </ul>
+
+    @if (selectedSubcategoryProps().length > 0) {
+      <h2>Eigenschaften</h2>
+      <div class="property-filters">
+        @for (prop of selectedSubcategoryProps(); track prop) {
+          <label>
+            {{ prop }}
+            <input
+              type="text"
+              [value]="eigenschaften()[prop] ?? ''"
+              (change)="onEigenschaftChange(prop, $any($event.target).value)"
+            />
+          </label>
+        }
+      </div>
+    }
+  </aside>
+
+  <section class="content">
+    <div class="toolbar">
+      <input
+        type="search"
+        placeholder="Suche nach Name oder Beschreibung"
+        [value]="search()"
+        (keyup.enter)="onSearchSubmit($any($event.target).value)"
+        (change)="onSearchSubmit($any($event.target).value)"
+      />
+      <select [value]="sort()" (change)="onSortChange($any($event.target).value)">
+        <option value="name_asc">Name (A-Z)</option>
+        <option value="name_desc">Name (Z-A)</option>
+        <option value="price_asc">Preis aufsteigend</option>
+        <option value="price_desc">Preis absteigend</option>
+        <option value="views_desc">Beliebtheit</option>
+        <option value="views_asc">Am wenigsten aufgerufen</option>
+      </select>
+    </div>
+
+    @if (result(); as r) {
+      @if (r.items.length === 0) {
+        <p class="empty">Keine Produkte gefunden.</p>
+      } @else {
+        <div class="product-grid">
+          @for (product of r.items; track product.id) {
+            <a class="product-card" [routerLink]="['/products', product.id]">
+              <h3>{{ product.name }}</h3>
+              <p class="description">{{ product.beschreibung }}</p>
+              <p class="price">
+                @if (product.minPreis !== null) {
+                  ab {{ product.minPreis | number: '1.2-2' }} €
+                } @else {
+                  Kein Angebot verfügbar
+                }
+              </p>
+              <p class="rating">
+                @if (product.durchschnittsBewertung !== null) {
+                  {{ product.durchschnittsBewertung | number: '1.1-1' }} ★ ({{ product.anzahlBewertungen }})
+                } @else {
+                  Noch keine Bewertungen
+                }
+              </p>
+            </a>
+          }
+        </div>
+
+        <nav class="pagination" aria-label="Seiten">
+          <button type="button" [disabled]="r.page <= 1" (click)="goToPage(r.page - 1)">Zurück</button>
+          <span>Seite {{ r.page }} von {{ r.totalPages || 1 }}</span>
+          <button type="button" [disabled]="r.page >= r.totalPages" (click)="goToPage(r.page + 1)">Weiter</button>
+        </nav>
+      }
+    }
+  </section>
+</div>

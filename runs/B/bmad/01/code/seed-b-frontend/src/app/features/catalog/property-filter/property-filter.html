@@ -1,0 +1,24 @@
+@if (error()) {
+  <p class="property-filter__error">Die Filteroptionen konnten nicht geladen werden. Bitte versuchen Sie es später erneut.</p>
+}
+
+@if (options().length > 0) {
+  <div class="property-filter">
+    @for (option of options(); track option.name) {
+      <fieldset class="property-filter__group">
+        <legend>{{ option.name }}</legend>
+        @for (value of option.values; track value) {
+          <label class="property-filter__option">
+            <input
+              type="checkbox"
+              [checked]="isChecked(option.name, value)"
+              [disabled]="disabled()"
+              (change)="toggleValue(option.name, value, $any($event.target).checked)"
+            />
+            {{ value }}
+          </label>
+        }
+      </fieldset>
+    }
+  </div>
+}

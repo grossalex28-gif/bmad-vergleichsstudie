@@ -1,0 +1,41 @@
+<main class="programmuebersicht">
+  <h1 class="programmuebersicht__titel">Programm</h1>
+
+  <app-filter-bar
+    class="programmuebersicht__filter"
+    [(von)]="von"
+    [(bis)]="bis"
+    [(spielstaetteId)]="spielstaetteId"
+    [spielstaetten]="spielstaetten()"
+  />
+
+  @if (ladezustand() === 'laedt') {
+    <div class="programmuebersicht__liste" aria-busy="true" aria-label="Veranstaltungen werden geladen">
+      @for (platzhalter of skeletonPlatzhalter; track platzhalter) {
+        <div class="event-card-skeleton">
+          <div class="event-card-skeleton__titel"></div>
+          <div class="event-card-skeleton__meta"></div>
+        </div>
+      }
+    </div>
+  } @else if (ladezustand() === 'fehler') {
+    <p class="programmuebersicht__fehler" role="alert">
+      Veranstaltungen konnten nicht geladen werden. Bitte versuchen Sie es später erneut.
+    </p>
+  } @else if (veranstaltungen().length === 0 && filterAktiv()) {
+    <p class="programmuebersicht__leerzustand">
+      Keine Veranstaltungen im gewählten Zeitraum/an dieser Spielstätte.
+      <button type="button" class="programmuebersicht__filter-zuruecksetzen" (click)="filterZuruecksetzen()">
+        Filter zurücksetzen
+      </button>
+    </p>
+  } @else if (veranstaltungen().length === 0) {
+    <p class="programmuebersicht__leerzustand">Aktuell sind keine Veranstaltungen verfügbar.</p>
+  } @else {
+    <div class="programmuebersicht__liste">
+      @for (veranstaltung of veranstaltungen(); track veranstaltung.id) {
+        <app-event-card [veranstaltung]="veranstaltung" />
+      }
+    </div>
+  }
+</main>

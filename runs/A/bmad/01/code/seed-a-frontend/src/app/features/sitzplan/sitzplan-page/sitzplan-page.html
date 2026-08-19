@@ -1,0 +1,81 @@
+@if (loadError()) {
+  <p class="sitzplan-page__error" role="alert">Sitzplan konnte nicht geladen werden.</p>
+} @else if (seatMap(); as map) {
+  <div class="sitzplan-page__layout">
+    @if (conflictMessage(); as message) {
+      <app-error-banner [message]="message" />
+    }
+    <div
+      class="sitzplan-page__viewport"
+      (wheel)="onWheel($event)"
+      (pointerdown)="onPointerDown($event)"
+      (pointermove)="onPointerMove($event)"
+      (pointerup)="onPointerUp($event)"
+      (pointercancel)="onPointerUp($event)"
+    >
+      <div
+        class="sitzplan-page__grid"
+        [style.grid-template-columns]="'auto repeat(' + map.columns + ', minmax(32px, 1fr))'"
+        [style.transform]="transform()"
+        (keydown)="onGridKeydown($event)"
+      >
+        <span class="sitzplan-page__corner"></span>
+        @for (column of columnNumbers(); track column) {
+          <span class="sitzplan-page__column-label">{{ column }}</span>
+        }
+        @for (rowGroup of rowsWithCells(); track rowGroup.row) {
+          <span class="sitzplan-page__row-label">{{ rowGroup.row }}</span>
+          @for (cell of rowGroup.cells; track $index) {
+            @if (cell.seat; as seat) {
+              <app-seat
+                [row]="seat.row"
+                [column]="seat.column"
+                [status]="seat.status"
+                [selected]="selectedSeatIds().has(seat.seatId)"
+                [focused]="focusedSeatId() === seat.seatId"
+                [categoryName]="categoryOf(seat.seatId)?.name ?? null"
+                [categoryPrice]="categoryOf(seat.seatId)?.price ?? null"
+                (toggled)="onSeatToggled(seat.seatId)"
+              />
+            } @else {
+              <div class="sitzplan-page__aisle"></div>
+            }
+          }
+          @if (panelSeatId(); as seatId) {
+            @if (rowGroup.row === panelSeatRow()) {
+              <app-price-category-panel
+                class="sitzplan-page__price-panel"
+                [categories]="priceCategories()"
+                [selectedCategoryId]="assignedCategoryId().get(seatId) ?? null"
+                (categorySelected)="onCategoryChosen(seatId, $event)"
+              />
+            }
+          }
+        }
+      </div>
+    </div>
+
+    <app-summary-panel
+      class="sitzplan-page__summary"
+      [seats]="selectedSeatSummaries()"
+      [totalPrice]="totalPrice()"
+      [soldOut]="soldOut()"
+      [(name)]="bookingName"
+      [(email)]="bookingEmail"
+      [submitting]="submitting()"
+      [fieldErrors]="fieldErrors()"
+      (submitBooking)="onSubmitBooking()"
+    />
+  </div>
+} @else {
+  <div
+    class="sitzplan-page__grid sitzplan-page__grid--placeholder"
+    [style.grid-template-columns]="'repeat(' + placeholderColumns + ', minmax(32px, 1fr))'"
+    aria-busy="true"
+    aria-label="Sitzplan wird geladen"
+  >
+    @for (cell of placeholderCells; track $index) {
+      <div class="sitzplan-page__placeholder-cell"></div>
+    }
+  </div>
+}

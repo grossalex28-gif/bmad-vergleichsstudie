@@ -1,0 +1,79 @@
+body {
+  font-family: system-ui, sans-serif;
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  color: #1a1a1a;
+}
+
+h1 {
+  margin-bottom: 1rem;
+}
+
+.filters {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.filters button {
+  padding: 0.4rem 0.9rem;
+  border: 1px solid #888;
+  background: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.filters button.active {
+  background: #1a1a1a;
+  color: #fff;
+  border-color: #1a1a1a;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  text-align: left;
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid #ddd;
+  vertical-align: middle;
+}
+
+.status-available {
+  color: #0a7d2c;
+  font-weight: 600;
+}
+
+.status-borrowed {
+  color: #b02a2a;
+  font-weight: 600;
+}
+
+.action-cell form {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.action-cell input {
+  padding: 0.3rem 0.4rem;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  width: 10rem;
+}
+
+.action-cell button {
+  padding: 0.3rem 0.7rem;
+  border: 1px solid #1a1a1a;
+  background: #1a1a1a;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.message {
+  min-height: 1.4em;
+  color: #b02a2a;
+}

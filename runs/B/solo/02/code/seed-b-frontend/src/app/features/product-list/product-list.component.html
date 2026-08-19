@@ -1,0 +1,119 @@
+<div class="container product-list-page">
+  <aside class="category-nav card">
+    <h2>Kategorien</h2>
+    <ul class="cat-list">
+      <li>
+        <button
+          type="button"
+          class="cat-btn"
+          [class.active]="selectedCategoryId() === null"
+          (click)="selectCategory(null)"
+        >
+          Alle Produkte
+        </button>
+      </li>
+      @for (cat of categories(); track cat.id) {
+        <li>
+          <button
+            type="button"
+            class="cat-btn"
+            [class.active]="selectedCategoryId() === cat.id && selectedSubcategoryId() === null"
+            (click)="selectCategory(cat.id)"
+          >
+            {{ cat.name }}
+          </button>
+          <ul class="subcat-list">
+            @for (sub of cat.subcategories; track sub.id) {
+              <li>
+                <button
+                  type="button"
+                  class="subcat-btn"
+                  [class.active]="selectedSubcategoryId() === sub.id"
+                  (click)="selectSubcategory(cat.id, sub.id)"
+                >
+                  {{ sub.name }}
+                </button>
+              </li>
+            }
+          </ul>
+        </li>
+      }
+    </ul>
+  </aside>
+
+  <section class="product-list-main">
+    <div class="toolbar card">
+      <input
+        type="search"
+        class="search-input"
+        placeholder="Produkte durchsuchen…"
+        [ngModel]="searchTerm()"
+        (ngModelChange)="onSearchChange($event)"
+      />
+
+      <select class="sort-select" (change)="onSortChange($any($event.target).value)">
+        <option value="name:asc">Name (A-Z)</option>
+        <option value="name:desc">Name (Z-A)</option>
+        <option value="price:asc">Preis aufsteigend</option>
+        <option value="price:desc">Preis absteigend</option>
+        <option value="popularity:desc">Beliebtheit</option>
+        <option value="popularity:asc">Am wenigsten aufgerufen</option>
+      </select>
+
+      @if (selectedSubcategory(); as sub) {
+        @for (propName of sub.propertyNames; track propName) {
+          <input
+            type="text"
+            class="prop-filter"
+            [placeholder]="propName"
+            [ngModel]="propertyFilters()[propName] ?? ''"
+            (ngModelChange)="onPropertyFilterChange(propName, $event)"
+          />
+        }
+      }
+    </div>
+
+    @if (loading()) {
+      <p>Lädt…</p>
+    }
+    @if (error()) {
+      <div class="alert alert-error">{{ error() }}</div>
+    }
+
+    @if (result(); as r) {
+      @if (r.items.length === 0) {
+        <p>Keine Produkte gefunden.</p>
+      } @else {
+        <div class="product-grid">
+          @for (p of r.items; track p.id) {
+            <a class="product-card card" [routerLink]="['/products', p.id]">
+              <h3>{{ p.name }}</h3>
+              <p class="muted">{{ p.categoryName }} · {{ p.subcategoryName }}</p>
+              <p class="price">
+                @if (p.minPrice != null) {
+                  ab {{ p.minPrice | number: '1.2-2' }} €
+                } @else {
+                  Kein Angebot verfügbar
+                }
+              </p>
+              <p class="rating">
+                @if (p.averageRating != null) {
+                  ★ {{ p.averageRating | number: '1.1-1' }} ({{ p.ratingCount }})
+                } @else {
+                  Noch keine Bewertungen
+                }
+              </p>
+              <p class="views">{{ p.viewCount }} Aufrufe</p>
+            </a>
+          }
+        </div>
+      }
+
+      <div class="pagination">
+        <button class="btn btn-secondary" [disabled]="page() <= 1" (click)="goToPage(page() - 1)">Zurück</button>
+        <span>Seite {{ page() }} von {{ totalPages() }}</span>
+        <button class="btn btn-secondary" [disabled]="page() >= totalPages()" (click)="goToPage(page() + 1)">Weiter</button>
+      </div>
+    }
+  </section>
+</div>

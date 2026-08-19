@@ -1,0 +1,103 @@
+@if (loading()) {
+  <p>Lade Produkt…</p>
+} @else if (notFound()) {
+  <p>Produkt wurde nicht gefunden.</p>
+} @else if (product(); as product) {
+  <div class="detail card">
+    <span class="category-path">{{ product.categoryName }} › {{ product.subCategoryName }}</span>
+    <h1>{{ product.name }}</h1>
+    <p class="description">{{ product.description }}</p>
+
+    <div class="rating-summary">
+      @if (product.ratingCount > 0) {
+        <span>★ {{ product.averageRating | number: '1.1-1' }} von 5 ({{ product.ratingCount }} Bewertungen)</span>
+      } @else {
+        <span>Noch keine Bewertungen</span>
+      }
+      <span class="views">{{ product.viewCount }} Aufrufe</span>
+    </div>
+
+    @if (product.properties | keyvalue; as props) {
+      @if (props.length > 0) {
+        <dl class="properties">
+          @for (entry of props; track entry.key) {
+            <dt>{{ entry.key }}</dt>
+            <dd>{{ entry.value }}</dd>
+          }
+        </dl>
+      }
+    }
+
+    <div class="purchase-box">
+      <div class="field">
+        <label for="supplier">Lieferant</label>
+        <select
+          id="supplier"
+          [ngModel]="selectedSupplierId()"
+          (ngModelChange)="onSupplierChange($event)"
+        >
+          @for (offer of product.offers; track offer.supplierId) {
+            <option [value]="offer.supplierId">
+              {{ offer.supplierName }} – {{ offer.price | number: '1.2-2' }} €
+            </option>
+          }
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="quantity">Menge</label>
+        <input
+          id="quantity"
+          type="number"
+          min="1"
+          [ngModel]="quantity()"
+          (ngModelChange)="quantity.set($event)"
+        />
+      </div>
+
+      <button type="button" class="btn" [disabled]="product.offers.length === 0" (click)="addToCart()">
+        In den Warenkorb
+      </button>
+
+      @if (addedToCart()) {
+        <p class="confirmation">
+          Zum Warenkorb hinzugefügt.
+          <button type="button" class="btn-secondary btn" (click)="goToCart()">Zum Warenkorb</button>
+        </p>
+      }
+    </div>
+  </div>
+
+  <div class="rating-form card">
+    <h2>Produkt bewerten</h2>
+    <form (ngSubmit)="submitRating()">
+      <div class="field">
+        <label for="author">Name</label>
+        <input
+          id="author"
+          type="text"
+          required
+          [ngModel]="ratingAuthor()"
+          (ngModelChange)="ratingAuthor.set($event)"
+          name="author"
+        />
+      </div>
+      <div class="field">
+        <label for="stars">Bewertung</label>
+        <select id="stars" [ngModel]="ratingStars()" (ngModelChange)="ratingStars.set($event)" name="stars">
+          <option [value]="5">5 – ausgezeichnet</option>
+          <option [value]="4">4 – gut</option>
+          <option [value]="3">3 – okay</option>
+          <option [value]="2">2 – schwach</option>
+          <option [value]="1">1 – schlecht</option>
+        </select>
+      </div>
+      @if (ratingError()) {
+        <p class="error-text">{{ ratingError() }}</p>
+      }
+      <button type="submit" class="btn" [disabled]="ratingSubmitting() || !ratingAuthor().trim()">
+        Bewertung abschicken
+      </button>
+    </form>
+  </div>
+}

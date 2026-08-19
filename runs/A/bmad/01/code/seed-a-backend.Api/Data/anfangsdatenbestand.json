@@ -1,0 +1,108 @@
+{
+  "spielstaetten": [
+    {
+      "id": "V1",
+      "name": "Stadthalle Nordpark",
+      "raeume": [
+        {
+          "id": "R1", "name": "Großer Saal",
+          "reihen": ["A","B","C","D","E","F","G","H","I","J"],
+          "spalten": 14,
+          "gang": { "spalten": [8], "hinweis": "linker Block 1-7, rechter Block 9-14" }
+        },
+        {
+          "id": "R2", "name": "Kleiner Saal",
+          "reihen": ["A","B","C","D","E","F"],
+          "spalten": 10,
+          "gang": { "spalten": [6], "hinweis": "Mittelgang" }
+        }
+      ]
+    },
+    {
+      "id": "V2",
+      "name": "Kulturhaus Südtor",
+      "raeume": [
+        {
+          "id": "R3", "name": "Konzertsaal",
+          "reihen": ["A","B","C","D","E","F","G","H","I","J","K","L"],
+          "spalten": 16,
+          "gang": { "spalten": [1, 16], "hinweis": "beidseitige Seitengänge, Sitzplätze in Spalte 2-15" }
+        },
+        {
+          "id": "R4", "name": "Studio",
+          "reihen": ["A","B","C","D"],
+          "spalten": 8,
+          "gang": null
+        }
+      ]
+    }
+  ],
+  "veranstaltungen": [
+    {
+      "id": "E1", "titel": "Kammerkonzert Frühling",
+      "beschreibung": "Ein intimes Konzert mit klassischen und modernen Stücken für ein kleines Ensemble.",
+      "spielstaetteId": "V1", "raumId": "R2",
+      "zeitpunkt": "2026-09-05T19:30:00", "dauerMinuten": 90, "altersfreigabe": 0,
+      "preiskategorien": [
+        { "id": "E1-A", "name": "Kategorie A", "preis": 32.00 },
+        { "id": "E1-B", "name": "Kategorie B", "preis": 22.00 }
+      ],
+      "belegteSitzplaetze": ["B3", "B4", "C7"]
+    },
+    {
+      "id": "E2", "titel": "Sinfonisches Openair-Programm",
+      "beschreibung": "Ein abendfüllendes Programm mit großem Orchester unter freiem Himmel.",
+      "spielstaetteId": "V2", "raumId": "R3",
+      "zeitpunkt": "2026-09-12T20:00:00", "dauerMinuten": 120, "altersfreigabe": 0,
+      "preiskategorien": [
+        { "id": "E2-A", "name": "Kategorie A", "preis": 45.00 },
+        { "id": "E2-B", "name": "Kategorie B", "preis": 30.00 }
+      ],
+      "belegteSitzplaetze": []
+    },
+    {
+      "id": "E3", "titel": "Comedy-Abend",
+      "beschreibung": "Ein Abendprogramm mit mehreren Auftritten aus der Stand-up-Szene.",
+      "spielstaetteId": "V1", "raumId": "R1",
+      "zeitpunkt": "2026-09-20T21:00:00", "dauerMinuten": 100, "altersfreigabe": 16,
+      "preiskategorien": [
+        { "id": "E3-A", "name": "Kategorie A", "preis": 28.00 },
+        { "id": "E3-B", "name": "Kategorie B", "preis": 18.00 }
+      ],
+      "belegteSitzplaetze": []
+    },
+    {
+      "id": "E4", "titel": "Kindertheater: Die Reise zum Mond",
+      "beschreibung": "Ein fantasievolles Bühnenstück für die ganze Familie.",
+      "spielstaetteId": "V2", "raumId": "R4",
+      "zeitpunkt": "2026-09-25T15:00:00", "dauerMinuten": 60, "altersfreigabe": 0,
+      "preiskategorien": [
+        { "id": "E4-A", "name": "Kategorie A", "preis": 15.00 },
+        { "id": "E4-B", "name": "Kategorie B", "preis": 10.00 }
+      ],
+      "belegteSitzplaetze": []
+    },
+    {
+      "id": "E5", "titel": "Jazz-Session",
+      "beschreibung": "Ein improvisationsstarker Abend mit wechselnden Besetzungen.",
+      "spielstaetteId": "V1", "raumId": "R2",
+      "zeitpunkt": "2026-10-03T20:30:00", "dauerMinuten": 110, "altersfreigabe": 0,
+      "preiskategorien": [
+        { "id": "E5-A", "name": "Kategorie A", "preis": 26.00 },
+        { "id": "E5-B", "name": "Kategorie B", "preis": 17.00 }
+      ],
+      "belegteSitzplaetze": []
+    },
+    {
+      "id": "E6", "titel": "Late-Night-Show",
+      "beschreibung": "Ein spätes Bühnenprogramm mit wechselnden Gästen.",
+      "spielstaetteId": "V2", "raumId": "R3",
+      "zeitpunkt": "2026-10-10T22:00:00", "dauerMinuten": 90, "altersfreigabe": 18,
+      "preiskategorien": [
+        { "id": "E6-A", "name": "Kategorie A", "preis": 24.00 },
+        { "id": "E6-B", "name": "Kategorie B", "preis": 16.00 }
+      ],
+      "belegteSitzplaetze": []
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+<div class="layout">
+  <aside class="sidebar card">
+    <h2>Kategorien</h2>
+    <ul class="category-tree">
+      <li>
+        <button
+          type="button"
+          class="category-link"
+          [class.active]="!selectedCategoryId()"
+          (click)="clearCategoryFilter()"
+        >
+          Alle Produkte
+        </button>
+      </li>
+      @for (category of categories(); track category.id) {
+        <li>
+          <button
+            type="button"
+            class="category-link"
+            [class.active]="selectedCategoryId() === category.id && !selectedSubCategoryId()"
+            (click)="selectCategory(category)"
+          >
+            {{ category.name }}
+          </button>
+          <ul class="subcategory-list">
+            @for (sub of category.subCategories; track sub.id) {
+              <li>
+                <button
+                  type="button"
+                  class="subcategory-link"
+                  [class.active]="selectedSubCategoryId() === sub.id"
+                  (click)="selectSubCategory(category, sub)"
+                >
+                  {{ sub.name }}
+                </button>
+              </li>
+            }
+          </ul>
+        </li>
+      }
+    </ul>
+
+    @if (selectedSubCategory(); as sub) {
+      @if (sub.propertyNames.length > 0) {
+        <div class="property-filters">
+          <h3>Eigenschaften</h3>
+          @for (name of sub.propertyNames; track name) {
+            <div class="field">
+              <label [for]="'prop-' + name">{{ name }}</label>
+              <input
+                [id]="'prop-' + name"
+                type="text"
+                [ngModel]="propertyInputs()[name] ?? ''"
+                (ngModelChange)="updatePropertyInput(name, $event)"
+                (keyup.enter)="applyPropertyFilters()"
+              />
+            </div>
+          }
+          <button type="button" class="btn btn-secondary" (click)="applyPropertyFilters()">Filter anwenden</button>
+        </div>
+      }
+    }
+  </aside>
+
+  <section class="content">
+    <div class="toolbar card">
+      <input
+        type="search"
+        placeholder="Suche nach Name oder Beschreibung…"
+        [ngModel]="searchInput()"
+        (ngModelChange)="searchInput.set($event)"
+        aria-label="Produktsuche"
+      />
+      <select
+        [ngModel]="sort()"
+        (ngModelChange)="onSortChange($event)"
+        aria-label="Sortierung"
+      >
+        <option value="NameAsc">Name (A-Z)</option>
+        <option value="NameDesc">Name (Z-A)</option>
+        <option value="PriceAsc">Preis aufsteigend</option>
+        <option value="PriceDesc">Preis absteigend</option>
+        <option value="PopularityDesc">Beliebtheit (meiste Aufrufe)</option>
+        <option value="PopularityAsc">Beliebtheit (wenigste Aufrufe)</option>
+      </select>
+    </div>
+
+    @if (result().items.length === 0) {
+      <p class="empty-state">Keine Produkte gefunden.</p>
+    } @else {
+      <div class="product-grid">
+        @for (product of result().items; track product.id) {
+          <a class="product-card card" [routerLink]="['/produkte', product.id]">
+            <span class="category-path">{{ product.categoryName }} › {{ product.subCategoryName }}</span>
+            <h3>{{ product.name }}</h3>
+            <span class="price">ab {{ product.minPrice | number: '1.2-2' }} €</span>
+            <span class="rating">
+              @if (product.ratingCount > 0) {
+                ★ {{ product.averageRating | number: '1.1-1' }} ({{ product.ratingCount }})
+              } @else {
+                Noch keine Bewertungen
+              }
+            </span>
+            <span class="views">{{ product.viewCount }} Aufrufe</span>
+          </a>
+        }
+      </div>
+
+      <div class="pagination">
+        <button type="button" class="btn btn-secondary" [disabled]="result().page <= 1" (click)="goToPage(result().page - 1)">
+          Zurück
+        </button>
+        <span>Seite {{ result().page }} von {{ result().totalPages || 1 }}</span>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          [disabled]="result().page >= result().totalPages"
+          (click)="goToPage(result().page + 1)"
+        >
+          Weiter
+        </button>
+      </div>
+    }
+  </section>
+</div>

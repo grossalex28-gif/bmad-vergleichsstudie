@@ -1,0 +1,33 @@
+.order-confirmation-page {
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.order-details {
+  padding: 1.5rem;
+}
+
+.meta {
+  color: var(--color-text-muted);
+}
+
+.order-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.5rem 0 1rem;
+}
+
+.order-table th,
+.order-table td {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.total {
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-align: right;
+}

@@ -1,0 +1,62 @@
+<h1>Kasse</h1>
+
+@if (cartService.cartItems().length === 0) {
+  <p class="empty">Der Warenkorb ist leer. <a routerLink="/products">Jetzt Produkte entdecken</a></p>
+} @else {
+  <div class="checkout-layout">
+    <form (ngSubmit)="submitOrder()">
+      <h2>Lieferdaten</h2>
+      <label>
+        Name
+        <input type="text" required [ngModel]="name()" (ngModelChange)="name.set($event)" name="name" />
+      </label>
+      <label>
+        Straße und Hausnummer
+        <input type="text" required [ngModel]="strasse()" (ngModelChange)="strasse.set($event)" name="strasse" />
+      </label>
+      <div class="row">
+        <label>
+          PLZ
+          <input type="text" required [ngModel]="plz()" (ngModelChange)="plz.set($event)" name="plz" />
+        </label>
+        <label>
+          Ort
+          <input type="text" required [ngModel]="ort()" (ngModelChange)="ort.set($event)" name="ort" />
+        </label>
+      </div>
+      <label>
+        Land
+        <input type="text" required [ngModel]="land()" (ngModelChange)="land.set($event)" name="land" />
+      </label>
+
+      <h2>Kontaktdaten</h2>
+      <label>
+        E-Mail
+        <input type="email" required [ngModel]="email()" (ngModelChange)="email.set($event)" name="email" />
+      </label>
+      <label>
+        Telefon
+        <input type="tel" required [ngModel]="telefon()" (ngModelChange)="telefon.set($event)" name="telefon" />
+      </label>
+
+      @if (errorMessage()) {
+        <p class="error">{{ errorMessage() }}</p>
+      }
+
+      <button type="submit" [disabled]="submitting()">Bestellung abschicken</button>
+    </form>
+
+    <aside class="order-summary">
+      <h2>Ihre Bestellung</h2>
+      <ul>
+        @for (item of cartService.cartItems(); track item.produktId + item.lieferantId) {
+          <li>
+            <span>{{ item.menge }} × {{ item.produktName }} ({{ item.lieferantName }})</span>
+            <span>{{ item.preis * item.menge | number: '1.2-2' }} €</span>
+          </li>
+        }
+      </ul>
+      <p class="total">Gesamtsumme: <strong>{{ cartService.total() | number: '1.2-2' }} €</strong></p>
+    </aside>
+  </div>
+}

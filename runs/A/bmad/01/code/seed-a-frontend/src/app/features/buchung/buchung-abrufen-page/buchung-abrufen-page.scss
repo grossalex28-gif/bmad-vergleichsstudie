@@ -1,0 +1,65 @@
+.buchung-abrufen-page__heading {
+  font-family: var(--font-display);
+  font-size: var(--text-display-sm-size);
+  font-weight: var(--text-display-sm-weight);
+  color: var(--color-ink-primary);
+  margin: 0 0 var(--spacing-5);
+}
+
+.buchung-abrufen-page__form {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-3);
+}
+
+.buchung-abrufen-page__field {
+  flex: 1;
+}
+
+.buchung-abrufen-page__label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  color: var(--color-ink-primary);
+  margin: 0 0 var(--spacing-1);
+}
+
+.buchung-abrufen-page__input {
+  font-family: var(--font-mono-reference);
+  font-size: var(--text-mono-reference-size);
+  font-weight: var(--text-mono-reference-weight);
+  letter-spacing: var(--text-mono-reference-letter-spacing);
+  border: 1px solid var(--color-border-hairline);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-2) var(--spacing-3);
+  width: 100%;
+}
+
+.buchung-abrufen-page__input--invalid {
+  border-color: var(--color-danger);
+}
+
+.buchung-abrufen-page__field-error {
+  font-family: var(--font-body);
+  font-size: var(--text-body-size);
+  color: var(--color-danger);
+  margin: var(--spacing-1) 0 0;
+}
+
+.buchung-abrufen-page__submit {
+  font-family: var(--font-body);
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  color: var(--color-accent-foreground);
+  background-color: var(--color-accent);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-3) var(--spacing-4);
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}

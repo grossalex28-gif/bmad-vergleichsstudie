@@ -1,0 +1,14 @@
+<h1>Buchung abrufen</h1>
+<p class="lookup__hint">Bitte die Buchungsreferenz aus Ihrer Buchungsbestätigung eingeben.</p>
+
+<form class="lookup-form" (ngSubmit)="lookup()">
+  <label>
+    Buchungsreferenz
+    <input type="text" name="reference" [(ngModel)]="reference" placeholder="z. B. AB3D9F2K" required />
+  </label>
+  <button type="submit" class="button button--primary">Buchung anzeigen</button>
+</form>
+
+@if (error()) {
+  <p class="error">{{ error() }}</p>
+}

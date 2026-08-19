@@ -1,0 +1,25 @@
+<main class="buchung-abrufen">
+  <h1 class="buchung-abrufen__titel">Buchung abrufen</h1>
+  @if (fehler(); as f) {
+    <div class="banner-error" role="alert">{{ f }}</div>
+  }
+  <form class="buchung-abrufen__formular" (submit)="$event.preventDefault(); absenden()">
+    <label class="buchung-abrufen__label" for="referenz-eingabe">Buchungsreferenz</label>
+    <input
+      id="referenz-eingabe"
+      class="buchung-abrufen__input"
+      type="text"
+      autocomplete="off"
+      [value]="referenzEingabe()"
+      (input)="referenzEingabe.set($any($event.target).value)"
+    />
+    <button
+      type="submit"
+      class="buchung-abrufen__absenden"
+      [disabled]="laedt() || referenzEingabe().trim().length === 0"
+      [attr.aria-busy]="laedt()"
+    >
+      {{ laedt() ? 'Wird gesucht…' : 'Buchung abrufen' }}
+    </button>
+  </form>
+</main>

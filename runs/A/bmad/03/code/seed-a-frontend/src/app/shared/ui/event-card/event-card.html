@@ -1,0 +1,7 @@
+<a class="event-card" [routerLink]="['/veranstaltungen', veranstaltung().id]">
+  <h3 class="event-card__titel">{{ veranstaltung().titel }}</h3>
+  <p class="event-card__meta">
+    {{ veranstaltung().spielstaetteName }} ·
+    {{ veranstaltung().zeitpunkt | date: 'EEEE, d. MMMM y, HH:mm':spielstaettenOffset(veranstaltung().zeitpunkt) }} Uhr
+  </p>
+</a>

@@ -1,0 +1,44 @@
+@if (error()) {
+  <p class="cart__error">Der Warenkorb konnte nicht geladen werden.</p>
+} @else if (loading()) {
+  <p class="cart__loading">Warenkorb wird geladen …</p>
+} @else if (lines().length === 0) {
+  <p class="cart__empty">Der Warenkorb ist leer.</p>
+  <a routerLink="/">Zurück zum Sortiment</a>
+} @else {
+  <table class="cart__table">
+    <thead>
+      <tr>
+        <th>Produkt</th>
+        <th>Lieferant</th>
+        <th>Einzelpreis</th>
+        <th>Menge</th>
+        <th>Gesamt</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (line of lines(); track line.productId + '|' + line.supplierId) {
+        <tr>
+          <td>{{ line.productName }}</td>
+          <td>{{ line.supplierName }}</td>
+          <td>{{ line.price | currency: 'EUR' }}</td>
+          <td>
+            <input
+              type="number"
+              min="1"
+              [value]="line.quantity"
+              (input)="onQuantityChange(line.productId, line.supplierId, $event)"
+            />
+          </td>
+          <td>{{ line.price * line.quantity | currency: 'EUR' }}</td>
+          <td>
+            <button type="button" (click)="onRemove(line.productId, line.supplierId)">Entfernen</button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+  <p class="cart__total">Gesamtsumme: {{ total() | currency: 'EUR' }}</p>
+  <a routerLink="/checkout">Zur Kasse</a>
+}

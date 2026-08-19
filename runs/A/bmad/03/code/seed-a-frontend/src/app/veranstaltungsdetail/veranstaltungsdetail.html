@@ -1,0 +1,35 @@
+@if (ladezustand() === 'laedt') {
+  <p class="veranstaltungsdetail__ladehinweis">Veranstaltung wird geladen …</p>
+} @else if (ladezustand() === 'fehler') {
+  <p class="veranstaltungsdetail__fehler" role="alert">
+    Veranstaltung konnte nicht geladen werden. Bitte versuchen Sie es später erneut.
+  </p>
+} @else if (veranstaltung(); as v) {
+  <main class="veranstaltungsdetail">
+    <h1 class="veranstaltungsdetail__titel">{{ v.titel }}</h1>
+    <p class="veranstaltungsdetail__beschreibung">{{ v.beschreibung }}</p>
+
+    <dl class="veranstaltungsdetail__daten">
+      <dt class="veranstaltungsdetail__label">Spielstätte</dt>
+      <dd class="veranstaltungsdetail__wert">{{ v.spielstaetteName }}</dd>
+
+      <dt class="veranstaltungsdetail__label">Raum</dt>
+      <dd class="veranstaltungsdetail__wert">{{ v.raumName }}</dd>
+
+      <dt class="veranstaltungsdetail__label">Zeitpunkt</dt>
+      <dd class="veranstaltungsdetail__wert">
+        {{ v.zeitpunkt | date: 'EEEE, d. MMMM y, HH:mm':spielstaettenOffset(v.zeitpunkt) }} Uhr
+      </dd>
+
+      <dt class="veranstaltungsdetail__label">Dauer</dt>
+      <dd class="veranstaltungsdetail__wert">{{ v.dauerMinuten }} Minuten</dd>
+
+      <dt class="veranstaltungsdetail__label">Altersfreigabe</dt>
+      <dd class="veranstaltungsdetail__wert">
+        {{ v.altersfreigabe === 0 ? 'Ohne Altersbeschränkung' : 'Ab ' + v.altersfreigabe + ' Jahren' }}
+      </dd>
+    </dl>
+
+    <a class="veranstaltungsdetail__cta" [routerLink]="['/veranstaltungen', v.id, 'buchung']">Plätze auswählen</a>
+  </main>
+}

@@ -1,0 +1,37 @@
+<form class="booking-form" (submit)="onSubmit(); $event.preventDefault()">
+  <div class="booking-form__field">
+    <label class="booking-form__label" for="buchung-name">Name</label>
+    <input
+      id="buchung-name"
+      class="booking-form__input"
+      type="text"
+      [value]="name()"
+      (input)="name.set($any($event.target).value)"
+      (blur)="nameTouched.set(true)"
+      [attr.aria-describedby]="nameError() ? 'buchung-name-fehler' : null"
+    />
+    @if (nameError(); as error) {
+      <p id="buchung-name-fehler" class="booking-form__error">{{ error }}</p>
+    }
+  </div>
+
+  <div class="booking-form__field">
+    <label class="booking-form__label" for="buchung-email">E-Mail</label>
+    <input
+      id="buchung-email"
+      class="booking-form__input"
+      type="email"
+      [value]="email()"
+      (input)="email.set($any($event.target).value)"
+      (blur)="emailTouched.set(true)"
+      [attr.aria-describedby]="emailError() ? 'buchung-email-fehler' : null"
+    />
+    @if (emailError(); as error) {
+      <p id="buchung-email-fehler" class="booking-form__error">{{ error }}</p>
+    }
+  </div>
+
+  <button type="submit" class="booking-form__submit button-primary" [disabled]="!canSubmit()">
+    {{ submitting() ? 'Buchung wird geprüft…' : 'Buchung abschließen' }}
+  </button>
+</form>

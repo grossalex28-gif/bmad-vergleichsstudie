@@ -1,0 +1,56 @@
+@if (booking(); as b) {
+  <article class="booking-detail">
+    <p class="booking-detail__confirmation" aria-live="polite">Buchung bestätigt. Referenz: {{ formattedReference() }}</p>
+
+    <span class="badge" [class.badge--active]="b.status === 'aktiv'" [class.badge--cancelled]="b.status === 'storniert'">
+      {{ b.status === 'aktiv' ? 'Aktiv' : 'Storniert' }}
+    </span>
+
+    <div class="booking-detail__reference">
+      <span class="booking-detail__reference-value">{{ formattedReference() }}</span>
+      <button type="button" class="booking-detail__copy" (click)="copyReference()">
+        {{ copied() ? 'Kopiert' : 'Referenz kopieren' }}
+      </button>
+    </div>
+
+    <p class="booking-detail__name">{{ b.name }}</p>
+
+    <ul class="booking-detail__positions">
+      @for (position of b.positionen; track position.rowLabel + '-' + position.columnNumber) {
+        <li class="booking-detail__position">
+          Sitzplatz {{ position.rowLabel }}{{ position.columnNumber }} – {{ position.preiskategorie.name }} –
+          {{ position.preiskategorie.preis | currency: 'EUR' }}
+        </li>
+      }
+    </ul>
+
+    <p class="booking-detail__total">Gesamtpreis <strong>{{ b.gesamtpreis | currency: 'EUR' }}</strong></p>
+
+    @if (b.status === 'aktiv') {
+      <button type="button" class="booking-detail__cancel button-danger" (click)="requestCancel()">Buchung stornieren</button>
+    }
+
+    @if (b.status === 'storniert') {
+      <p class="booking-detail__cancel-confirmation" aria-live="polite">Buchung storniert. Die Plätze sind wieder frei.</p>
+    }
+
+    @if (cancelError(); as error) {
+      <p class="booking-detail__cancel-error" role="alert" aria-live="assertive">{{ error }}</p>
+    }
+
+    <dialog #cancelDialog class="booking-detail__cancel-dialog" (cancel)="dismissCancel($event)">
+      <p>Buchung wirklich stornieren? Die Plätze werden sofort freigegeben.</p>
+      <div class="booking-detail__cancel-dialog-actions">
+        <button type="button" (click)="dismissCancel()" [disabled]="cancelling()">Abbrechen</button>
+        <button type="button" class="button-danger" (click)="confirmCancel()" [disabled]="cancelling()">
+          {{ cancelling() ? 'Wird storniert…' : 'Stornieren' }}
+        </button>
+      </div>
+    </dialog>
+  </article>
+} @else if (notAvailable()) {
+  <p class="booking-detail__error" role="alert">
+    Diese Buchung kann hier nicht angezeigt werden.
+    <a routerLink="/buchung-abrufen">Bitte rufen Sie sie über "Buchung abrufen" erneut ab.</a>
+  </p>
+}

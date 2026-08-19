@@ -1,0 +1,57 @@
+@if (loading()) {
+  <p>Lädt…</p>
+} @else if (loadError(); as e) {
+  <p>{{ e }}</p>
+} @else if (cart(); as c) {
+  <h1>Bestellabschluss</h1>
+
+  @if (c.items.length === 0) {
+    <p>Ihr Warenkorb ist leer. Es kann keine Bestellung abgeschlossen werden.</p>
+  } @else {
+    <h2>Ihre Bestellung</h2>
+    <ul>
+      @for (item of c.items; track item.productId + ':' + item.supplierId) {
+        <li>
+          {{ item.productName }} ({{ item.supplierName }}) — {{ item.quantity }} ×
+          {{ item.unitPrice.toFixed(2).replace('.', ',') }} € =
+          {{ item.lineTotal.toFixed(2).replace('.', ',') }} €
+        </li>
+      }
+    </ul>
+    <p>Gesamtsumme: {{ c.totalPrice.toFixed(2).replace('.', ',') }} €</p>
+
+    <h2>Liefer- und Kontaktdaten</h2>
+    <form (submit)="$event.preventDefault(); placeOrder()">
+      <label>
+        Name
+        <input type="text" #nameInput [value]="customerName()" (input)="customerName.set(nameInput.value)" [disabled]="submitting()" />
+      </label>
+      <label>
+        Lieferadresse
+        <input
+          type="text"
+          #addressInput
+          [value]="deliveryAddress()"
+          (input)="deliveryAddress.set(addressInput.value)"
+          [disabled]="submitting()"
+        />
+      </label>
+      <label>
+        E-Mail-Adresse
+        <input type="email" #emailInput [value]="email()" (input)="email.set(emailInput.value)" [disabled]="submitting()" />
+      </label>
+      <button type="submit" [disabled]="submitting()">Bestellung abschließen</button>
+    </form>
+
+    @if (submitError(); as e) {
+      <p>{{ e }}</p>
+      @if (rejectionLines().length > 0) {
+        <ul>
+          @for (line of rejectionLines(); track line) {
+            <li>{{ line }}</li>
+          }
+        </ul>
+      }
+    }
+  }
+}

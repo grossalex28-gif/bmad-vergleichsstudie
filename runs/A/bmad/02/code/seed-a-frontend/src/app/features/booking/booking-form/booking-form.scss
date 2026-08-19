@@ -1,0 +1,58 @@
+.booking-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: var(--space-2);
+}
+
+.booking-form__label {
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm-size);
+  font-weight: 600;
+  color: var(--color-on-surface);
+}
+
+.booking-form__input {
+  border: 1px solid var(--color-outline);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  padding: var(--space-1);
+  font-family: var(--font-body);
+  font-size: var(--text-body-size);
+  color: var(--color-on-surface);
+
+  &:focus-visible {
+    outline: none;
+    border: 2px solid var(--color-primary);
+  }
+}
+
+.booking-form__error {
+  margin: 0;
+  color: var(--color-error);
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm-size);
+}
+
+.booking-form__submit {
+  width: 100%;
+  margin-top: var(--space-1);
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.button-primary {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  border: none;
+  border-radius: var(--radius-md);
+  padding-block: 12px;
+  padding-inline: var(--space-3);
+  font-family: var(--font-body);
+  font-size: var(--text-body-size);
+  font-weight: 600;
+  cursor: pointer;
+}

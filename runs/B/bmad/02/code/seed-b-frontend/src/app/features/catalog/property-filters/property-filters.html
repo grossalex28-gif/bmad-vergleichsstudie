@@ -1,0 +1,9 @@
+<form #filterForm (submit)="$event.preventDefault(); onSubmit(filterForm)">
+  @for (property of properties(); track property) {
+    <label>
+      {{ property }}
+      <input type="text" [name]="property" [attr.aria-label]="property" [disabled]="disabled()" />
+    </label>
+  }
+  <button type="submit" [disabled]="disabled()">Filtern</button>
+</form>

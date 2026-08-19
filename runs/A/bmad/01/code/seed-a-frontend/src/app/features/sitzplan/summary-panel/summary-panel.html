@@ -1,0 +1,81 @@
+<aside class="summary-panel" [class.summary-panel--expanded]="expanded()" aria-label="Zusammenfassung Ihrer Auswahl">
+  @if (soldOut()) {
+    <p class="summary-panel__sold-out">Alle Plätze sind für diese Veranstaltung vergeben.</p>
+  } @else {
+    <button
+      type="button"
+      class="summary-panel__toggle"
+      (click)="toggleExpanded()"
+      [attr.aria-expanded]="expanded()"
+    >
+      <span class="summary-panel__toggle-count">
+        {{ seats().length }} {{ seats().length === 1 ? 'Platz' : 'Plätze' }} ausgewählt
+      </span>
+      <span class="summary-panel__toggle-total">{{ formatEuroAmount(totalPrice()) }}</span>
+    </button>
+
+    <div class="summary-panel__content">
+      @if (seats().length === 0) {
+        <p class="summary-panel__empty">Noch keine Plätze ausgewählt.</p>
+      } @else {
+        <ul class="summary-panel__list">
+          @for (seat of seats(); track seat.seatId) {
+            <li class="summary-panel__item">
+              <span class="summary-panel__item-label">
+                Reihe {{ seat.row }}, Platz {{ seat.column }}
+                @if (seat.categoryName) {
+                  <span class="summary-panel__item-category">· {{ seat.categoryName }}</span>
+                }
+              </span>
+              <span class="summary-panel__item-price">{{ formatEuroAmount(seat.price) }}</span>
+            </li>
+          }
+        </ul>
+      }
+
+      <div class="summary-panel__total">
+        <span>Gesamtpreis</span>
+        <span class="summary-panel__total-amount">{{ formatEuroAmount(totalPrice()) }}</span>
+      </div>
+
+      @if (!soldOut()) {
+        <form class="summary-panel__form" (submit)="onSubmit($event)">
+          <div class="summary-panel__field" [class.summary-panel__field--invalid]="fieldErrors().has('name')">
+            <label class="summary-panel__label" for="summary-panel-name">Name</label>
+            <input
+              id="summary-panel-name"
+              class="summary-panel__input"
+              type="text"
+              [value]="name()"
+              (input)="onNameInput($any($event.target).value)"
+              name="name"
+            />
+            @if (fieldErrors().has('name')) {
+              <p class="summary-panel__field-error">Bitte geben Sie Ihren Namen ein.</p>
+            }
+          </div>
+          <div class="summary-panel__field" [class.summary-panel__field--invalid]="fieldErrors().has('email')">
+            <label class="summary-panel__label" for="summary-panel-email">E-Mail</label>
+            <input
+              id="summary-panel-email"
+              class="summary-panel__input"
+              type="email"
+              [value]="email()"
+              (input)="onEmailInput($any($event.target).value)"
+              name="email"
+            />
+            @if (fieldErrors().has('email')) {
+              <p class="summary-panel__field-error">Bitte geben Sie eine gültige E-Mail-Adresse ein.</p>
+            }
+          </div>
+          @if (fieldErrors().has('seats')) {
+            <p class="summary-panel__field-error">Bitte wählen Sie mindestens einen Platz mit Preiskategorie.</p>
+          }
+          <button type="submit" class="summary-panel__submit" [disabled]="submitting()">
+            {{ submitting() ? 'Wird gebucht …' : 'Buchung abschließen' }}
+          </button>
+        </form>
+      }
+    </div>
+  }
+</aside>

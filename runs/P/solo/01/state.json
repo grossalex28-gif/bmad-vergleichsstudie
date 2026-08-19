@@ -1,0 +1,74 @@
+{
+  "run_id": "P-SOLO-1",
+  "project": "P",
+  "arm": "solo",
+  "repetition": 1,
+  "schema_version": "1",
+  "harness_version": "0.1.0-probe",
+  "created_at": 1786347050.3813233,
+  "first_started_at": 1786347055.933848,
+  "active_seconds": 487.59767961502075,
+  "wait_seconds": 0.0,
+  "step_index": 2,
+  "completed_steps": [
+    {
+      "index": 0,
+      "skill": "solo",
+      "action": null,
+      "started_at": "2026-08-10T09:30:55+0200",
+      "duration_s": 450.1,
+      "status": "complete",
+      "session_id": "2c38f257-43e1-4886-8644-2af8c56ce2c4",
+      "commit": "237cad417c256547ad91b632644c37fefe21fe76",
+      "usage": {
+        "input": 1118,
+        "output": 30730,
+        "cache_creation": 54259,
+        "cache_read": 2708802
+      },
+      "turns": 67,
+      "cost_usd": 1.600237,
+      "model_seen": "claude-sonnet-5",
+      "assumptions": [],
+      "open_questions": [],
+      "reason": null,
+      "declared_done": false,
+      "log": "logs/step-000-solo.jsonl"
+    },
+    {
+      "index": 1,
+      "skill": "solo",
+      "action": null,
+      "started_at": "2026-08-10T09:38:26+0200",
+      "duration_s": 37.5,
+      "status": "complete",
+      "session_id": "777d6f9d-a36a-4670-bc90-b5afa26709a9",
+      "commit": "7c5106a79ebc988b0f5a48bf11f48c84f4afaf3f",
+      "usage": {
+        "input": 1089,
+        "output": 2246,
+        "cache_creation": 18059,
+        "cache_read": 222014
+      },
+      "turns": 11,
+      "cost_usd": 0.209519,
+      "model_seen": "claude-sonnet-5",
+      "assumptions": [],
+      "open_questions": [],
+      "reason": null,
+      "declared_done": true,
+      "log": "logs/step-001-solo.jsonl"
+    }
+  ],
+  "tokens": {
+    "input": 2207,
+    "output": 32976,
+    "cache_creation": 72318,
+    "cache_read": 2930816
+  },
+  "cost_usd": 1.8097557999999996,
+  "turns": 78,
+  "finished": true,
+  "termination_reason": "regular",
+  "last_router_suggestion": null
+}

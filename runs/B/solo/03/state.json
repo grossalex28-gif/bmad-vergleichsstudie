@@ -1,0 +1,111 @@
+{
+  "run_id": "B-SOLO-3",
+  "project": "B",
+  "condition": "solo",
+  "repetition": 3,
+  "schema_version": "1",
+  "harness_version": "0.2.4-messlauf",
+  "created_at": 1787027111.3314862,
+  "first_started_at": 1787027111.9425702,
+  "active_seconds": 1461.4338610172272,
+  "wait_seconds": 0.0,
+  "step_index": 2,
+  "completed_steps": [
+    {
+      "index": 0,
+      "skill": "solo",
+      "action": null,
+      "started_at": "2026-08-18T06:25:11+0200",
+      "duration_s": 1338.3,
+      "status": "complete",
+      "session_id": "b8800f33-77b4-4ca1-a71f-0407f8796592",
+      "commit": "06e01a981448d80413eee9d9b3b8f09134c92755",
+      "source": "router",
+      "usage": {
+        "input": 2441,
+        "output": 111294,
+        "cache_creation": 214273,
+        "cache_read": 24847808
+      },
+      "turns": 189,
+      "cost_usd": 10.412317,
+      "model_seen": "claude-sonnet-5",
+      "tools": {
+        "main": {
+          "Bash": 80,
+          "Read": 16,
+          "Write": 67,
+          "Edit": 21,
+          "ToolSearch": 2,
+          "Skill": 1
+        },
+        "sub": {}
+      },
+      "assumptions": [],
+      "open_questions": [],
+      "reason": null,
+      "declared_done": false,
+      "log": "logs/step-000-solo.jsonl"
+    },
+    {
+      "index": 1,
+      "skill": "solo",
+      "action": null,
+      "started_at": "2026-08-18T06:47:30+0200",
+      "duration_s": 123.1,
+      "status": "complete",
+      "session_id": "07f1b5fb-0612-42e1-87eb-58d36eb66b71",
+      "commit": "11af590f0b3756f7646e52309a43878748fa9545",
+      "source": "router",
+      "usage": {
+        "input": 4681,
+        "output": 7612,
+        "cache_creation": 57123,
+        "cache_read": 1307554
+      },
+      "turns": 37,
+      "cost_usd": 0.858697,
+      "model_seen": "claude-sonnet-5",
+      "tools": {
+        "main": {
+          "Bash": 20,
+          "Read": 16
+        },
+        "sub": {}
+      },
+      "assumptions": [],
+      "open_questions": [],
+      "reason": null,
+      "declared_done": true,
+      "log": "logs/step-001-solo.jsonl"
+    }
+  ],
+  "tokens": {
+    "input": 7122,
+    "output": 118906,
+    "cache_creation": 271396,
+    "cache_read": 26155362
+  },
+  "cost_usd": 11.271014599999999,
+  "turns": 226,
+  "tools": {
+    "main": {
+      "Bash": 100,
+      "Read": 32,
+      "Write": 67,
+      "Edit": 21,
+      "ToolSearch": 2,
+      "Skill": 1
+    },
+    "sub": {}
+  },
+  "network": {
+    "fetch": 0,
+    "package": 16,
+    "commands": [],
+    "local": 19
+  },
+  "finished": true,
+  "termination_reason": "regular",
+  "last_router_suggestion": null
+}

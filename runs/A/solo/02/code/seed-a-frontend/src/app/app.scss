@@ -1,0 +1,44 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+
+  &__brand {
+    font-weight: 700;
+    font-size: 1.125rem;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+
+  &__nav {
+    display: flex;
+    gap: 1.25rem;
+
+    a {
+      text-decoration: none;
+      color: var(--color-text-muted);
+      font-weight: 500;
+
+      &.is-active {
+        color: var(--color-primary);
+      }
+    }
+  }
+}
+
+.app-main {
+  flex: 1;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}

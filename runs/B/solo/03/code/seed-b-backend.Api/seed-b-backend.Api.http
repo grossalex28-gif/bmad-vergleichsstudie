@@ -1,0 +1,42 @@
+@seed_b_backend.Api_HostAddress = http://localhost:5039
+
+GET {{seed_b_backend.Api_HostAddress}}/api/categories
+Accept: application/json
+
+###
+
+GET {{seed_b_backend.Api_HostAddress}}/api/products?page=1&sort=NameAsc
+Accept: application/json
+
+###
+
+GET {{seed_b_backend.Api_HostAddress}}/api/products/P1
+Accept: application/json
+
+###
+
+POST {{seed_b_backend.Api_HostAddress}}/api/products/P1/ratings
+Content-Type: application/json
+
+{
+  "authorName": "Testkunde",
+  "stars": 5
+}
+
+###
+
+POST {{seed_b_backend.Api_HostAddress}}/api/orders
+Content-Type: application/json
+
+{
+  "contactName": "Max Mustermann",
+  "email": "max@example.com",
+  "street": "Musterweg 1",
+  "postalCode": "12345",
+  "city": "Musterstadt",
+  "items": [
+    { "productId": "P1", "supplierId": "L1", "quantity": 2 }
+  ]
+}
+
+###

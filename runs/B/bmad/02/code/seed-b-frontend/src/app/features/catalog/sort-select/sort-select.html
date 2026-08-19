@@ -1,0 +1,9 @@
+<select #sortInput aria-label="Sortierung" [disabled]="disabled()" (change)="onChange(sortInput.value)">
+  <option value="">Sortierung</option>
+  <option value="price-asc">Preis aufsteigend</option>
+  <option value="price-desc">Preis absteigend</option>
+  <option value="name-asc">Name aufsteigend</option>
+  <option value="name-desc">Name absteigend</option>
+  <option value="viewCount-asc">Beliebtheit aufsteigend</option>
+  <option value="viewCount-desc">Beliebtheit absteigend</option>
+</select>

@@ -1,0 +1,10 @@
+<header class="site-header">
+  <a routerLink="/products" class="brand">Online-Shop</a>
+  <nav>
+    <a routerLink="/cart">Warenkorb ({{ cartService.itemCount() }})</a>
+  </nav>
+</header>
+
+<main class="site-content">
+  <router-outlet />
+</main>

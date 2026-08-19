@@ -1,0 +1,51 @@
+.veranstaltungsdetail__titel {
+  margin: 0 0 var(--spacing-unit) 0;
+  font-family: var(--font-headline-md-family);
+  font-size: var(--font-headline-md-size);
+  font-weight: var(--font-headline-md-weight);
+  line-height: var(--font-headline-md-line-height);
+  color: var(--color-on-surface);
+}
+
+.veranstaltungsdetail__beschreibung {
+  margin: 0 0 var(--spacing-section-gap) 0;
+  font-family: var(--font-body-lg-family);
+  font-size: var(--font-body-lg-size);
+  font-weight: var(--font-body-lg-weight);
+  line-height: var(--font-body-lg-line-height);
+  color: var(--color-on-surface);
+}
+
+.veranstaltungsdetail__daten {
+  margin: 0 0 var(--spacing-section-gap) 0;
+}
+
+.veranstaltungsdetail__label {
+  margin-top: var(--spacing-unit);
+  font-family: var(--font-label-family);
+  font-size: var(--font-label-size);
+  font-weight: var(--font-label-weight);
+  line-height: var(--font-label-line-height);
+  letter-spacing: var(--font-label-letter-spacing);
+  color: var(--color-on-surface-variant);
+}
+
+.veranstaltungsdetail__wert {
+  margin: 0;
+  font-family: var(--font-body-md-family);
+  font-size: var(--font-body-md-size);
+  font-weight: var(--font-body-md-weight);
+  line-height: var(--font-body-md-line-height);
+  color: var(--color-on-surface);
+}
+
+.veranstaltungsdetail__cta {
+  display: inline-block;
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  border-radius: var(--radius-default);
+  padding: var(--spacing-unit) var(--spacing-gutter);
+  font-family: var(--font-label-family);
+  font-weight: var(--font-label-weight);
+  text-decoration: none;
+}

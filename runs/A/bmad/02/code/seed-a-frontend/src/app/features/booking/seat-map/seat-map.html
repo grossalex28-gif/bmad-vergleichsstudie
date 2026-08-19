@@ -1,0 +1,53 @@
+@if (hasFreeSeats()) {
+  <div class="seat-map__scroll">
+    <div class="seat-map" role="grid" aria-label="Sitzplan" #root>
+      @for (row of seatMap().rows; track row.rowLabel; let rowIndex = $index) {
+        <div class="seat-map__row" role="row">
+          @for (cell of row.cells; track cell.columnNumber; let columnIndex = $index) {
+            @if (cell.status === 'aisle') {
+              <div class="seat-cell seat-cell--aisle" aria-hidden="true"></div>
+            } @else if (cell.status === 'occupied') {
+              <button
+                type="button"
+                class="seat-cell seat-cell--occupied"
+                role="gridcell"
+                disabled
+                [attr.aria-label]="ariaLabel(row.rowLabel, cell)"
+              >
+                <span class="seat-cell__icon seat-cell__icon--lock" aria-hidden="true"></span>
+                <span class="seat-cell__label">{{ row.rowLabel }}{{ cell.columnNumber }}</span>
+              </button>
+            } @else if (cell.status === 'free') {
+              <button
+                type="button"
+                class="seat-cell"
+                [class.seat-cell--free]="!isSelected(row.rowLabel, cell.columnNumber)"
+                [class.seat-cell--selected]="isSelected(row.rowLabel, cell.columnNumber)"
+                role="gridcell"
+                [attr.aria-label]="ariaLabel(row.rowLabel, cell)"
+                [attr.tabindex]="isRovingTabTarget(rowIndex, columnIndex) ? 0 : -1"
+                [attr.data-row-index]="rowIndex"
+                [attr.data-column-index]="columnIndex"
+                (click)="onToggle(row.rowLabel, cell.columnNumber)"
+                (focus)="onFocus(rowIndex, columnIndex)"
+                (keydown)="onKeydown($event, rowIndex, columnIndex)"
+              >
+                <span
+                  class="seat-cell__icon"
+                  [class.seat-cell__icon--seat]="!isSelected(row.rowLabel, cell.columnNumber)"
+                  [class.seat-cell__icon--check]="isSelected(row.rowLabel, cell.columnNumber)"
+                  aria-hidden="true"
+                ></span>
+                <span class="seat-cell__label">{{ row.rowLabel }}{{ cell.columnNumber }}</span>
+              </button>
+            } @else {
+              <div class="seat-cell seat-cell--unknown" aria-hidden="true"></div>
+            }
+          }
+        </div>
+      }
+    </div>
+  </div>
+} @else {
+  <p class="seat-map__empty" role="status">Alle Plätze sind belegt.</p>
+}

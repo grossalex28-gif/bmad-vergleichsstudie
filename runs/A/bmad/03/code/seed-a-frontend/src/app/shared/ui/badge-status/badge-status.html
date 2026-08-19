@@ -1,0 +1,7 @@
+<span
+  class="badge-status"
+  [class.badge-status--aktiv]="status() === 'Aktiv'"
+  [class.badge-status--storniert]="status() === 'Storniert'"
+>
+  {{ status() === 'Aktiv' ? 'aktiv' : 'storniert' }}
+</span>

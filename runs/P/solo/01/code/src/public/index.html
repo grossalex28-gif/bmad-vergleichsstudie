@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Werkzeugausgabe</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <h1>Werkzeugausgabe</h1>
+
+  <div class="filters" role="group" aria-label="Filter">
+    <button type="button" data-filter="" class="active">Alle</button>
+    <button type="button" data-filter="available">Verfügbar</button>
+    <button type="button" data-filter="borrowed">Ausgeliehen</button>
+  </div>
+
+  <p id="message" class="message" role="status"></p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Bezeichnung</th>
+        <th>Inventarnummer</th>
+        <th>Zustand</th>
+        <th>Status</th>
+        <th>Aktion</th>
+      </tr>
+    </thead>
+    <tbody id="tools-body"></tbody>
+  </table>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+@if (order() === undefined) {
+  <p>Lade Bestellung…</p>
+} @else if (order() === null) {
+  <p>Bestellung wurde nicht gefunden.</p>
+} @else if (order(); as order) {
+  <div class="confirmation card">
+    <h1>Bestellung #{{ order.id }} eingegangen</h1>
+    <p class="status">Status: {{ order.status }}</p>
+
+    <h2>Lieferadresse</h2>
+    <p>
+      {{ order.contactName }}<br />
+      {{ order.street }}<br />
+      {{ order.postalCode }} {{ order.city }}<br />
+      {{ order.email }}
+    </p>
+
+    <h2>Positionen</h2>
+    <table class="order-table">
+      <thead>
+        <tr>
+          <th>Produkt</th>
+          <th>Lieferant</th>
+          <th>Einzelpreis</th>
+          <th>Menge</th>
+          <th>Gesamt</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of order.items; track item.productId + item.supplierId) {
+          <tr>
+            <td>{{ item.productName }}</td>
+            <td>{{ item.supplierName }}</td>
+            <td>{{ item.unitPrice | number: '1.2-2' }} €</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.lineTotal | number: '1.2-2' }} €</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+
+    <div class="order-total">Gesamtsumme: {{ order.total | number: '1.2-2' }} €</div>
+
+    <a class="btn" routerLink="/produkte">Weiter einkaufen</a>
+  </div>
+}

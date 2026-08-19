@@ -1,0 +1,66 @@
+<section class="seite">
+  <a routerLink="/veranstaltungen" class="zurueck">&larr; Zur Übersicht</a>
+
+  @if (ladeFehler()) {
+    <p class="fehler" role="alert">{{ ladeFehler() }}</p>
+  }
+
+  @if (buchung(); as b) {
+    <h1>Buchung {{ b.referenz }}</h1>
+
+    @if (b.status === 'Storniert') {
+      <p class="hinweis-storniert">Diese Buchung wurde storniert.</p>
+    }
+
+    <dl class="details">
+      <div>
+        <dt>Veranstaltung</dt>
+        <dd>{{ b.veranstaltungTitel }}</dd>
+      </div>
+      <div>
+        <dt>Spielstätte / Raum</dt>
+        <dd>{{ b.spielstaetteName }} · {{ b.raumName }}</dd>
+      </div>
+      <div>
+        <dt>Zeitpunkt</dt>
+        <dd>{{ b.veranstaltungZeitpunkt | date: 'EEEE, d. MMMM y, HH:mm' }} Uhr</dd>
+      </div>
+      <div>
+        <dt>Gebucht von</dt>
+        <dd>{{ b.name }} ({{ b.email }})</dd>
+      </div>
+    </dl>
+
+    <h2>Sitzplätze</h2>
+    <table class="positionen-tabelle">
+      <thead>
+        <tr>
+          <th>Sitzplatz</th>
+          <th>Preiskategorie</th>
+          <th>Preis</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (position of b.positionen; track position.reihe + '-' + position.spalte) {
+          <tr>
+            <td>{{ position.reihe }}{{ position.spalte }}</td>
+            <td>{{ position.preiskategorieName }}</td>
+            <td>{{ position.preis | number: '1.2-2' }} €</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+
+    <p class="gesamtpreis">Gesamtpreis: <strong>{{ b.gesamtpreis | number: '1.2-2' }} €</strong></p>
+
+    @if (stornierenFehler()) {
+      <p class="fehler" role="alert">{{ stornierenFehler() }}</p>
+    }
+
+    @if (b.status === 'Aktiv') {
+      <button type="button" (click)="stornieren()" [disabled]="wirdStorniert()">
+        {{ wirdStorniert() ? 'Wird storniert …' : 'Buchung stornieren' }}
+      </button>
+    }
+  }
+</section>

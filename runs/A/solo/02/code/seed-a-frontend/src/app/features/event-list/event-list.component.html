@@ -1,0 +1,44 @@
+<h1>Programm</h1>
+
+<form class="filters" (ngSubmit)="applyFilters()">
+  <label class="filters__field">
+    Von
+    <input type="date" name="from" [(ngModel)]="from" />
+  </label>
+  <label class="filters__field">
+    Bis
+    <input type="date" name="to" [(ngModel)]="to" />
+  </label>
+  <label class="filters__field">
+    Spielstätte
+    <select name="venueId" [(ngModel)]="venueId">
+      <option value="">Alle Spielstätten</option>
+      @for (venue of venues(); track venue.id) {
+        <option [value]="venue.id">{{ venue.name }}</option>
+      }
+    </select>
+  </label>
+  <div class="filters__actions">
+    <button type="submit">Filtern</button>
+    <button type="button" (click)="resetFilters()">Zurücksetzen</button>
+  </div>
+</form>
+
+@if (loading()) {
+  <p>Veranstaltungen werden geladen…</p>
+} @else if (error()) {
+  <p class="error">{{ error() }}</p>
+} @else if (events().length === 0) {
+  <p>Keine Veranstaltungen im gewählten Zeitraum gefunden.</p>
+} @else {
+  <ul class="event-list">
+    @for (event of events(); track event.id) {
+      <li class="event-list__item">
+        <a [routerLink]="['/events', event.id]">
+          <span class="event-list__title">{{ event.title }}</span>
+          <span class="event-list__meta">{{ event.venueName }} · {{ event.startsAt | date: 'dd.MM.yyyy, HH:mm' }} Uhr</span>
+        </a>
+      </li>
+    }
+  </ul>
+}

@@ -1,0 +1,134 @@
+:root {
+  --text: #6b6375;
+  --text-h: #08060d;
+  --bg: #fff;
+  --border: #e5e4e7;
+  --available: #1a7f37;
+  --available-bg: rgba(26, 127, 55, 0.1);
+  --borrowed: #b42318;
+  --borrowed-bg: rgba(180, 35, 24, 0.1);
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+
+  font: 18px/145% var(--sans);
+  color-scheme: light dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #9ca3af;
+    --text-h: #f3f4f6;
+    --bg: #16171d;
+    --border: #2e303a;
+    --available: #4ade80;
+    --available-bg: rgba(74, 222, 128, 0.15);
+    --borrowed: #f87171;
+    --borrowed-bg: rgba(248, 113, 113, 0.15);
+  }
+}
+
+body {
+  margin: 0;
+}
+
+h1 {
+  font-size: 28px;
+  color: var(--text-h);
+  margin: 0 0 16px;
+}
+
+#app {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 20px;
+  box-sizing: border-box;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  color: var(--text-h);
+  font-weight: 600;
+}
+
+.status {
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+.status--available {
+  color: var(--available);
+  background: var(--available-bg);
+}
+
+.status--borrowed {
+  color: var(--borrowed);
+  background: var(--borrowed-bg);
+}
+
+.filter-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.filter-bar button {
+  font: inherit;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.filter-bar button.active {
+  color: var(--text-h);
+  border-color: var(--text-h);
+  font-weight: 600;
+}
+
+.loan-form {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.loan-form input {
+  width: 100px;
+  font: inherit;
+}
+
+.loan-error {
+  margin: 0;
+  color: var(--borrowed);
+  font-size: 14px;
+}
+
+.return-form {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.return-error {
+  margin: 0;
+  color: var(--borrowed);
+  font-size: 14px;
+}

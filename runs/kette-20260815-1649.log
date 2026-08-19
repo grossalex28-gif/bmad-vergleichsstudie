@@ -1,0 +1,24 @@
+[2026-08-15 16:49:52] Kette geplant, hoechstens 2 Laeufe in diesem Durchgang.
+[2026-08-15 16:49:52]   A-BMAD-1     uebersprungen (beendet: regular)
+[2026-08-15 16:49:52]   A-SOLO-1     uebersprungen (beendet: regular)
+[2026-08-15 16:49:52]   A-BMAD-2     uebersprungen (beendet: regular)
+[2026-08-15 16:49:52]   A-SOLO-2     uebersprungen (beendet: regular)
+[2026-08-15 16:49:52]   A-BMAD-3     init+run
+[2026-08-15 16:49:52]   A-SOLO-3     init+run
+[2026-08-15 16:49:52]   B-BMAD-1     init+run
+[2026-08-15 16:49:52]   B-SOLO-1     init+run
+[2026-08-15 16:49:52]   B-BMAD-2     init+run
+[2026-08-15 16:49:52]   B-SOLO-2     init+run
+[2026-08-15 16:49:52]   B-BMAD-3     init+run
+[2026-08-15 16:49:52]   B-SOLO-3     init+run
+[2026-08-15 16:49:52]     $ harness.py dbcheck --config config.messlauf.json
+[2026-08-15 16:49:53] === A-BMAD-3 ===  (270.1 GB frei)
+[2026-08-15 16:49:53]     $ harness.py init --config config.messlauf.json --run A-BMAD-3
+[2026-08-15 16:49:54]     $ harness.py run --config config.messlauf.json --run A-BMAD-3
+[2026-08-16 02:57:53] A-BMAD-3: finished=True · Ursache=regular · Schritte=54 · T1=7.88 h · Warten=2.15 h · Tokens=3,388,826 · 191.21 USD (Schaetzung)
+[2026-08-16 02:57:53] === A-SOLO-3 ===  (267.3 GB frei)
+[2026-08-16 02:57:53]     $ harness.py init --config config.messlauf.json --run A-SOLO-3
+[2026-08-16 02:57:54]     $ harness.py run --config config.messlauf.json --run A-SOLO-3
+[2026-08-16 03:19:24] A-SOLO-3: finished=True · Ursache=regular · Schritte=2 · T1=0.36 h · Warten=0.00 h · Tokens=116,205 · 8.83 USD (Schaetzung)
+[2026-08-16 03:19:24] Hoechstzahl von 2 Laeufen erreicht. Ende.
+[2026-08-16 03:19:24] Durchgang beendet, 2 Lauf/Laeufe gestartet. Protokoll: /home/alex/dev/Bachelor/bmad-vergleichsstudie/runs/kette-20260815-1649.log

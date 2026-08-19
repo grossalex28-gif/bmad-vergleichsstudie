@@ -1,0 +1,22 @@
+<h1 class="buchung-abrufen-page__heading">Buchung abrufen</h1>
+<form class="buchung-abrufen-page__form" (submit)="onSubmit($event)">
+  <div class="buchung-abrufen-page__field">
+    <label class="buchung-abrufen-page__label" for="buchung-abrufen-reference">Buchungsreferenz</label>
+    <input
+      id="buchung-abrufen-reference"
+      class="buchung-abrufen-page__input"
+      [class.buchung-abrufen-page__input--invalid]="errorMessage() !== null"
+      type="text"
+      [value]="reference()"
+      [attr.aria-invalid]="errorMessage() !== null ? true : null"
+      [attr.aria-describedby]="errorMessage() !== null ? 'buchung-abrufen-reference-error' : null"
+      (input)="onReferenceInput($any($event.target).value)"
+    />
+    @if (errorMessage(); as message) {
+      <p id="buchung-abrufen-reference-error" class="buchung-abrufen-page__field-error">{{ message }}</p>
+    }
+  </div>
+  <button type="submit" class="buchung-abrufen-page__submit" [disabled]="submitting()">
+    {{ submitting() ? 'Wird gesucht …' : 'Buchung abrufen' }}
+  </button>
+</form>

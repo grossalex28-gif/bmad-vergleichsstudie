@@ -1,0 +1,67 @@
+@if (ladezustand() === 'laedt') {
+  <p class="buchungsdetail__ladehinweis">Buchung wird geladen …</p>
+} @else if (ladezustand() === 'fehler') {
+  <p class="buchungsdetail__fehler" role="alert">Keine Buchung mit dieser Referenz gefunden.</p>
+} @else if (buchung(); as b) {
+  <main class="buchungsdetail">
+    <h1 class="buchungsdetail__titel">{{ b.veranstaltungTitel }}</h1>
+    <app-badge-status [status]="b.status" />
+    <app-buchungsreferenz [referenz]="b.referenz" />
+    @if (stornierungErfolgreich()) {
+      <div class="banner-success" role="status">
+        Buchung storniert. Die Plätze sind wieder frei.
+      </div>
+    }
+    @if (stornierungFehler(); as f) {
+      <div class="banner-error" role="alert">{{ f }}</div>
+    }
+    <p class="buchungsdetail__zeitpunkt">
+      {{
+        b.veranstaltungZeitpunkt
+          | date: 'EEEE, d. MMMM y, HH:mm' : spielstaettenOffset(b.veranstaltungZeitpunkt)
+      }}
+      Uhr · {{ b.spielstaetteName }}, {{ b.raumName }}
+    </p>
+    <ul class="buchungsdetail__positionen">
+      @for (position of b.positionen; track position.sitzplatzCode) {
+        <li class="buchungsdetail__position">
+          <span class="buchungsdetail__code">{{ position.sitzplatzCode }}</span>
+          <span class="buchungsdetail__kategorie">{{ position.preiskategorieName }}</span>
+          <span class="buchungsdetail__einzelpreis">{{
+            position.preisSnapshot | currency: 'EUR'
+          }}</span>
+        </li>
+      }
+    </ul>
+    <p class="buchungsdetail__gesamtpreis">Gesamtpreis: {{ b.gesamtpreis | currency: 'EUR' }}</p>
+    @if (b.status === 'Aktiv') {
+      <button type="button" class="buchungsdetail__stornieren" (click)="dialogOeffnen()">
+        Stornieren
+      </button>
+      <dialog #stornierenDialog class="stornieren-dialog">
+        <p class="stornieren-dialog__text">
+          Buchung wirklich stornieren? Die Plätze werden sofort wieder freigegeben.
+        </p>
+        <div class="stornieren-dialog__aktionen">
+          <button
+            type="button"
+            class="stornieren-dialog__abbrechen"
+            [disabled]="stornierungLaeuft()"
+            (click)="dialogAbbrechen()"
+          >
+            Abbrechen
+          </button>
+          <button
+            type="button"
+            class="stornieren-dialog__bestaetigen"
+            [disabled]="stornierungLaeuft()"
+            [attr.aria-busy]="stornierungLaeuft()"
+            (click)="stornierenBestaetigen()"
+          >
+            {{ stornierungLaeuft() ? 'Wird storniert…' : 'Stornieren bestätigen' }}
+          </button>
+        </div>
+      </dialog>
+    }
+  </main>
+}

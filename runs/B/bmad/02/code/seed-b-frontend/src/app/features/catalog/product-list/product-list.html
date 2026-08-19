@@ -1,0 +1,27 @@
+<app-search-box [disabled]="loading()" (searchChanged)="onSearchChanged($event)" />
+<app-category-nav
+  [categories]="categories()"
+  (categorySelected)="selectCategory($event)"
+  (subcategorySelected)="selectSubcategory($event)"
+  (selectionCleared)="clearSelection()"
+/>
+@if (selectedSubcategoryId()) {
+  <app-property-filters
+    [properties]="selectedSubcategoryProperties()"
+    [disabled]="loading()"
+    (filtersChanged)="onPropertyFiltersChanged($event)"
+  />
+}
+<app-sort-select [disabled]="loading()" (sortChanged)="onSortChanged($event)" />
+
+<ul>
+  @for (product of items(); track product.id) {
+    <li><a [routerLink]="['/products', product.id]">{{ product.name }}</a></li>
+  }
+</ul>
+
+<nav>
+  <button type="button" [disabled]="!hasPreviousPage()" (click)="goToPreviousPage()">Zurück</button>
+  <span>Seite {{ page() }} von {{ totalPages() }}</span>
+  <button type="button" [disabled]="!hasNextPage()" (click)="goToNextPage()">Weiter</button>
+</nav>

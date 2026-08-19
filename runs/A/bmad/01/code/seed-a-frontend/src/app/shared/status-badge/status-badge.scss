@@ -1,0 +1,15 @@
+.status-badge {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  color: var(--color-ink-primary);
+  background: var(--color-surface-sunken);
+  border-radius: var(--radius-full);
+  padding: var(--spacing-1) var(--spacing-3);
+}
+
+.status-badge--cancelled {
+  color: var(--color-ink-secondary);
+  text-decoration: line-through;
+}

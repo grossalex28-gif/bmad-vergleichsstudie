@@ -1,0 +1,145 @@
+.layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.sidebar {
+  padding: 1rem;
+  position: sticky;
+  top: 1rem;
+
+  h2 {
+    font-size: 1rem;
+    margin: 0 0 0.6rem;
+  }
+}
+
+.category-tree {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.category-link,
+.subcategory-link {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 0.5rem;
+  font-size: 0.9rem;
+  color: var(--color-text);
+
+  &:hover {
+    background: var(--color-bg);
+  }
+
+  &.active {
+    background: var(--color-primary);
+    color: #fff;
+  }
+}
+
+.subcategory-list {
+  list-style: none;
+  margin: 0.1rem 0 0.4rem;
+  padding-left: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.subcategory-link {
+  font-size: 0.85rem;
+}
+
+.property-filters {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+
+  h3 {
+    font-size: 0.9rem;
+    margin: 0;
+  }
+}
+
+.toolbar {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+
+  input[type='search'] {
+    flex: 1;
+  }
+}
+
+.empty-state {
+  color: var(--color-text-muted);
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1rem;
+  text-decoration: none;
+  color: var(--color-text);
+
+  &:hover {
+    border-color: var(--color-primary);
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 1.05rem;
+  }
+
+  .category-path {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .price {
+    font-weight: 600;
+  }
+
+  .rating,
+  .views {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 720px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}

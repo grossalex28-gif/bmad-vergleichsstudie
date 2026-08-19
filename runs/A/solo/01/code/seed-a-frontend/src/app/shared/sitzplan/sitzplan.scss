@@ -1,0 +1,96 @@
+.sitzplan {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.sitzplan__hinweis {
+  font-size: 0.875rem;
+  color: var(--farbe-text-schwach, #666);
+  margin: 0;
+}
+
+.sitzplan__legende {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.875rem;
+}
+
+.legende-eintrag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.legende-eintrag .sitz {
+  width: 1rem;
+  height: 1rem;
+  padding: 0;
+}
+
+.sitzplan__raster {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  overflow-x: auto;
+  max-width: 100%;
+  padding: 0.5rem;
+}
+
+.sitzplan__zeile {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.sitzplan__reihenlabel {
+  width: 1.5rem;
+  flex-shrink: 0;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.sitz {
+  width: 1.75rem;
+  height: 1.75rem;
+  flex-shrink: 0;
+  border-radius: 0.3rem;
+  border: 1px solid transparent;
+  font-size: 0.7rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.sitz--gang {
+  background: transparent;
+  cursor: default;
+}
+
+.sitz--frei {
+  background: #e2e8f0;
+  border-color: #cbd5e1;
+  color: #1e293b;
+}
+
+.sitz--frei:hover {
+  background: #cbd5e1;
+}
+
+.sitz--ausgewaehlt {
+  background: #2563eb;
+  border-color: #1d4ed8;
+  color: #fff;
+}
+
+.sitz--belegt {
+  background: #94a3b8;
+  border-color: #64748b;
+  color: #f1f5f9;
+  cursor: not-allowed;
+  opacity: 0.7;
+}

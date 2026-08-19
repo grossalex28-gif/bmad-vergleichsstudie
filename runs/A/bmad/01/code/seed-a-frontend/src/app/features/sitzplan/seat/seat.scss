@@ -1,0 +1,55 @@
+.seat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  min-height: 32px;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-body-size);
+  line-height: 1;
+}
+
+.seat--free {
+  background: var(--color-seat-free-fill);
+  border: 1px solid var(--color-seat-free-border);
+}
+
+.seat--selected {
+  background: var(--color-seat-selected-fill);
+  color: var(--color-seat-selected-foreground);
+  border: none;
+}
+
+.seat--free,
+.seat--selected {
+  cursor: pointer;
+}
+
+.seat--free:hover,
+.seat--selected:hover {
+  opacity: 0.85;
+}
+
+.seat--occupied {
+  background: var(--color-seat-occupied-fill);
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--color-seat-occupied-foreground) 0,
+    var(--color-seat-occupied-foreground) 1px,
+    transparent 1px,
+    transparent 6px
+  );
+  color: var(--color-seat-occupied-foreground);
+  cursor: default;
+}
+
+.seat:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.seat__symbol,
+.seat__cross,
+.seat__check {
+  pointer-events: none;
+}

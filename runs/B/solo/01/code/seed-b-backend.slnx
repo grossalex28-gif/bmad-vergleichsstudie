@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="seed-b-backend.Api/seed-b-backend.Api.csproj" />
+  <Project Path="seed-b-backend.Tests/seed-b-backend.Tests.csproj" />
+</Solution>

@@ -1,0 +1,46 @@
+<nav class="category-nav">
+  @if (error()) {
+    <p class="category-nav__error">Die Kategorien konnten nicht geladen werden.</p>
+  }
+  <ul class="category-nav__categories">
+    <li>
+      <button
+        type="button"
+        class="category-nav__link"
+        [class.category-nav__link--active]="selection().categoryId === null"
+        [attr.aria-current]="selection().categoryId === null ? 'true' : null"
+        (click)="selectAll()"
+      >
+        Alle
+      </button>
+    </li>
+    @for (category of categories(); track category.id) {
+      <li>
+        <button
+          type="button"
+          class="category-nav__link"
+          [class.category-nav__link--active]="selection().categoryId === category.id && selection().subcategoryId === null"
+          [attr.aria-current]="selection().categoryId === category.id && selection().subcategoryId === null ? 'true' : null"
+          (click)="selectCategory(category.id)"
+        >
+          {{ category.name }}
+        </button>
+        <ul class="category-nav__subcategories">
+          @for (subcategory of category.subcategories; track subcategory.id) {
+            <li>
+              <button
+                type="button"
+                class="category-nav__link"
+                [class.category-nav__link--active]="selection().subcategoryId === subcategory.id"
+                [attr.aria-current]="selection().subcategoryId === subcategory.id ? 'true' : null"
+                (click)="selectSubcategory(category.id, subcategory.id)"
+              >
+                {{ subcategory.name }}
+              </button>
+            </li>
+          }
+        </ul>
+      </li>
+    }
+  </ul>
+</nav>

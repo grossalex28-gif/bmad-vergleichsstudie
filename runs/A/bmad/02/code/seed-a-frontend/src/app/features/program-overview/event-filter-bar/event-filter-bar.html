@@ -1,0 +1,78 @@
+<div class="event-filter-bar">
+  <div class="event-filter-bar__fields">
+    <div class="event-filter-bar__field">
+      <label class="event-filter-bar__label" for="von-datum">Von</label>
+      <input
+        id="von-datum"
+        class="event-filter-bar__input"
+        type="date"
+        [value]="von() ?? ''"
+        (change)="onVonChange($any($event.target).value)"
+      />
+    </div>
+    <div class="event-filter-bar__field">
+      <label class="event-filter-bar__label" for="bis-datum">Bis</label>
+      <input
+        id="bis-datum"
+        class="event-filter-bar__input"
+        type="date"
+        [value]="bis() ?? ''"
+        (change)="onBisChange($any($event.target).value)"
+      />
+    </div>
+    <div class="event-filter-bar__field">
+      <label class="event-filter-bar__label" for="spielstaette">Spielstätte</label>
+      <select
+        id="spielstaette"
+        class="event-filter-bar__input"
+        [value]="venueId() ?? ''"
+        (change)="onVenueChange($any($event.target).value)"
+      >
+        <option value="">Alle Spielstätten</option>
+        @for (venue of venues(); track venue.id) {
+          <option [value]="venue.id">{{ venue.name }}</option>
+        }
+      </select>
+    </div>
+  </div>
+
+  @if (von() || bis() || venueId()) {
+    <div class="event-filter-bar__chips">
+      @if (von()) {
+        <span class="event-filter-bar__chip">
+          Ab {{ von() | date: 'dd.MM.yyyy' }}
+          <button
+            type="button"
+            class="event-filter-bar__chip-remove"
+            aria-label="Von-Filter entfernen"
+            (click)="von.set(null)"
+          >×</button>
+        </span>
+      }
+      @if (bis()) {
+        <span class="event-filter-bar__chip">
+          Bis {{ bis() | date: 'dd.MM.yyyy' }}
+          <button
+            type="button"
+            class="event-filter-bar__chip-remove"
+            aria-label="Bis-Filter entfernen"
+            (click)="bis.set(null)"
+          >×</button>
+        </span>
+      }
+      @if (venueId()) {
+        <span class="event-filter-bar__chip">
+          {{ selectedVenueName() }}
+          <button
+            type="button"
+            class="event-filter-bar__chip-remove"
+            aria-label="Spielstätten-Filter entfernen"
+            (click)="venueId.set(null)"
+          >×</button>
+        </span>
+      }
+    </div>
+
+    <button type="button" class="button-secondary" (click)="filterZuruecksetzen()">Filter zurücksetzen</button>
+  }
+</div>

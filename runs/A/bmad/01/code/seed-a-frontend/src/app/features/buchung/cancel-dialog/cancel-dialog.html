@@ -1,0 +1,13 @@
+<div class="cancel-dialog__backdrop">
+  <div class="cancel-dialog" role="alertdialog" aria-modal="true" aria-labelledby="cancel-dialog-title">
+    <p id="cancel-dialog-title" class="cancel-dialog__title">Buchung wirklich stornieren?</p>
+    <div class="cancel-dialog__actions">
+      <button type="button" class="cancel-dialog__cancel" [disabled]="cancelling()" (click)="cancel.emit()">
+        Abbrechen
+      </button>
+      <button type="button" class="cancel-dialog__confirm" [disabled]="cancelling()" (click)="confirm.emit()">
+        {{ cancelling() ? 'Wird storniert …' : 'Stornieren' }}
+      </button>
+    </div>
+  </div>
+</div>

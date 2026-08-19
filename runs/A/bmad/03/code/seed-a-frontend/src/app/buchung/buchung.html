@@ -1,0 +1,185 @@
+@if (ladezustand() === 'laedt') {
+  <div class="sitzplan" aria-busy="true" aria-label="Sitzplan wird geladen">
+    @for (reihe of skeletonReihen; track reihe) {
+      <div class="sitzplan__reihe">
+        <div class="sitzplan__reihen-label"></div>
+        @for (spalte of skeletonSpalten; track spalte) {
+          <div class="sitzplan__skeleton-kachel"></div>
+        }
+      </div>
+    }
+  </div>
+} @else if (ladezustand() === 'fehler') {
+  <p class="buchung__fehler" role="alert">
+    Sitzplan konnte nicht geladen werden. Bitte versuchen Sie es später erneut.
+  </p>
+} @else if (sitzplan(); as plan) {
+  @if (abgeschlosseneBuchung(); as buchung) {
+    <section class="buchungsbestaetigung" aria-label="Buchungsbestätigung">
+      <h1 class="buchungsbestaetigung__titel">Buchung bestätigt</h1>
+      <app-buchungsreferenz [referenz]="buchung.referenz" />
+      <ul class="buchungsbestaetigung__positionen">
+        @for (position of buchung.positionen; track position.sitzplatzCode) {
+          <li class="buchungsbestaetigung__position">
+            <span class="buchungsbestaetigung__code">{{ position.sitzplatzCode }}</span>
+            <span class="buchungsbestaetigung__kategorie">{{ position.preiskategorieName }}</span>
+            <span class="buchungsbestaetigung__einzelpreis">{{ position.preisSnapshot | currency: 'EUR' }}</span>
+          </li>
+        }
+      </ul>
+      <p class="buchungsbestaetigung__gesamtpreis">
+        Gesamtpreis: {{ buchung.gesamtpreis | currency: 'EUR' }}
+      </p>
+    </section>
+  } @else {
+    @if (konfliktSitzplaetze().length > 0) {
+      <div class="buchung__fehler" role="alert" aria-live="assertive">
+        {{ konfliktNachricht() }}
+      </div>
+    }
+    @if (schritt() === 1) {
+      <div class="sitzplan" #sitzplanContainer (keydown)="onSitzplanKeydown($event)">
+        @for (reihe of plan.reihen; track reihe.reihe) {
+          <div class="sitzplan__reihe">
+            <div class="sitzplan__reihen-label">{{ reihe.reihe }}</div>
+            @for (position of reihe.positionen; track position.spalte) {
+              @if (position.typ === 'Gang') {
+                <div class="sitzplan__luecke" aria-hidden="true"></div>
+              } @else {
+                <app-seat-tile
+                  [reihe]="reihe.reihe"
+                  [spalte]="position.spalte"
+                  [status]="position.status!"
+                  [ausgewaehlt]="ausgewaehlteCodes().has(position.code!)"
+                  [fokussierbar]="istFokussiert(reihe.reihe, position.spalte)"
+                  (auswahlUmschalten)="aufKachelKlick(reihe.reihe, position.spalte, position.code!)"
+                />
+              }
+            }
+          </div>
+        }
+      </div>
+      @if (ausgewaehlteCodes().size > 0) {
+        <section
+          class="sitzplatz-auswahl"
+          [class.sitzplatz-auswahl--eingeklappt]="!detailsAusgeklappt()"
+          aria-label="Ihre Auswahl"
+          id="sitzplatz-auswahl-details"
+        >
+          <h2 class="sitzplatz-auswahl__titel">Ihre Auswahl</h2>
+          <ul class="sitzplatz-auswahl__liste">
+            @for (code of ausgewaehlteCodesListe(); track code) {
+              <li class="sitzplatz-auswahl__zeile">
+                <span class="sitzplatz-auswahl__code">{{ code }}</span>
+                <label class="sitzplatz-auswahl__label" [for]="'kategorie-' + code">Preiskategorie</label>
+                <select
+                  [id]="'kategorie-' + code"
+                  class="sitzplatz-auswahl__select"
+                  [class.sitzplatz-auswahl__select--fehlt]="!kategorieZuordnung().has(code)"
+                  [value]="kategorieZuordnung().get(code) ?? ''"
+                  (change)="kategorieZuweisen(code, $any($event.target).value)"
+                >
+                  <option value="" disabled>Kategorie wählen</option>
+                  @for (kategorie of preiskategorien(); track kategorie.id) {
+                    <option [value]="kategorie.id">{{ kategorie.name }} ({{ kategorie.preis | currency: 'EUR' }})</option>
+                  }
+                </select>
+                @if (!kategorieZuordnung().has(code)) {
+                  <span class="sitzplatz-auswahl__hinweis">Kategorie wählen</span>
+                }
+              </li>
+            }
+          </ul>
+        </section>
+      }
+    }
+    @if (schritt() === 2) {
+      <section class="kontaktformular" aria-label="Kontaktdaten">
+        <h2 class="kontaktformular__titel">Kontaktdaten</h2>
+        <div class="kontaktformular__feld">
+          <label class="kontaktformular__label" for="kontakt-name">Name</label>
+          <input
+            id="kontakt-name"
+            class="kontaktformular__input"
+            type="text"
+            autocomplete="name"
+            [value]="kontaktName()"
+            (input)="kontaktName.set($any($event.target).value)"
+          />
+        </div>
+        <div class="kontaktformular__feld">
+          <label class="kontaktformular__label" for="kontakt-email">E-Mail</label>
+          <input
+            id="kontakt-email"
+            class="kontaktformular__input"
+            [class.kontaktformular__input--fehlt]="zeigeEmailFehler()"
+            type="email"
+            autocomplete="email"
+            [value]="kontaktEmail()"
+            [attr.aria-describedby]="zeigeEmailFehler() ? 'kontakt-email-fehler' : null"
+            (input)="kontaktEmail.set($any($event.target).value)"
+            (blur)="emailBeruehrt.set(true)"
+          />
+          @if (zeigeEmailFehler()) {
+            <span id="kontakt-email-fehler" class="kontaktformular__fehler">
+              Bitte geben Sie eine gültige E-Mail-Adresse ein.
+            </span>
+          }
+        </div>
+      </section>
+      @if (abschliessenFehler(); as fehler) {
+        <p class="buchung__fehler" role="alert">{{ fehler }}</p>
+      }
+    }
+    @if (ausgewaehlteCodes().size > 0) {
+      <div class="price-summary-bar">
+        @if (schritt() === 1) {
+          <button
+            type="button"
+            class="price-summary-bar__details-toggle"
+            [attr.aria-expanded]="detailsAusgeklappt()"
+            aria-controls="sitzplatz-auswahl-details"
+            (click)="detailsUmschalten()"
+          >
+            {{ detailsAusgeklappt() ? 'Details ausblenden' : 'Details' }}
+          </button>
+        } @else {
+          <button
+            type="button"
+            class="price-summary-bar__zurueck"
+            [disabled]="abschliessenLaedt()"
+            (click)="zurueckZuSitzplan()"
+          >
+            Zurück
+          </button>
+        }
+        <span class="price-summary-bar__anzahl">
+          {{ anzahlAusgewaehlterPlaetze() }} {{ anzahlAusgewaehlterPlaetze() === 1 ? 'Platz' : 'Plätze' }}
+        </span>
+        <span class="price-summary-bar__preis" aria-live="polite">
+          {{ gesamtpreis() | currency: 'EUR' }}
+        </span>
+        @if (schritt() === 1) {
+          <button
+            type="button"
+            class="price-summary-bar__weiter"
+            [disabled]="weiterDeaktiviert()"
+            (click)="weiterZuKontakt()"
+          >
+            Weiter
+          </button>
+        } @else {
+          <button
+            type="button"
+            class="price-summary-bar__abschliessen"
+            [disabled]="buchungAbschliessenDeaktiviert() || abschliessenLaedt()"
+            [attr.aria-busy]="abschliessenLaedt()"
+            (click)="buchungAbschliessen()"
+          >
+            {{ abschliessenLaedt() ? 'Wird gebucht…' : 'Buchung abschließen' }}
+          </button>
+        }
+      </div>
+    }
+  }
+}

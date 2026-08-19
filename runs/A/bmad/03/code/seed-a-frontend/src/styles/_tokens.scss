@@ -1,0 +1,96 @@
+// Design-Token-System, aus DESIGN.md-Frontmatter übernommen (colors, typography, rounded, spacing).
+// Spätere Stories (Sitzplan, Buchung) bauen direkt darauf auf, ohne dieses System neu zu definieren.
+:root {
+  // Colors
+  --color-surface: #FFFFFF;
+  --color-surface-dim: #E7E9EC;
+  --color-surface-bright: #FFFFFF;
+  --color-surface-container-lowest: #FFFFFF;
+  --color-surface-container-low: #F5F6F8;
+  --color-surface-container: #EEF0F3;
+  --color-surface-container-high: #E4E7EB;
+  --color-surface-container-highest: #DADEE3;
+  --color-on-surface: #1B1F24;
+  --color-on-surface-variant: #4B5563;
+  --color-outline: #8A94A3;
+  --color-outline-variant: #D3D8DF;
+  --color-primary: #1E4B8F;
+  --color-on-primary: #FFFFFF;
+  --color-primary-container: #D6E4FA;
+  --color-on-primary-container: #0B2C5C;
+  --color-secondary: #3F5568;
+  --color-on-secondary: #FFFFFF;
+  --color-error: #B3261E;
+  --color-on-error: #FFFFFF;
+  --color-error-container: #FBE9E7;
+  --color-on-error-container: #5C120C;
+  --color-success: #1E7A46;
+  --color-on-success: #FFFFFF;
+  --color-success-container: #E3F3EA;
+  --color-seat-free-fill: #FFFFFF;
+  --color-seat-free-border: #8A94A3;
+  --color-seat-selected-fill: #1E4B8F;
+  --color-seat-selected-border: #0B2C5C;
+  --color-seat-selected-on: #FFFFFF;
+  --color-seat-occupied-fill: #DADEE3;
+  --color-seat-occupied-border: #ADB4BE;
+  --color-seat-occupied-on: #6B7280;
+
+  // Typography
+  --font-display-lg-family: system-ui;
+  --font-display-lg-size: 32px;
+  --font-display-lg-weight: 600;
+  --font-display-lg-line-height: 1.2;
+
+  --font-headline-md-family: system-ui;
+  --font-headline-md-size: 24px;
+  --font-headline-md-weight: 600;
+  --font-headline-md-line-height: 1.25;
+
+  --font-headline-sm-family: system-ui;
+  --font-headline-sm-size: 20px;
+  --font-headline-sm-weight: 600;
+  --font-headline-sm-line-height: 1.3;
+
+  --font-body-lg-family: system-ui;
+  --font-body-lg-size: 16px;
+  --font-body-lg-weight: 400;
+  --font-body-lg-line-height: 1.5;
+
+  --font-body-md-family: system-ui;
+  --font-body-md-size: 14px;
+  --font-body-md-weight: 400;
+  --font-body-md-line-height: 1.5;
+
+  --font-label-family: system-ui;
+  --font-label-size: 13px;
+  --font-label-weight: 500;
+  --font-label-line-height: 1.4;
+  --font-label-letter-spacing: 0.01em;
+
+  --font-caption-family: system-ui;
+  --font-caption-size: 12px;
+  --font-caption-weight: 400;
+  --font-caption-line-height: 1.4;
+
+  --font-mono-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-mono-size: 16px;
+  --font-mono-weight: 500;
+  --font-mono-line-height: 1.4;
+  --font-mono-letter-spacing: 0.04em;
+
+  // Rounded
+  --radius-sm: 4px;
+  --radius-default: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+
+  // Spacing
+  --spacing-unit: 8px;
+  --spacing-gutter: 16px;
+  --spacing-margin-mobile: 16px;
+  --spacing-margin-desktop: 48px;
+  --spacing-seat-gap: 6px;
+  --spacing-section-gap: 32px;
+}

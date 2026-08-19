@@ -1,0 +1,6 @@
+<a class="event-card" [routerLink]="['/veranstaltungen', id()]">
+  <h2 class="event-card__title">{{ title() }}</h2>
+  <p class="event-card__meta">
+    {{ venueName() }} · {{ startsAt() | date: 'dd.MM.yyyy, HH:mm' }}
+  </p>
+</a>

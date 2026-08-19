@@ -1,0 +1,115 @@
+{
+  "run_id": "A-SOLO-1",
+  "project": "A",
+  "condition": "solo",
+  "repetition": 1,
+  "schema_version": "1",
+  "harness_version": "0.2.3-messlauf",
+  "created_at": 1786728519.3703806,
+  "first_started_at": 1786728520.0597262,
+  "active_seconds": 1680.3396260738373,
+  "wait_seconds": 0.0,
+  "step_index": 2,
+  "completed_steps": [
+    {
+      "index": 0,
+      "skill": "solo",
+      "action": null,
+      "started_at": "2026-08-14T19:28:40+0200",
+      "duration_s": 1441.1,
+      "status": "complete",
+      "session_id": "3574e997-4fcc-4b19-926c-ac685a3252e7",
+      "commit": "562cb9b762d6541ad0e1b7679082bcbc4c93e371",
+      "source": "router",
+      "usage": {
+        "input": 2238,
+        "output": 123926,
+        "cache_creation": 233452,
+        "cache_read": 25507082
+      },
+      "turns": 178,
+      "cost_usd": 10.914483,
+      "model_seen": "claude-sonnet-5",
+      "tools": {
+        "main": {
+          "Bash": 60,
+          "Read": 14,
+          "Write": 67,
+          "Edit": 33,
+          "ToolSearch": 1,
+          "Skill": 1
+        },
+        "sub": {}
+      },
+      "assumptions": [],
+      "open_questions": [],
+      "reason": null,
+      "declared_done": false,
+      "log": "logs/step-000-solo.jsonl"
+    },
+    {
+      "index": 1,
+      "skill": "solo",
+      "action": null,
+      "started_at": "2026-08-14T19:52:41+0200",
+      "duration_s": 239.2,
+      "status": "complete",
+      "session_id": "99e3296f-a0ca-428d-b6fe-891da17ff563",
+      "commit": "354ff77565478b9f6b973e2bcea1bcf92e09c4ed",
+      "source": "router",
+      "usage": {
+        "input": 2063,
+        "output": 12646,
+        "cache_creation": 59517,
+        "cache_read": 2301632
+      },
+      "turns": 52,
+      "cost_usd": 1.239369,
+      "model_seen": "claude-sonnet-5",
+      "tools": {
+        "main": {
+          "Bash": 34,
+          "Read": 14,
+          "ToolSearch": 1,
+          "Write": 2
+        },
+        "sub": {}
+      },
+      "assumptions": [],
+      "open_questions": [],
+      "reason": null,
+      "declared_done": true,
+      "log": "logs/step-001-solo.jsonl"
+    }
+  ],
+  "tokens": {
+    "input": 4301,
+    "output": 136572,
+    "cache_creation": 292969,
+    "cache_read": 27808714
+  },
+  "cost_usd": 12.1538512,
+  "turns": 230,
+  "tools": {
+    "main": {
+      "Bash": 94,
+      "Read": 28,
+      "Write": 69,
+      "Edit": 33,
+      "ToolSearch": 2,
+      "Skill": 1
+    },
+    "sub": {}
+  },
+  "network": {
+    "fetch": 1,
+    "package": 30,
+    "commands": [
+      "for path in \"/\" \"/veranstaltungen\" \"/veranstaltungen/E1\" \"/veranstaltungen/E1/sitzplatzwahl\" \"/buchungen\" \"/buchungen/ABC12345\"; do code=$(curl -s -o /dev/null -w \"%{http_code}\" \"http://localhost:4200$path\") echo \"$path -> $code\" done"
+    ],
+    "local": 11
+  },
+  "finished": true,
+  "termination_reason": "regular",
+  "last_router_suggestion": null
+}

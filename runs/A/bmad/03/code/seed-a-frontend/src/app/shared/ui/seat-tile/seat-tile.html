@@ -1,0 +1,20 @@
+<div
+  class="seat-tile"
+  [class.seat-tile--belegt]="status() === 'Belegt'"
+  [class.seat-tile--ausgewaehlt]="ausgewaehlt() && status() !== 'Belegt'"
+  [attr.aria-label]="ariaLabel()"
+  [attr.data-code]="code()"
+  [attr.tabindex]="fokussierbar() ? 0 : -1"
+  [attr.role]="status() === 'Belegt' ? null : 'button'"
+  [attr.aria-pressed]="status() === 'Belegt' ? null : ausgewaehlt()"
+  [title]="code()"
+  (click)="onKlick()"
+>
+  @if (status() === 'Belegt') {
+    <span class="seat-tile__icon" aria-hidden="true">✕</span>
+  } @else if (ausgewaehlt()) {
+    <span class="seat-tile__icon" aria-hidden="true">✓</span>
+  } @else {
+    <span class="seat-tile__code" aria-hidden="true">{{ code() }}</span>
+  }
+</div>

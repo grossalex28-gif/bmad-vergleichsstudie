@@ -1,0 +1,24 @@
+.kopfzeile {
+  background: #0f172a;
+  color: #fff;
+}
+
+.kopfzeile__nav {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  a {
+    color: #e2e8f0;
+    text-decoration: none;
+  }
+
+  .marke {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #fff;
+  }
+}

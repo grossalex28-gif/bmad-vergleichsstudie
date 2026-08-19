@@ -1,0 +1,13 @@
+<div class="price-category-panel" role="group" aria-label="Preiskategorie wählen">
+  @for (category of categories(); track category.id) {
+    <button
+      type="button"
+      class="price-category-panel__pill"
+      [class.price-category-panel__pill--active]="category.id === selectedCategoryId()"
+      [attr.aria-pressed]="category.id === selectedCategoryId()"
+      (click)="categorySelected.emit(category.id)"
+    >
+      {{ category.name }} · {{ formatEuroAmount(category.price) }}
+    </button>
+  }
+</div>

@@ -1,0 +1,83 @@
+<section class="catalog">
+  <app-category-nav
+    [selection]="{ categoryId: selectedCategoryId() ?? null, subcategoryId: selectedSubcategoryId() ?? null }"
+    [disabled]="loading()"
+    (selectionChange)="onCategorySelectionChange($event)"
+  />
+
+  <app-property-filter
+    [subcategoryId]="selectedSubcategoryId() ?? null"
+    [selection]="selectedProperties()"
+    [disabled]="loading()"
+    (selectionChange)="onPropertyFilterChange($event)"
+  />
+
+  <div class="catalog__search">
+    <label for="catalog-search-input">Suche:</label>
+    <input
+      #searchInput
+      id="catalog-search-input"
+      type="search"
+      placeholder="Suchbegriff"
+      [disabled]="loading()"
+      (keyup.enter)="!$any($event).isComposing && onSearchSubmit(searchInput.value)"
+      (search)="onSearchSubmit(searchInput.value)"
+    />
+    <button type="button" [disabled]="loading()" (click)="onSearchSubmit(searchInput.value)">Suchen</button>
+  </div>
+
+  <label class="catalog__sort">
+    Sortierung:
+    <select
+      [disabled]="loading()"
+      [value]="sortSelectValue()"
+      (change)="onSortSelectionChange($any($event.target).value)"
+    >
+      <option value="">Standard</option>
+      <option value="price-asc">Preis aufsteigend</option>
+      <option value="price-desc">Preis absteigend</option>
+      <option value="name-asc">Name aufsteigend</option>
+      <option value="name-desc">Name absteigend</option>
+      <option value="viewCount-desc">Beliebtheit</option>
+    </select>
+  </label>
+
+  @if (error()) {
+    <p class="catalog__error">Die Produkte konnten nicht geladen werden. Bitte versuchen Sie es später erneut.</p>
+  }
+
+  @if (result(); as page) {
+    @if (page.items.length === 0) {
+      <p class="catalog__empty">Keine Produkte gefunden.</p>
+    } @else {
+      <ul class="product-list">
+        @for (product of page.items; track product.id) {
+          <li class="product-list__item">
+            <a class="product-list__name" [routerLink]="['/products', product.id]">{{ product.name }}</a>
+            @if (product.lowestPrice !== null) {
+              <span class="product-list__price">{{ product.lowestPrice | number: '1.2-2' }} €</span>
+            }
+          </li>
+        }
+      </ul>
+
+      <nav class="pagination" aria-label="Seiten">
+        <button
+          type="button"
+          [disabled]="loading() || page.page <= 1"
+          (click)="goToPage(page.page - 1)"
+        >
+          Zurück
+        </button>
+        <span class="pagination__status">Seite {{ page.page }} von {{ page.pageCount }}</span>
+        <button
+          type="button"
+          [disabled]="loading() || page.page >= page.pageCount"
+          (click)="goToPage(page.page + 1)"
+        >
+          Weiter
+        </button>
+      </nav>
+    }
+  }
+</section>

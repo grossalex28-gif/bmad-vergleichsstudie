@@ -1,0 +1,82 @@
+@if (loading()) {
+  <p>Lädt…</p>
+} @else if (notFound()) {
+  <p>Produkt nicht gefunden.</p>
+} @else if (product(); as p) {
+  <h1>{{ p.name }}</h1>
+  <p>{{ p.description }}</p>
+  <p>{{ p.category.name }} / {{ p.subcategory.name }}</p>
+
+  <ul>
+    @for (prop of p.properties; track prop.name) {
+      <li>{{ prop.name }}: {{ prop.value }}</li>
+    }
+  </ul>
+
+  @if (p.ratingCount === 0) {
+    <p>Noch keine Bewertungen</p>
+  } @else {
+    <p>{{ p.averageRating!.toFixed(1).replace('.', ',') }} ({{ p.ratingCount }} Bewertungen)</p>
+  }
+
+  <h2>Lieferanten</h2>
+  <ul>
+    @for (offer of p.offers; track offer.supplierId) {
+      <li>
+        {{ offer.supplierName }}: {{ offer.price.toFixed(2).replace('.', ',') }} €
+        <label>
+          Menge
+          <input type="number" min="1" value="1" #qtyInput aria-label="Menge" [disabled]="addingToCart()" />
+        </label>
+        <button type="button" [disabled]="addingToCart()" (click)="addToCart(offer.supplierId, qtyInput.value)">
+          In den Warenkorb legen
+        </button>
+      </li>
+    }
+  </ul>
+  @if (cartSuccess()) {
+    <p>Zum Warenkorb hinzugefügt.</p>
+  }
+  @if (cartError(); as error) {
+    <p>{{ error }}</p>
+  }
+
+  <h2>Bewertung abgeben</h2>
+  <form (submit)="$event.preventDefault(); submitRating()">
+    <label>
+      Ihr Name
+      <input
+        type="text"
+        #authorInput
+        maxlength="200"
+        [value]="authorName()"
+        (input)="onAuthorNameChange(authorInput.value)"
+        [disabled]="submitting()"
+      />
+    </label>
+    <label>
+      Sternewert
+      <select
+        aria-label="Sternewert"
+        #scoreInput
+        [value]="score() ?? ''"
+        (change)="onScoreChange(scoreInput.value)"
+        [disabled]="submitting()"
+      >
+        <option value="">Sternewert wählen</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </label>
+    <button type="submit" [disabled]="submitting()">Bewertung abgeben</button>
+  </form>
+  @if (submitSuccess()) {
+    <p>Vielen Dank für Ihre Bewertung!</p>
+  }
+  @if (submitError(); as error) {
+    <p>{{ error }}</p>
+  }
+}

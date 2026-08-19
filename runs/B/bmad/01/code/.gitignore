@@ -1,0 +1,25 @@
+# .NET Build-Output
+[Bb]in/
+[Oo]bj/
+
+# Testergebnisse (dotnet test / coverlet)
+[Tt]est[Rr]esult*/
+*.trx
+*.coverage
+
+# IDE / Editor
+.vs/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Seed-Metadaten – eigene Buchführung, nicht Teil des Seed-Commits
+# (sonst Henne-Ei-Problem: der eingetragene seedCommitHash würde den
+# Commit-Inhalt und damit den Hash selbst wieder verändern)
+seed.meta.json
+
+# Betriebssystem
+.DS_Store
+Thumbs.db

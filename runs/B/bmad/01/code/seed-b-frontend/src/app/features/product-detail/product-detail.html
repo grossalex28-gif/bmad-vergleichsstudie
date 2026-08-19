@@ -1,0 +1,111 @@
+@if (loading()) {
+  <p class="product-detail__loading">Lädt…</p>
+}
+
+@if (notFound()) {
+  <p class="product-detail__not-found">Dieses Produkt wurde nicht gefunden.</p>
+}
+
+@if (error()) {
+  <p class="product-detail__error">Das Produkt konnte nicht geladen werden. Bitte versuchen Sie es später erneut.</p>
+}
+
+@if (product(); as product) {
+  <article class="product-detail">
+    <h1 class="product-detail__name">{{ product.name }}</h1>
+    <p class="product-detail__category">{{ product.categoryName }} / {{ product.subcategoryName }}</p>
+    <p class="product-detail__description">{{ product.description }}</p>
+
+    @if (product.properties.length > 0) {
+      <dl class="product-detail__properties">
+        @for (property of product.properties; track property.name) {
+          <dt>{{ property.name }}</dt>
+          <dd>{{ property.value }}</dd>
+        }
+      </dl>
+    }
+
+    <p class="product-detail__rating">
+      @if (product.averageRating !== null) {
+        {{ product.averageRating | number: '1.1-1' }} ({{ product.ratingCount }} Bewertungen)
+      } @else {
+        Noch keine Bewertungen
+      }
+    </p>
+
+    @if (product.offers.length > 0) {
+      <form class="product-detail__add-to-cart-form" (submit)="$event.preventDefault(); addToCart()">
+        <ul class="product-detail__offers">
+          @for (offer of product.offers; track offer.supplierId) {
+            <li class="product-detail__offer">
+              <label>
+                <input
+                  type="radio"
+                  name="supplier"
+                  class="product-detail__offer-radio"
+                  [value]="offer.supplierId"
+                  [checked]="selectedSupplierId() === offer.supplierId"
+                  (change)="selectedSupplierId.set(offer.supplierId)"
+                />
+                <span class="product-detail__offer-supplier">{{ offer.supplierName }}</span>
+                <span class="product-detail__offer-price">{{ offer.price | number: '1.2-2' }} €</span>
+              </label>
+            </li>
+          }
+        </ul>
+        <label>
+          Menge
+          <input
+            class="product-detail__quantity-input"
+            type="number"
+            min="1"
+            step="1"
+            [value]="quantity()"
+            (input)="quantity.set(+$any($event.target).value)"
+          />
+        </label>
+        <button class="product-detail__add-to-cart-submit" type="submit" [disabled]="!canAddToCart()">
+          In den Warenkorb
+        </button>
+        @if (addedToCartMessage()) {
+          <p class="product-detail__add-to-cart-confirmation">{{ addedToCartMessage() }}</p>
+        }
+      </form>
+    } @else {
+      <p class="product-detail__no-offers">Aktuell kein Lieferant verfügbar.</p>
+    }
+
+    <section class="product-detail__rating-form">
+      <h2>Bewertung abgeben</h2>
+      <form (submit)="$event.preventDefault(); submitRating()">
+        <label>
+          Name
+          <input
+            class="product-detail__rating-author-input"
+            type="text"
+            [value]="ratingAuthorName()"
+            (input)="ratingAuthorName.set($any($event.target).value)"
+          />
+        </label>
+        <label>
+          Bewertung
+          <select
+            class="product-detail__rating-value-select"
+            [value]="ratingValue()"
+            (change)="ratingValue.set(+$any($event.target).value)"
+          >
+            @for (value of [1, 2, 3, 4, 5]; track value) {
+              <option [value]="value">{{ value }}</option>
+            }
+          </select>
+        </label>
+        <button class="product-detail__rating-submit" type="submit" [disabled]="ratingSubmitting()">
+          Bewertung abschicken
+        </button>
+      </form>
+      @if (ratingError()) {
+        <p class="product-detail__rating-error">{{ ratingError() }}</p>
+      }
+    </section>
+  </article>
+}

@@ -1,0 +1,20 @@
+@if (loading()) {
+  <p>Lädt…</p>
+} @else if (notFound()) {
+  <p>Bestellung nicht gefunden.</p>
+} @else if (loadError(); as e) {
+  <p>{{ e }}</p>
+} @else if (order(); as o) {
+  <h1>Bestellung {{ o.orderId }}</h1>
+  <p>Status: {{ o.status }}</p>
+  <ul>
+    @for (item of o.items; track item.productId + ':' + item.supplierId) {
+      <li>
+        {{ item.productName }} ({{ item.supplierName }}) — {{ item.quantity }} ×
+        {{ item.unitPrice.toFixed(2).replace('.', ',') }} € =
+        {{ item.lineTotal.toFixed(2).replace('.', ',') }} €
+      </li>
+    }
+  </ul>
+  <p>Gesamtsumme: {{ o.totalPrice.toFixed(2).replace('.', ',') }} €</p>
+}

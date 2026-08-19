@@ -1,0 +1,71 @@
+{
+  "run_id": "B-BMAD-2",
+  "project": "B",
+  "condition": "bmad",
+  "repetition": 2,
+  "created_at": "2026-08-17T09:22:47+0200",
+  "harness_version": "0.2.4-messlauf",
+  "model": "claude-sonnet-5",
+  "permission_mode": "bypassPermissions",
+  "allowed_tools": [],
+  "disallowed_tools": [
+    "WebSearch",
+    "WebFetch",
+    "ScheduleWakeup",
+    "ListAgents",
+    "SendMessage",
+    "Monitor",
+    "TaskCreate",
+    "TaskUpdate",
+    "CronCreate",
+    "CronList",
+    "CronDelete",
+    "NotebookEdit",
+    "ExitPlanMode",
+    "EnterPlanMode"
+  ],
+  "input_file": "/home/alex/dev/Bachelor/bmad-vergleichsstudie/inputs/projekt-b.md",
+  "input_sha256": "3f5f1e47500b32957e209f7abb37ce99599b19bc4b64cb2cd6613d3bfd5a22b1",
+  "seed_repo": "/home/alex/dev/Bachelor/bmad-vergleichsstudie/seed/B",
+  "seed_commit": "2fc2da41fc63e33352dfbd40e4b9214f73f9a985",
+  "seed_commit_erwartet": "1416c1220fe04b4205b0a53987b586c605a7496a",
+  "limits": {
+    "t1_active_hours": 16,
+    "t2_calendar_hours": 72,
+    "t3_step_minutes": 180,
+    "token_budget": 20000000,
+    "cost_budget_usd": null,
+    "max_steps": 120
+  },
+  "routing_mode": "help",
+  "claude_settings": {
+    "files": [
+      {
+        "path": "/home/alex/.claude/settings.json",
+        "sha256": "3ad075c2b34710142032dc392216be4a4728123e562841f85a0a8bc37b2c41a5",
+        "hooks": {},
+        "hook_events": [],
+        "content": {
+          "effortLevel": "high",
+          "tui": "fullscreen",
+          "theme": "dark"
+        }
+      }
+    ],
+    "active_hook_events": []
+  },
+  "bmad_manifest_sha256": "828e4c6b8bd338e87ad9a0f6c2988bf9bb39d44467b78902cb883511cd608322",
+  "bmad_manifest": "installation:\n  version: 6.10.0\n  installDate: 2026-08-08T12:21:36.423Z\n  lastUpdated: 2026-08-08T16:39:05.777Z\nmodules:\n  - name: core\n    version: 6.10.0\n    installDate: 2026-08-08T12:21:36.402Z\n    lastUpdated: 2026-08-08T16:39:05.777Z\n    source: built-in\n    npmPackage: null\n    repoUrl: null\n  - name: bmm\n    version: 6.10.0\n    installDate: 2026-08-08T12:21:36.395Z\n    lastUpdated: 2026-08-08T16:39:05.777Z\n    source: built-in\n    npmPackage: null\n    repoUrl: null\nides:\n  - claude-code\n",
+  "bmad_files_manifest_sha256": "55b01b7c5c4b8b9f9ba7358e9bf4e59b53e2fd548be70ac7e5c2f9eace8bad9d",
+  "database": {
+    "name": "b_bmad_2",
+    "env_var": "ConnectionStrings__Default",
+    "connection_string": "Server=localhost,1433;Database=b_bmad_2;User Id=sa;Password=***;TrustServerCertificate=True;Encrypt=True",
+    "engine": {
+      "mode": "docker",
+      "container": "sqlserver-bachelor",
+      "server": "localhost,1433",
+      "version": "Microsoft SQL Server 2025 (RTM-CU7) (KB5096981) - 17.0.4065.4 (X64)"
+    }
+  }
+}

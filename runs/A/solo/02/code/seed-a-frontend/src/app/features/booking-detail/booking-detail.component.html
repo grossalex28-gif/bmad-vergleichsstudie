@@ -1,0 +1,56 @@
+@if (loading()) {
+  <p>Buchung wird geladen…</p>
+} @else if (error()) {
+  <p class="error">{{ error() }}</p>
+  <a class="back-link" routerLink="/bookings">← Zurück zur Buchungssuche</a>
+} @else if (booking(); as booking) {
+  <h1>Buchung {{ booking.reference }}</h1>
+
+  @if (booking.isCancelled) {
+    <p class="booking-status booking-status--cancelled">Diese Buchung wurde storniert.</p>
+  } @else {
+    <p class="booking-status booking-status--active">Diese Buchung ist aktiv.</p>
+  }
+
+  <dl class="booking-detail__facts">
+    <div>
+      <dt>Veranstaltung</dt>
+      <dd>{{ booking.eventTitle }}</dd>
+    </div>
+    <div>
+      <dt>Zeitpunkt</dt>
+      <dd>{{ booking.eventStartsAt | date: 'dd.MM.yyyy, HH:mm' }} Uhr</dd>
+    </div>
+    <div>
+      <dt>Name</dt>
+      <dd>{{ booking.customerName }}</dd>
+    </div>
+    <div>
+      <dt>E-Mail</dt>
+      <dd>{{ booking.customerEmail }}</dd>
+    </div>
+    <div>
+      <dt>Gebucht am</dt>
+      <dd>{{ booking.createdAt | date: 'dd.MM.yyyy, HH:mm' }} Uhr</dd>
+    </div>
+  </dl>
+
+  <h2>Sitzplätze</h2>
+  <ul class="booking-detail__seats">
+    @for (seat of booking.seats; track seat.row + '-' + seat.column) {
+      <li>
+        <span>{{ seat.row }}{{ seat.column }}</span>
+        <span>{{ seat.priceCategoryName }}</span>
+        <span>{{ seat.price | number: '1.2-2' }} €</span>
+      </li>
+    }
+  </ul>
+
+  <p class="booking-detail__total">Gesamtpreis: <strong>{{ booking.totalPrice | number: '1.2-2' }} €</strong></p>
+
+  @if (!booking.isCancelled) {
+    <button type="button" class="button button--danger" [disabled]="cancelling()" (click)="cancelBooking()">
+      {{ cancelling() ? 'Wird storniert…' : 'Buchung stornieren' }}
+    </button>
+  }
+}

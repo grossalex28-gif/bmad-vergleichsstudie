@@ -1,0 +1,15 @@
+<h1 class="program-overview__heading">Programmübersicht</h1>
+<app-event-filter-bar [(von)]="von" [(bis)]="bis" [(venueId)]="venueId" [venues]="venues()" />
+@if (!loading()) {
+  @if (loadError()) {
+    <p class="program-overview__error">Veranstaltungen konnten nicht geladen werden. Bitte versuchen Sie es später erneut.</p>
+  } @else if (events().length > 0) {
+    <div class="program-overview__grid">
+      @for (event of events(); track event.id) {
+        <app-event-card [event]="event" />
+      }
+    </div>
+  } @else {
+    <p class="program-overview__empty">Keine Veranstaltungen im gewählten Zeitraum/Spielstätte gefunden.</p>
+  }
+}

@@ -1,0 +1,70 @@
+.buchung-abrufen__titel {
+  margin: 0 0 var(--spacing-section-gap) 0;
+  font-family: var(--font-headline-md-family);
+  font-size: var(--font-headline-md-size);
+  font-weight: var(--font-headline-md-weight);
+  line-height: var(--font-headline-md-line-height);
+  color: var(--color-on-surface);
+}
+
+.banner-error {
+  font-family: var(--font-body-lg-family);
+  font-size: var(--font-body-lg-size);
+  line-height: var(--font-body-lg-line-height);
+  color: var(--color-on-error-container);
+  background: var(--color-error-container);
+  border-radius: var(--radius-default);
+  padding: var(--spacing-gutter);
+  margin: 0 0 var(--spacing-gutter) 0;
+}
+
+.buchung-abrufen__formular {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-unit);
+  max-width: 360px;
+}
+
+.buchung-abrufen__label {
+  font-family: var(--font-label-family);
+  font-size: var(--font-label-size);
+  font-weight: var(--font-label-weight);
+  line-height: var(--font-label-line-height);
+  letter-spacing: var(--font-label-letter-spacing);
+  color: var(--color-on-surface-variant);
+}
+
+.buchung-abrufen__input {
+  font-family: var(--font-body-md-family);
+  font-size: var(--font-body-md-size);
+  line-height: var(--font-body-md-line-height);
+  color: var(--color-on-surface);
+  background: var(--color-surface);
+  border: 1px solid var(--color-outline);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-unit);
+}
+
+.buchung-abrufen__input:focus-visible {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.buchung-abrufen__absenden {
+  align-self: flex-start;
+  font-family: var(--font-body-md-family);
+  font-size: var(--font-body-md-size);
+  font-weight: 600;
+  color: var(--color-on-primary);
+  background: var(--color-primary);
+  border: none;
+  border-radius: var(--radius-default);
+  padding: var(--spacing-unit) var(--spacing-gutter);
+  cursor: pointer;
+}
+
+.buchung-abrufen__absenden:disabled {
+  background: var(--color-surface-container-highest);
+  color: var(--color-on-surface-variant);
+  cursor: not-allowed;
+}

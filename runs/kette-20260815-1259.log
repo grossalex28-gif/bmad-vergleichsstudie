@@ -1,0 +1,35 @@
+[2026-08-15 12:59:03] Kette geplant, hoechstens 2 Laeufe in diesem Durchgang.
+[2026-08-15 12:59:03]   A-BMAD-1     uebersprungen (beendet: regular)
+[2026-08-15 12:59:03]   A-SOLO-1     uebersprungen (beendet: regular)
+[2026-08-15 12:59:03]   A-BMAD-2     uebersprungen (beendet: T1)
+[2026-08-15 12:59:03]   A-SOLO-2     init+run
+[2026-08-15 12:59:03]   A-BMAD-3     init+run
+[2026-08-15 12:59:03]   A-SOLO-3     init+run
+[2026-08-15 12:59:03]   B-BMAD-1     init+run
+[2026-08-15 12:59:03]   B-SOLO-1     init+run
+[2026-08-15 12:59:03]   B-BMAD-2     init+run
+[2026-08-15 12:59:03]   B-SOLO-2     init+run
+[2026-08-15 12:59:03]   B-BMAD-3     init+run
+[2026-08-15 12:59:03]   B-SOLO-3     init+run
+[2026-08-15 12:59:03] Testlauf, es wurde nichts angefasst.
+[2026-08-15 12:59:12] Kette geplant, hoechstens 3 Laeufe in diesem Durchgang.
+[2026-08-15 12:59:12]   A-BMAD-1     uebersprungen (beendet: regular)
+[2026-08-15 12:59:12]   A-SOLO-1     uebersprungen (beendet: regular)
+[2026-08-15 12:59:12]   A-BMAD-2     uebersprungen (beendet: T1)
+[2026-08-15 12:59:12]   A-SOLO-2     init+run
+[2026-08-15 12:59:12]   A-BMAD-3     init+run
+[2026-08-15 12:59:12]   A-SOLO-3     init+run
+[2026-08-15 12:59:12]   B-BMAD-1     init+run
+[2026-08-15 12:59:12]   B-SOLO-1     init+run
+[2026-08-15 12:59:12]   B-BMAD-2     init+run
+[2026-08-15 12:59:12]   B-SOLO-2     init+run
+[2026-08-15 12:59:12]   B-BMAD-3     init+run
+[2026-08-15 12:59:12]   B-SOLO-3     init+run
+[2026-08-15 12:59:12]     $ harness.py dbcheck --config config.messlauf.json
+[2026-08-15 12:59:13] === A-SOLO-2 ===  (285.0 GB frei)
+[2026-08-15 12:59:13]     $ harness.py init --config config.messlauf.json --run A-SOLO-2
+[2026-08-15 12:59:13]     $ harness.py run --config config.messlauf.json --run A-SOLO-2
+[2026-08-15 13:16:41] A-SOLO-2: finished=True · Ursache=regular · Schritte=2 · T1=0.29 h · Warten=0.00 h · Tokens=96,107 · 7.01 USD (Schaetzung)
+[2026-08-15 13:16:41] === A-BMAD-3 ===  (284.7 GB frei)
+[2026-08-15 13:16:41]     $ harness.py init --config config.messlauf.json --run A-BMAD-3
+[2026-08-15 13:16:41]     $ harness.py run --config config.messlauf.json --run A-BMAD-3

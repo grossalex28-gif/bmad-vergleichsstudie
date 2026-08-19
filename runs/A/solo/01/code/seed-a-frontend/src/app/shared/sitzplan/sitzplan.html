@@ -1,0 +1,37 @@
+<div class="sitzplan">
+  @if (sitzplan().gangHinweis) {
+    <p class="sitzplan__hinweis">{{ sitzplan().gangHinweis }}</p>
+  }
+
+  <div class="sitzplan__legende">
+    <span class="legende-eintrag"><span class="sitz sitz--frei"></span> frei</span>
+    <span class="legende-eintrag"><span class="sitz sitz--ausgewaehlt"></span> ausgewählt</span>
+    <span class="legende-eintrag"><span class="sitz sitz--belegt"></span> belegt</span>
+    <span class="legende-eintrag"><span class="sitz sitz--gang"></span> Gang</span>
+  </div>
+
+  <div class="sitzplan__raster">
+    @for (zeile of zeilen(); track zeile.reihe) {
+      <div class="sitzplan__zeile">
+        <span class="sitzplan__reihenlabel">{{ zeile.reihe }}</span>
+        @for (zelle of zeile.zellen; track zelle.spalte) {
+          @if (zelle.typ === 'gang') {
+            <span class="sitz sitz--gang" aria-hidden="true"></span>
+          } @else {
+            <button
+              type="button"
+              class="sitz"
+              [class.sitz--frei]="zelle.status === 'frei'"
+              [class.sitz--belegt]="zelle.status === 'belegt'"
+              [class.sitz--ausgewaehlt]="zelle.status === 'ausgewaehlt'"
+              [disabled]="zelle.status === 'belegt'"
+              [attr.aria-pressed]="zelle.status === 'ausgewaehlt'"
+              [attr.aria-label]="sitzplatzLabel(zeile.reihe, zelle)"
+              (click)="sitzplatzKlick(zeile.reihe, zelle)"
+            >{{ zelle.spalte }}</button>
+          }
+        }
+      </div>
+    }
+  </div>
+</div>

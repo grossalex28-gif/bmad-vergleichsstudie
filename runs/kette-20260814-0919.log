@@ -1,0 +1,38 @@
+[2026-08-14 09:19:18] Kette geplant, hoechstens 2 Laeufe in diesem Durchgang.
+[2026-08-14 09:19:18]   A-BMAD-1     init+run
+[2026-08-14 09:19:18]   A-SOLO-1     init+run
+[2026-08-14 09:19:18]   A-BMAD-2     init+run
+[2026-08-14 09:19:18]   A-SOLO-2     init+run
+[2026-08-14 09:19:18]   A-BMAD-3     init+run
+[2026-08-14 09:19:18]   A-SOLO-3     init+run
+[2026-08-14 09:19:18]   B-BMAD-1     init+run
+[2026-08-14 09:19:18]   B-SOLO-1     init+run
+[2026-08-14 09:19:18]   B-BMAD-2     init+run
+[2026-08-14 09:19:18]   B-SOLO-2     init+run
+[2026-08-14 09:19:18]   B-BMAD-3     init+run
+[2026-08-14 09:19:18]   B-SOLO-3     init+run
+[2026-08-14 09:19:18] Testlauf, es wurde nichts angefasst.
+[2026-08-14 09:19:27] Kette geplant, hoechstens 2 Laeufe in diesem Durchgang.
+[2026-08-14 09:19:27]   A-BMAD-1     init+run
+[2026-08-14 09:19:27]   A-SOLO-1     init+run
+[2026-08-14 09:19:27]   A-BMAD-2     init+run
+[2026-08-14 09:19:27]   A-SOLO-2     init+run
+[2026-08-14 09:19:27]   A-BMAD-3     init+run
+[2026-08-14 09:19:27]   A-SOLO-3     init+run
+[2026-08-14 09:19:27]   B-BMAD-1     init+run
+[2026-08-14 09:19:27]   B-SOLO-1     init+run
+[2026-08-14 09:19:27]   B-BMAD-2     init+run
+[2026-08-14 09:19:27]   B-SOLO-2     init+run
+[2026-08-14 09:19:27]   B-BMAD-3     init+run
+[2026-08-14 09:19:27]   B-SOLO-3     init+run
+[2026-08-14 09:19:27]     $ harness.py dbcheck --config config.messlauf.json
+[2026-08-14 09:19:27] === A-BMAD-1 ===  (301.2 GB frei)
+[2026-08-14 09:19:27]     $ harness.py init --config config.messlauf.json --run A-BMAD-1
+[2026-08-14 09:19:29]     $ harness.py run --config config.messlauf.json --run A-BMAD-1
+[2026-08-14 19:28:39] A-BMAD-1: finished=True · Ursache=regular · Schritte=41 · T1=6.24 h · Warten=3.79 h · Tokens=2,644,637 · 155.92 USD (Schaetzung)
+[2026-08-14 19:28:39] === A-SOLO-1 ===  (300.2 GB frei)
+[2026-08-14 19:28:39]     $ harness.py init --config config.messlauf.json --run A-SOLO-1
+[2026-08-14 19:28:40]     $ harness.py run --config config.messlauf.json --run A-SOLO-1
+[2026-08-14 19:56:40] A-SOLO-1: finished=True · Ursache=regular · Schritte=2 · T1=0.47 h · Warten=0.00 h · Tokens=140,873 · 12.15 USD (Schaetzung)
+[2026-08-14 19:56:40] Hoechstzahl von 2 Laeufen erreicht. Ende.
+[2026-08-14 19:56:40] Durchgang beendet, 2 Lauf/Laeufe gestartet. Protokoll: /home/alex/dev/Bachelor/bmad-vergleichsstudie/runs/kette-20260814-0919.log

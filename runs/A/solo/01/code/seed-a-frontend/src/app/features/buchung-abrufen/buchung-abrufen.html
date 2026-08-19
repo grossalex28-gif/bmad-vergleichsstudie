@@ -1,0 +1,17 @@
+<section class="seite">
+  <h1>Buchung abrufen</h1>
+  <p>Geben Sie Ihre Buchungsreferenz ein, um Ihre Buchung anzuzeigen oder zu stornieren.</p>
+
+  <form class="referenz-formular" (ngSubmit)="abrufen()">
+    <label>
+      Buchungsreferenz
+      <input type="text" name="referenz" required [(ngModel)]="referenz" placeholder="z. B. AB12CD34" />
+    </label>
+
+    @if (fehler()) {
+      <p class="fehler" role="alert">{{ fehler() }}</p>
+    }
+
+    <button type="submit">Buchung anzeigen</button>
+  </form>
+</section>

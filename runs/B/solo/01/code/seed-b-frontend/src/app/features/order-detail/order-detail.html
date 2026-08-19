@@ -1,0 +1,53 @@
+@if (loading()) {
+  <p>Lädt…</p>
+} @else if (notFound()) {
+  <p>Diese Bestellung wurde nicht gefunden.</p>
+} @else if (order(); as o) {
+  <h1>Bestellung #{{ o.id }}</h1>
+  <p class="status">Status: <strong>{{ o.status }}</strong></p>
+  <p class="date">Aufgegeben am {{ o.erstelltAm | date: 'dd.MM.yyyy HH:mm' }}</p>
+
+  <section>
+    <h2>Positionen</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Produkt</th>
+          <th>Lieferant</th>
+          <th>Einzelpreis</th>
+          <th>Menge</th>
+          <th>Zwischensumme</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (position of o.positionen; track position.produktId + position.lieferantId) {
+          <tr>
+            <td>{{ position.produktName }}</td>
+            <td>{{ position.lieferantName }}</td>
+            <td>{{ position.preis | number: '1.2-2' }} €</td>
+            <td>{{ position.menge }}</td>
+            <td>{{ position.zwischensumme | number: '1.2-2' }} €</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    <p class="total">Gesamtsumme: <strong>{{ o.gesamtsumme | number: '1.2-2' }} €</strong></p>
+  </section>
+
+  <section>
+    <h2>Lieferadresse</h2>
+    <p>
+      {{ o.lieferdaten.name }}<br />
+      {{ o.lieferdaten.strasse }}<br />
+      {{ o.lieferdaten.plz }} {{ o.lieferdaten.ort }}<br />
+      {{ o.lieferdaten.land }}
+    </p>
+  </section>
+
+  <section>
+    <h2>Kontakt</h2>
+    <p>{{ o.kontakt.email }}<br />{{ o.kontakt.telefon }}</p>
+  </section>
+
+  <a routerLink="/products" class="continue">Weiter einkaufen</a>
+}

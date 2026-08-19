@@ -1,0 +1,154 @@
+.buchungsdetail__ladehinweis,
+.buchungsdetail__fehler {
+  font-family: var(--font-body-lg-family);
+  font-size: var(--font-body-lg-size);
+  line-height: var(--font-body-lg-line-height);
+  color: var(--color-on-surface);
+}
+
+.buchungsdetail__fehler {
+  color: var(--color-on-error-container);
+}
+
+.buchungsdetail__titel {
+  margin: 0 0 var(--spacing-unit) 0;
+  font-family: var(--font-headline-md-family);
+  font-size: var(--font-headline-md-size);
+  font-weight: var(--font-headline-md-weight);
+  line-height: var(--font-headline-md-line-height);
+  color: var(--color-on-surface);
+}
+
+.buchungsdetail__zeitpunkt {
+  margin: var(--spacing-unit) 0 var(--spacing-section-gap) 0;
+  font-family: var(--font-body-md-family);
+  font-size: var(--font-body-md-size);
+  line-height: var(--font-body-md-line-height);
+  color: var(--color-on-surface-variant);
+}
+
+.buchungsdetail__positionen {
+  list-style: none;
+  margin: 0 0 var(--spacing-gutter) 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-unit);
+}
+
+.buchungsdetail__position {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-gutter);
+  font-family: var(--font-body-md-family);
+  font-size: var(--font-body-md-size);
+  color: var(--color-on-surface);
+}
+
+.buchungsdetail__code {
+  font-weight: 600;
+  min-width: 40px;
+}
+
+.buchungsdetail__kategorie {
+  flex: 1;
+  color: var(--color-on-surface-variant);
+}
+
+.buchungsdetail__gesamtpreis {
+  font-family: var(--font-headline-sm-family);
+  font-size: var(--font-headline-sm-size);
+  font-weight: var(--font-headline-sm-weight);
+  color: var(--color-on-surface);
+  margin: 0;
+}
+
+.banner-success {
+  font-family: var(--font-body-lg-family);
+  font-size: var(--font-body-lg-size);
+  line-height: var(--font-body-lg-line-height);
+  color: var(--color-on-success);
+  background: var(--color-success);
+  border-radius: var(--radius-default);
+  padding: var(--spacing-gutter);
+  margin: 0 0 var(--spacing-gutter) 0;
+}
+
+.banner-error {
+  font-family: var(--font-body-lg-family);
+  font-size: var(--font-body-lg-size);
+  line-height: var(--font-body-lg-line-height);
+  color: var(--color-on-error-container);
+  background: var(--color-error-container);
+  border-radius: var(--radius-default);
+  padding: var(--spacing-gutter);
+  margin: 0 0 var(--spacing-gutter) 0;
+}
+
+.buchungsdetail__stornieren {
+  margin-top: var(--spacing-gutter);
+  font-family: var(--font-body-md-family);
+  font-size: var(--font-body-md-size);
+  font-weight: 600;
+  color: var(--color-primary);
+  background: transparent;
+  border: 1px solid var(--color-outline);
+  border-radius: var(--radius-default);
+  padding: var(--spacing-unit) var(--spacing-gutter);
+  cursor: pointer;
+}
+
+.stornieren-dialog {
+  border: none;
+  border-radius: var(--radius-md);
+  padding: var(--spacing-gutter);
+  max-width: 360px;
+  background: var(--color-surface);
+  color: var(--color-on-surface);
+}
+
+.stornieren-dialog::backdrop {
+  background: rgba(27, 31, 36, 0.4);
+}
+
+.stornieren-dialog__text {
+  margin: 0 0 var(--spacing-gutter) 0;
+  font-family: var(--font-body-lg-family);
+  font-size: var(--font-body-lg-size);
+  line-height: var(--font-body-lg-line-height);
+}
+
+.stornieren-dialog__aktionen {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-unit);
+}
+
+.stornieren-dialog__abbrechen {
+  font-family: var(--font-body-md-family);
+  font-size: var(--font-body-md-size);
+  color: var(--color-primary);
+  background: transparent;
+  border: 1px solid var(--color-outline);
+  border-radius: var(--radius-default);
+  padding: var(--spacing-unit) var(--spacing-gutter);
+  cursor: pointer;
+}
+
+.stornieren-dialog__bestaetigen {
+  font-family: var(--font-body-md-family);
+  font-size: var(--font-body-md-size);
+  font-weight: 600;
+  color: var(--color-on-error);
+  background: var(--color-error);
+  border: none;
+  border-radius: var(--radius-default);
+  padding: var(--spacing-unit) var(--spacing-gutter);
+  cursor: pointer;
+}
+
+.stornieren-dialog__bestaetigen:disabled {
+  background: var(--color-surface-container-highest);
+  color: var(--color-on-surface-variant);
+  cursor: not-allowed;
+}

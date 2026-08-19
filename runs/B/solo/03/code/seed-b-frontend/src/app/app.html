@@ -1,0 +1,16 @@
+<header class="shell-header">
+  <a class="brand" routerLink="/produkte">ShopDemo</a>
+  <nav>
+    <a routerLink="/produkte">Produkte</a>
+    <a routerLink="/warenkorb" class="cart-link">
+      Warenkorb
+      @if (itemCount() > 0) {
+        <span class="cart-badge">{{ itemCount() }}</span>
+      }
+    </a>
+  </nav>
+</header>
+
+<main class="shell-main">
+  <router-outlet />
+</main>

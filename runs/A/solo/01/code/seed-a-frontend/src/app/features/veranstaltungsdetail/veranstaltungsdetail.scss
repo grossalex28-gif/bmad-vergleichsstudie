@@ -1,0 +1,42 @@
+.zurueck {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+
+  dt {
+    font-size: 0.8rem;
+    color: #64748b;
+  }
+
+  dd {
+    margin: 0;
+    font-weight: 500;
+  }
+}
+
+.beschreibung {
+  line-height: 1.6;
+}
+
+.preiskategorien {
+  padding-left: 1.25rem;
+}
+
+.button-primary {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: 0.375rem;
+  background: #2563eb;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}

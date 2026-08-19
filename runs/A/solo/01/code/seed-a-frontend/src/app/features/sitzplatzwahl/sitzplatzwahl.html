@@ -1,0 +1,76 @@
+<section class="seite">
+  <a [routerLink]="['/veranstaltungen', veranstaltungId]" class="zurueck">&larr; Zur Veranstaltung</a>
+
+  @if (ladeFehler()) {
+    <p class="fehler" role="alert">{{ ladeFehler() }}</p>
+  }
+
+  @if (veranstaltung(); as v) {
+    <h1>Sitzplätze wählen – {{ v.titel }}</h1>
+    <p class="unterzeile">{{ v.spielstaetteName }} · {{ v.raumName }}</p>
+
+    @if (sitzplan(); as plan) {
+      <app-sitzplan
+        [sitzplan]="plan"
+        [ausgewaehlt]="ausgewaehltePositionen()"
+        (sitzplatzUmschalten)="sitzplatzUmschalten($event)"
+      />
+    }
+
+    @if (ausgewaehlteSitzplaetze().length > 0) {
+      <h2>Ausgewählte Sitzplätze</h2>
+      <table class="auswahl-tabelle">
+        <thead>
+          <tr>
+            <th>Sitzplatz</th>
+            <th>Preiskategorie</th>
+            <th>Preis</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (sitzplatz of ausgewaehlteSitzplaetze(); track sitzplatz.reihe + '-' + sitzplatz.spalte) {
+            <tr>
+              <td>{{ sitzplatz.reihe }}{{ sitzplatz.spalte }}</td>
+              <td>
+                <select
+                  [ngModel]="sitzplatz.preiskategorieId"
+                  (ngModelChange)="preiskategorieAendern(sitzplatz, $event)"
+                >
+                  @for (kategorie of v.preiskategorien; track kategorie.id) {
+                    <option [value]="kategorie.id">{{ kategorie.name }} ({{ kategorie.preis | number: '1.2-2' }} €)</option>
+                  }
+                </select>
+              </td>
+              <td>
+                {{ preisFuer(sitzplatz.preiskategorieId) | number: '1.2-2' }} €
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+
+      <p class="gesamtpreis">Gesamtpreis: <strong>{{ gesamtpreis() | number: '1.2-2' }} €</strong></p>
+
+      <form class="buchungsformular" (ngSubmit)="buchen()">
+        <label>
+          Name
+          <input type="text" name="name" required [(ngModel)]="name" />
+        </label>
+        <label>
+          E-Mail
+          <input type="email" name="email" required [(ngModel)]="email" />
+        </label>
+
+        @if (buchungFehler()) {
+          <p class="fehler" role="alert">{{ buchungFehler() }}</p>
+        }
+
+        <button type="submit" [disabled]="wirdGebucht()">
+          {{ wirdGebucht() ? 'Buchung wird abgeschlossen …' : 'Verbindlich buchen' }}
+        </button>
+      </form>
+    } @else {
+      <p>Wählen Sie mindestens einen freien Sitzplatz aus, um fortzufahren.</p>
+    }
+  }
+</section>

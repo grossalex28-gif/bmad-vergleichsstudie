@@ -1,0 +1,6 @@
+@seed_a_backend.Api_HostAddress = http://localhost:5244
+
+GET {{seed_a_backend.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,52 @@
+@use '../../../breakpoints' as *;
+
+.booking {
+  padding: var(--margin-mobile);
+}
+
+.booking__heading {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--text-headline-size);
+  font-weight: var(--text-headline-weight);
+  color: var(--color-on-surface);
+}
+
+.booking__loading {
+  padding: var(--space-3) var(--margin-mobile);
+  color: var(--color-on-surface-variant);
+  font-family: var(--font-body);
+  font-size: var(--text-body-size);
+}
+
+.booking__error {
+  margin: var(--space-3) var(--margin-mobile);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-error-container);
+  color: var(--color-on-error-container);
+  border-radius: var(--radius-default);
+  font-family: var(--font-body);
+  font-size: var(--text-body-size);
+}
+
+.booking__summary {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .booking {
+    padding: var(--margin-desktop);
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: var(--space-3);
+    align-items: start;
+  }
+
+  .booking__summary {
+    position: sticky;
+    top: var(--space-3);
+    bottom: auto;
+  }
+}

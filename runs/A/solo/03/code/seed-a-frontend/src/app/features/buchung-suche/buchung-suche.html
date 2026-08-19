@@ -1,0 +1,9 @@
+<h1>Meine Buchung</h1>
+
+<form class="card suche" (ngSubmit)="suchen()">
+  <div class="form-field">
+    <label for="referenz">Buchungsreferenz</label>
+    <input id="referenz" name="referenz" type="text" placeholder="z. B. 8DP695VP" required [(ngModel)]="referenz" />
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="!referenz.trim()">Buchung anzeigen</button>
+</form>

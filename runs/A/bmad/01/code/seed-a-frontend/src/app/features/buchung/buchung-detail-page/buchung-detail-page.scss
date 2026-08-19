@@ -1,0 +1,78 @@
+.buchung-detail-page__confirmation {
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  color: var(--color-ink-primary);
+}
+
+.buchung-detail-page__event {
+  font-family: var(--font-body);
+  font-size: var(--text-meta-size);
+  color: var(--color-ink-secondary);
+  margin: 0 0 var(--spacing-3);
+}
+
+.buchung-detail-page__reference {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-3);
+  background: var(--color-surface-sunken);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-3) var(--spacing-4);
+  font-family: var(--font-mono-reference);
+  font-size: var(--text-mono-reference-size);
+  font-weight: var(--text-mono-reference-weight);
+  letter-spacing: var(--text-mono-reference-letter-spacing);
+}
+
+.buchung-detail-page__seats {
+  list-style: none;
+  margin: var(--spacing-4) 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.buchung-detail-page__total {
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+}
+
+.buchung-detail-page__skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.buchung-detail-page__skeleton-block {
+  height: 24px;
+  background-color: var(--color-surface-sunken);
+  border-radius: var(--radius-md);
+}
+
+.buchung-detail-page__skeleton-block--reference {
+  height: 48px;
+}
+
+.buchung-detail-page__skeleton-block--total {
+  width: 40%;
+}
+
+.buchung-detail-page__status {
+  display: block;
+  margin: 0 0 var(--spacing-3);
+}
+
+.buchung-detail-page__cancel-trigger {
+  font-family: var(--font-body);
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  color: var(--color-ink-primary);
+  background: transparent;
+  border: 1px solid var(--color-border-hairline);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-2) var(--spacing-4);
+  cursor: pointer;
+  margin-top: var(--spacing-4);
+}

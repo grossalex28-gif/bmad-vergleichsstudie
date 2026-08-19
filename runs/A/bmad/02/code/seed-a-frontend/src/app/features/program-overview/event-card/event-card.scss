@@ -1,0 +1,24 @@
+.event-card {
+  display: block;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-outline-variant);
+  padding: var(--space-3);
+  text-decoration: none;
+  color: inherit;
+}
+
+.event-card__title {
+  margin: 0 0 var(--space-1);
+  font-family: var(--font-body);
+  font-size: var(--text-title-size);
+  font-weight: var(--text-title-weight);
+  color: var(--color-on-surface);
+}
+
+.event-card__meta {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm-size);
+  color: var(--color-on-surface-variant);
+}

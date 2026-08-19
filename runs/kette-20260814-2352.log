@@ -1,0 +1,20 @@
+[2026-08-14 23:52:16] Kette geplant, hoechstens 4 Laeufe in diesem Durchgang.
+[2026-08-14 23:52:16]   A-BMAD-1     uebersprungen (beendet: regular)
+[2026-08-14 23:52:16]   A-SOLO-1     uebersprungen (beendet: regular)
+[2026-08-14 23:52:16]   A-BMAD-2     init+run
+[2026-08-14 23:52:16]   A-SOLO-2     init+run
+[2026-08-14 23:52:16]   A-BMAD-3     init+run
+[2026-08-14 23:52:16]   A-SOLO-3     init+run
+[2026-08-14 23:52:16]   B-BMAD-1     init+run
+[2026-08-14 23:52:16]   B-SOLO-1     init+run
+[2026-08-14 23:52:16]   B-BMAD-2     init+run
+[2026-08-14 23:52:16]   B-SOLO-2     init+run
+[2026-08-14 23:52:16]   B-BMAD-3     init+run
+[2026-08-14 23:52:16]   B-SOLO-3     init+run
+[2026-08-14 23:52:16]     $ harness.py dbcheck --config config.messlauf.json
+[2026-08-14 23:52:17] === A-BMAD-2 ===  (295.4 GB frei)
+[2026-08-14 23:52:17]     $ harness.py init --config config.messlauf.json --run A-BMAD-2
+[2026-08-14 23:52:18]     $ harness.py run --config config.messlauf.json --run A-BMAD-2
+[2026-08-15 10:48:18] A-BMAD-2: finished=True · Ursache=blocker · Schritte=54 · T1=7.56 h · Warten=3.26 h · Tokens=3,074,826 · 172.68 USD (Schaetzung)
+[2026-08-15 10:48:18] A-BMAD-2: Ursache 'blocker' erfordert einen Blick von dir. Kette haelt an.
+[2026-08-15 10:48:18] Durchgang beendet, 1 Lauf/Laeufe gestartet. Protokoll: /home/alex/dev/Bachelor/bmad-vergleichsstudie/runs/kette-20260814-2352.log

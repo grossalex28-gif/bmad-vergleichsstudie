@@ -1,0 +1,42 @@
+<div class="filter-bar">
+  <div class="filter-bar__feld">
+    <label class="filter-bar__label" for="filter-bar-von">Von</label>
+    <input
+      id="filter-bar-von"
+      class="filter-bar__input"
+      type="date"
+      [value]="von()"
+      (change)="von.set($any($event.target).value || null)"
+    />
+  </div>
+
+  <div class="filter-bar__feld">
+    <label class="filter-bar__label" for="filter-bar-bis">Bis</label>
+    <input
+      id="filter-bar-bis"
+      class="filter-bar__input"
+      type="date"
+      [value]="bis()"
+      (change)="bis.set($any($event.target).value || null)"
+    />
+  </div>
+
+  <div class="filter-bar__feld">
+    <label class="filter-bar__label" for="filter-bar-spielstaette">Spielstätte</label>
+    <select
+      id="filter-bar-spielstaette"
+      class="filter-bar__input"
+      [value]="spielstaetteId() ?? ''"
+      (change)="spielstaetteId.set($any($event.target).value || null)"
+    >
+      <option value="">Alle</option>
+      @for (spielstaette of spielstaetten(); track spielstaette.id) {
+        <option [value]="spielstaette.id">{{ spielstaette.name }}</option>
+      }
+    </select>
+  </div>
+
+  @if (filterAktiv()) {
+    <button type="button" class="filter-bar__zuruecksetzen" (click)="zuruecksetzen()">Zurücksetzen</button>
+  }
+</div>

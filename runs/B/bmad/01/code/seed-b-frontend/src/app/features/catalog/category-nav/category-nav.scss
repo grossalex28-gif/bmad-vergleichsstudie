@@ -1,0 +1,16 @@
+.category-nav__list,
+.category-nav__subcategories {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.category-nav__subcategories {
+  padding-left: 1rem;
+}
+
+.category-nav__all--active,
+.category-nav__category-name--active,
+.category-nav__subcategory--active .category-nav__subcategory-name {
+  font-weight: bold;
+}

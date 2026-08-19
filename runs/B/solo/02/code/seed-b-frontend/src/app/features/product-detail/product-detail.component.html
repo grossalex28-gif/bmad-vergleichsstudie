@@ -1,0 +1,111 @@
+<div class="container product-detail-page">
+  <a routerLink="/products" class="back-link">&larr; Zurück zur Übersicht</a>
+
+  @if (loading()) {
+    <p>Lädt…</p>
+  }
+  @if (error()) {
+    <div class="alert alert-error">{{ error() }}</div>
+  }
+
+  @if (product(); as p) {
+    <div class="detail-grid">
+      <section class="card main-info">
+        <p class="breadcrumb">{{ p.categoryName }} &rsaquo; {{ p.subcategoryName }}</p>
+        <h1>{{ p.name }}</h1>
+
+        <p class="rating-summary">
+          @if (p.averageRating != null) {
+            ★ {{ p.averageRating | number: '1.1-1' }} · {{ p.ratingCount }} Bewertung(en)
+          } @else {
+            Noch keine Bewertungen
+          }
+          <span class="views">· {{ p.viewCount }} Aufrufe</span>
+        </p>
+
+        <p class="description">{{ p.description }}</p>
+
+        @if (p.properties | keyvalue; as props) {
+          @if (props.length > 0) {
+            <h3>Eigenschaften</h3>
+            <dl class="properties">
+              @for (prop of props; track prop.key) {
+                <dt>{{ prop.key }}</dt>
+                <dd>{{ prop.value }}</dd>
+              }
+            </dl>
+          }
+        }
+      </section>
+
+      <section class="card purchase-box">
+        <h3>Angebote</h3>
+        @if (p.offers.length === 0) {
+          <p>Derzeit kein Lieferant verfügbar.</p>
+        } @else {
+          <ul class="offer-list">
+            @for (offer of p.offers; track offer.supplierId) {
+              <li>
+                <label class="offer-option">
+                  <input
+                    type="radio"
+                    name="supplier"
+                    [value]="offer.supplierId"
+                    [checked]="selectedSupplierId() === offer.supplierId"
+                    (change)="selectedSupplierId.set(offer.supplierId)"
+                  />
+                  <span class="offer-supplier">{{ offer.supplierName }}</span>
+                  <span class="offer-price">{{ offer.price | number: '1.2-2' }} €</span>
+                </label>
+              </li>
+            }
+          </ul>
+
+          <div class="field quantity-field">
+            <label for="quantity">Menge</label>
+            <input
+              id="quantity"
+              type="number"
+              min="1"
+              [ngModel]="quantity()"
+              (ngModelChange)="quantity.set($event)"
+            />
+          </div>
+
+          <button class="btn" (click)="addToCart()">In den Warenkorb</button>
+
+          @if (addedMessage()) {
+            <div class="alert alert-success">{{ addedMessage() }}</div>
+          }
+        }
+      </section>
+    </div>
+
+    <section class="card review-box">
+      <h3>Bewertung abgeben</h3>
+      <div class="field">
+        <label for="author">Ihr Name</label>
+        <input id="author" type="text" [ngModel]="reviewAuthor()" (ngModelChange)="reviewAuthor.set($event)" />
+      </div>
+      <div class="field">
+        <label for="rating">Bewertung</label>
+        <select id="rating" [ngModel]="reviewRating()" (ngModelChange)="reviewRating.set($event)">
+          @for (r of ratingOptions; track r) {
+            <option [value]="r">{{ r }} Stern(e)</option>
+          }
+        </select>
+      </div>
+
+      @if (reviewError()) {
+        <div class="alert alert-error">{{ reviewError() }}</div>
+      }
+      @if (reviewMessage()) {
+        <div class="alert alert-success">{{ reviewMessage() }}</div>
+      }
+
+      <button class="btn btn-secondary" [disabled]="reviewSubmitting()" (click)="submitReview()">
+        Bewertung absenden
+      </button>
+    </section>
+  }
+</div>
