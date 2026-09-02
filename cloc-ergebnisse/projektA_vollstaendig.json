@@ -1,0 +1,84 @@
+{"header" : {
+  "cloc_url"           : "github.com/AlDanial/cloc",
+  "cloc_version"       : "1.98",
+  "elapsed_seconds"    : 0.0661470890045166,
+  "n_files"            : 261,
+  "n_lines"            : 28252,
+  "files_per_second"   : 3945.75186796472,
+  "lines_per_second"   : 427108.74242812,
+  "report_file"        : "/home/alex/dev/Bachelor/bmad-vergleichsstudie/cloc-ergebnisse/projektA_vollstaendig.json"},
+"CSS" :{
+  "nFiles": 11,
+  "blank": 1110,
+  "comment": 20,
+  "code": 8029},
+"C#" :{
+  "nFiles": 66,
+  "blank": 1311,
+  "comment": 367,
+  "code": 6925},
+"TypeScript" :{
+  "nFiles": 126,
+  "blank": 1254,
+  "comment": 410,
+  "code": 5938},
+"HTML" :{
+  "nFiles": 33,
+  "blank": 101,
+  "comment": 43,
+  "code": 1822},
+"JSON" :{
+  "nFiles": 11,
+  "blank": 5,
+  "comment": 0,
+  "code": 451},
+"Markdown" :{
+  "nFiles": 2,
+  "blank": 52,
+  "comment": 0,
+  "code": 105},
+"MSBuild script" :{
+  "nFiles": 2,
+  "blank": 14,
+  "comment": 0,
+  "code": 84},
+"JavaScript" :{
+  "nFiles": 2,
+  "blank": 3,
+  "comment": 4,
+  "code": 52},
+"XML" :{
+  "nFiles": 3,
+  "blank": 0,
+  "comment": 8,
+  "code": 47},
+"Visual Studio Solution" :{
+  "nFiles": 1,
+  "blank": 1,
+  "comment": 1,
+  "code": 29},
+"Dockerfile" :{
+  "nFiles": 1,
+  "blank": 4,
+  "comment": 0,
+  "code": 22},
+"Bourne Shell" :{
+  "nFiles": 1,
+  "blank": 0,
+  "comment": 0,
+  "code": 15},
+"DOS Batch" :{
+  "nFiles": 1,
+  "blank": 0,
+  "comment": 0,
+  "code": 12},
+"INI" :{
+  "nFiles": 1,
+  "blank": 2,
+  "comment": 0,
+  "code": 11},
+"SUM": {
+  "blank": 3857,
+  "comment": 853,
+  "code": 23542,
+  "nFiles": 261} }

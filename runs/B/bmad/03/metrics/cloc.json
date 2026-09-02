@@ -1,0 +1,44 @@
+{"header" : {
+  "cloc_url"           : "github.com/AlDanial/cloc",
+  "cloc_version"       : "1.98",
+  "elapsed_seconds"    : 0.0656239986419678,
+  "n_files"            : 90,
+  "n_lines"            : 43351,
+  "files_per_second"   : 1371.44949808717,
+  "lines_per_second"   : 660596.746573078,
+  "report_file"        : "/home/alex/dev/Bachelor/bmad-vergleichsstudie/runs/B/bmad/03/metrics/cloc.json"},
+"JavaScript" :{
+  "nFiles": 10,
+  "blank": 13,
+  "comment": 892,
+  "code": 36442},
+"C#" :{
+  "nFiles": 44,
+  "blank": 487,
+  "comment": 24,
+  "code": 2377},
+"TypeScript" :{
+  "nFiles": 24,
+  "blank": 425,
+  "comment": 8,
+  "code": 2247},
+"HTML" :{
+  "nFiles": 6,
+  "blank": 12,
+  "comment": 0,
+  "code": 284},
+"JSON" :{
+  "nFiles": 4,
+  "blank": 0,
+  "comment": 0,
+  "code": 70},
+"SCSS" :{
+  "nFiles": 2,
+  "blank": 10,
+  "comment": 0,
+  "code": 60},
+"SUM": {
+  "blank": 947,
+  "comment": 924,
+  "code": 41480,
+  "nFiles": 90} }

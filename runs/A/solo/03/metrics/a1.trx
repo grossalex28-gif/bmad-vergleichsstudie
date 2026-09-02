@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="855c8426-b42c-40ee-b799-28e209cee271" name="@archlinux 2026-08-31 23:29:30" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2026-08-31T23:29:30.4770458+02:00" queuing="2026-08-31T23:29:30.4770459+02:00" start="2026-08-31T23:29:29.6236662+02:00" finish="2026-08-31T23:29:30.5698749+02:00" />
+  <TestSettings name="default" id="c41adeb0-7029-499c-97e0-c6db5df4addd">
+    <Deployment runDeploymentRoot="_archlinux_2026-08-31_23_29_30" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="23f367d2-ec66-45a3-a28b-d55a0f7abf8d" testId="608bf636-6e84-3b0c-e3c3-e42d1a58bd80" testName="A1Testsuite.Implementierungen.a_solo_3_Tests.TF_A_F2_1_Filter_nach_Datumsbereich" computerName="archlinux" duration="00:00:00.0129643" startTime="2026-08-31T23:29:30.4046578+02:00" endTime="2026-08-31T23:29:30.4176438+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="23f367d2-ec66-45a3-a28b-d55a0f7abf8d" />
+    <UnitTestResult executionId="cd57a2d9-7f7d-4950-850c-4fe4bc5ba822" testId="34196ca1-4b5b-8bfc-219d-2cce8151904f" testName="A1Testsuite.Implementierungen.a_solo_3_Tests.TF_A_F3_1_Filter_nach_Spielstaette" computerName="archlinux" duration="00:00:00.0021767" startTime="2026-08-31T23:29:30.4178654+02:00" endTime="2026-08-31T23:29:30.4200618+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="cd57a2d9-7f7d-4950-850c-4fe4bc5ba822" />
+    <UnitTestResult executionId="b309606a-d4d2-44b8-8dc2-03891a58f9c2" testId="234f78f0-21c2-0a03-d736-1a8de87abb2b" testName="A1Testsuite.Implementierungen.a_solo_3_Tests.TF_A_F6_1_Belegte_und_freie_Plaetze_sowie_Gang" computerName="archlinux" duration="00:00:00.0040293" startTime="2026-08-31T23:29:30.4204970+02:00" endTime="2026-08-31T23:29:30.4245679+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b309606a-d4d2-44b8-8dc2-03891a58f9c2" />
+    <UnitTestResult executionId="528c6b91-00bb-4d9e-838f-2acc92af3270" testId="7cf4a972-7517-9882-f9c8-9b9198a0d312" testName="A1Testsuite.Implementierungen.a_solo_3_Tests.TF_A_F7_1_Auswahl_freier_Sitzplaetze" computerName="archlinux" duration="00:00:00.0029989" startTime="2026-08-31T23:29:30.4479214+02:00" endTime="2026-08-31T23:29:30.4509438+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="528c6b91-00bb-4d9e-838f-2acc92af3270" />
+    <UnitTestResult executionId="2c5e8064-5431-41ea-9c62-c20f2532deb9" testId="7a793b9a-fd90-6e67-7767-b616ed2dad26" testName="A1Testsuite.Implementierungen.a_solo_3_Tests.TF_A_F9_1_Gesamtpreisberechnung" computerName="archlinux" duration="00:00:00.0096426" startTime="2026-08-31T23:29:30.4380217+02:00" endTime="2026-08-31T23:29:30.4476874+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2c5e8064-5431-41ea-9c62-c20f2532deb9" />
+    <UnitTestResult executionId="399affaa-c2be-4358-9cc9-18acf87ef1b8" testId="baa945e5-801c-2a0a-45f2-940d25489d15" testName="A1Testsuite.Implementierungen.a_solo_3_Tests.TF_A_F10_1_bis_TF_A_F12_1_Buchung_anlegen_abrufen_stornieren" computerName="archlinux" duration="00:00:00.0699119" startTime="2026-08-31T23:29:30.4513286+02:00" endTime="2026-08-31T23:29:30.5212719+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="399affaa-c2be-4358-9cc9-18acf87ef1b8" />
+    <UnitTestResult executionId="4267143c-8fc4-4f80-af16-5185e99551f2" testId="fc19c0a9-260c-f225-dd10-c8b77d760f86" testName="A1Testsuite.Implementierungen.a_solo_3_Tests.TF_A_F13_1_Buchung_mit_zwei_freien_Plaetzen_wird_angelegt" computerName="archlinux" duration="00:00:00.1880231" startTime="2026-08-31T23:29:30.1852781+02:00" endTime="2026-08-31T23:29:30.3784840+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4267143c-8fc4-4f80-af16-5185e99551f2" />
+    <UnitTestResult executionId="316c27a7-4553-4bf3-bc81-a0d00ccd566c" testId="572be738-338e-5070-fc95-5cc7eedd96bf" testName="A1Testsuite.Implementierungen.a_solo_3_Tests.TF_A_F1_1_Veranstaltungsliste_ohne_Filter" computerName="archlinux" duration="00:00:00.0024137" startTime="2026-08-31T23:29:30.3959978+02:00" endTime="2026-08-31T23:29:30.3984323+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="316c27a7-4553-4bf3-bc81-a0d00ccd566c" />
+    <UnitTestResult executionId="694c4ccf-73ce-41b5-952b-08740623a89b" testId="9b971b25-a48b-8194-afe1-3ad0eb23ac2b" testName="A1Testsuite.Implementierungen.a_solo_3_Tests.TF_A_F5_1_Sitzplan_mit_beidseitigen_Seitengaengen" computerName="archlinux" duration="00:00:00.0052595" startTime="2026-08-31T23:29:30.3905149+02:00" endTime="2026-08-31T23:29:30.3957976+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="694c4ccf-73ce-41b5-952b-08740623a89b" />
+    <UnitTestResult executionId="18724201-6db9-473d-a559-982750892043" testId="2ea2a097-9759-f8a1-4352-17641d6fd69f" testName="A1Testsuite.Implementierungen.a_solo_3_Tests.TF_A_F5_2_Sitzplan_ohne_Gang" computerName="archlinux" duration="00:00:00.0055921" startTime="2026-08-31T23:29:30.3988491+02:00" endTime="2026-08-31T23:29:30.4044640+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="18724201-6db9-473d-a559-982750892043" />
+    <UnitTestResult executionId="6158caaa-21b2-415a-8017-0a38a4792836" testId="dad8d499-ce1a-98bf-2bcb-8438e31e1d24" testName="A1Testsuite.Implementierungen.a_solo_3_Tests.TF_A_F4_1_Detailansicht" computerName="archlinux" duration="00:00:00.0079978" startTime="2026-08-31T23:29:30.3822455+02:00" endTime="2026-08-31T23:29:30.3902747+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6158caaa-21b2-415a-8017-0a38a4792836" />
+    <UnitTestResult executionId="a7eec3aa-6b44-4367-b0df-c6b2a5299c71" testId="be85ef5b-4cdf-1b38-6eb7-5f0e31de1ae3" testName="A1Testsuite.Implementierungen.a_solo_3_Tests.TF_A_F13_2_Ablehnung_bei_bereits_belegtem_Platz" computerName="archlinux" duration="00:00:00.0089072" startTime="2026-08-31T23:29:30.4247728+02:00" endTime="2026-08-31T23:29:30.4337015+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a7eec3aa-6b44-4367-b0df-c6b2a5299c71" />
+    <UnitTestResult executionId="86efec51-3955-4f50-bc8f-5e27dd8af3ad" testId="cb8d1c86-8508-f890-88a2-86cc1c4b60ec" testName="A1Testsuite.Implementierungen.a_solo_3_Tests.TF_A_F8_1_Preiskategorien" computerName="archlinux" duration="00:00:00.0038388" startTime="2026-08-31T23:29:30.4339430+02:00" endTime="2026-08-31T23:29:30.4378070+02:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="86efec51-3955-4f50-bc8f-5e27dd8af3ad" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="A1Testsuite.Implementierungen.a_solo_3_Tests.TF_A_F5_2_Sitzplan_ohne_Gang" storage="/home/alex/dev/bachelor/bmad-vergleichsstudie/a1-testsuite/xunit-project/bin/debug/net10.0/xunit-project.dll" id="2ea2a097-9759-f8a1-4352-17641d6fd69f">
+      <Execution id="18724201-6db9-473d-a559-982750892043" />
+      <TestMethod codeBase="/home/alex/dev/Bachelor/bmad-vergleichsstudie/a1-testsuite/xunit-project/bin/Debug/net10.0/xunit-project.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="A1Testsuite.Implementierungen.a_solo_3_Tests" name="TF_A_F5_2_Sitzplan_ohne_Gang" />
+    </UnitTest>
+    <UnitTest name="A1Testsuite.Implementierungen.a_solo_3_Tests.TF_A_F6_1_Belegte_und_freie_Plaetze_sowie_Gang" storage="/home/alex/dev/bachelor/bmad-vergleichsstudie/a1-testsuite/xunit-project/bin/debug/net10.0/xunit-project.dll" id="234f78f0-21c2-0a03-d736-1a8de87abb2b">
+      <Execution id="b309606a-d4d2-44b8-8dc2-03891a58f9c2" />
+      <TestMethod codeBase="/home/alex/dev/Bachelor/bmad-vergleichsstudie/a1-testsuite/xunit-project/bin/Debug/net10.0/xunit-project.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="A1Testsuite.Implementierungen.a_solo_3_Tests" name="TF_A_F6_1_Belegte_und_freie_Plaetze_sowie_Gang" />
+    </UnitTest>
+    <UnitTest name="A1Testsuite.Implementierungen.a_solo_3_Tests.TF_A_F10_1_bis_TF_A_F12_1_Buchung_anlegen_abrufen_stornieren" storage="/home/alex/dev/bachelor/bmad-vergleichsstudie/a1-testsuite/xunit-project/bin/debug/net10.0/xunit-project.dll" id="baa945e5-801c-2a0a-45f2-940d25489d15">
+      <Execution id="399affaa-c2be-4358-9cc9-18acf87ef1b8" />
+      <TestMethod codeBase="/home/alex/dev/Bachelor/bmad-vergleichsstudie/a1-testsuite/xunit-project/bin/Debug/net10.0/xunit-project.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="A1Testsuite.Implementierungen.a_solo_3_Tests" name="TF_A_F10_1_bis_TF_A_F12_1_Buchung_anlegen_abrufen_stornieren" />
+    </UnitTest>
+    <UnitTest name="A1Testsuite.Implementierungen.a_solo_3_Tests.TF_A_F13_1_Buchung_mit_zwei_freien_Plaetzen_wird_angelegt" storage="/home/alex/dev/bachelor/bmad-vergleichsstudie/a1-testsuite/xunit-project/bin/debug/net10.0/xunit-project.dll" id="fc19c0a9-260c-f225-dd10-c8b77d760f86">
+      <Execution id="4267143c-8fc4-4f80-af16-5185e99551f2" />
+      <TestMethod codeBase="/home/alex/dev/Bachelor/bmad-vergleichsstudie/a1-testsuite/xunit-project/bin/Debug/net10.0/xunit-project.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="A1Testsuite.Implementierungen.a_solo_3_Tests" name="TF_A_F13_1_Buchung_mit_zwei_freien_Plaetzen_wird_angelegt" />
+    </UnitTest>
+    <UnitTest name="A1Testsuite.Implementierungen.a_solo_3_Tests.TF_A_F2_1_Filter_nach_Datumsbereich" storage="/home/alex/dev/bachelor/bmad-vergleichsstudie/a1-testsuite/xunit-project/bin/debug/net10.0/xunit-project.dll" id="608bf636-6e84-3b0c-e3c3-e42d1a58bd80">
+      <Execution id="23f367d2-ec66-45a3-a28b-d55a0f7abf8d" />
+      <TestMethod codeBase="/home/alex/dev/Bachelor/bmad-vergleichsstudie/a1-testsuite/xunit-project/bin/Debug/net10.0/xunit-project.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="A1Testsuite.Implementierungen.a_solo_3_Tests" name="TF_A_F2_1_Filter_nach_Datumsbereich" />
+    </UnitTest>
+    <UnitTest name="A1Testsuite.Implementierungen.a_solo_3_Tests.TF_A_F1_1_Veranstaltungsliste_ohne_Filter" storage="/home/alex/dev/bachelor/bmad-vergleichsstudie/a1-testsuite/xunit-project/bin/debug/net10.0/xunit-project.dll" id="572be738-338e-5070-fc95-5cc7eedd96bf">
+      <Execution id="316c27a7-4553-4bf3-bc81-a0d00ccd566c" />
+      <TestMethod codeBase="/home/alex/dev/Bachelor/bmad-vergleichsstudie/a1-testsuite/xunit-project/bin/Debug/net10.0/xunit-project.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="A1Testsuite.Implementierungen.a_solo_3_Tests" name="TF_A_F1_1_Veranstaltungsliste_ohne_Filter" />
+    </UnitTest>
+    <UnitTest name="A1Testsuite.Implementierungen.a_solo_3_Tests.TF_A_F8_1_Preiskategorien" storage="/home/alex/dev/bachelor/bmad-vergleichsstudie/a1-testsuite/xunit-project/bin/debug/net10.0/xunit-project.dll" id="cb8d1c86-8508-f890-88a2-86cc1c4b60ec">
+      <Execution id="86efec51-3955-4f50-bc8f-5e27dd8af3ad" />
+      <TestMethod codeBase="/home/alex/dev/Bachelor/bmad-vergleichsstudie/a1-testsuite/xunit-project/bin/Debug/net10.0/xunit-project.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="A1Testsuite.Implementierungen.a_solo_3_Tests" name="TF_A_F8_1_Preiskategorien" />
+    </UnitTest>
+    <UnitTest name="A1Testsuite.Implementierungen.a_solo_3_Tests.TF_A_F7_1_Auswahl_freier_Sitzplaetze" storage="/home/alex/dev/bachelor/bmad-vergleichsstudie/a1-testsuite/xunit-project/bin/debug/net10.0/xunit-project.dll" id="7cf4a972-7517-9882-f9c8-9b9198a0d312">
+      <Execution id="528c6b91-00bb-4d9e-838f-2acc92af3270" />
+      <TestMethod codeBase="/home/alex/dev/Bachelor/bmad-vergleichsstudie/a1-testsuite/xunit-project/bin/Debug/net10.0/xunit-project.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="A1Testsuite.Implementierungen.a_solo_3_Tests" name="TF_A_F7_1_Auswahl_freier_Sitzplaetze" />
+    </UnitTest>
+    <UnitTest name="A1Testsuite.Implementierungen.a_solo_3_Tests.TF_A_F9_1_Gesamtpreisberechnung" storage="/home/alex/dev/bachelor/bmad-vergleichsstudie/a1-testsuite/xunit-project/bin/debug/net10.0/xunit-project.dll" id="7a793b9a-fd90-6e67-7767-b616ed2dad26">
+      <Execution id="2c5e8064-5431-41ea-9c62-c20f2532deb9" />
+      <TestMethod codeBase="/home/alex/dev/Bachelor/bmad-vergleichsstudie/a1-testsuite/xunit-project/bin/Debug/net10.0/xunit-project.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="A1Testsuite.Implementierungen.a_solo_3_Tests" name="TF_A_F9_1_Gesamtpreisberechnung" />
+    </UnitTest>
+    <UnitTest name="A1Testsuite.Implementierungen.a_solo_3_Tests.TF_A_F3_1_Filter_nach_Spielstaette" storage="/home/alex/dev/bachelor/bmad-vergleichsstudie/a1-testsuite/xunit-project/bin/debug/net10.0/xunit-project.dll" id="34196ca1-4b5b-8bfc-219d-2cce8151904f">
+      <Execution id="cd57a2d9-7f7d-4950-850c-4fe4bc5ba822" />
+      <TestMethod codeBase="/home/alex/dev/Bachelor/bmad-vergleichsstudie/a1-testsuite/xunit-project/bin/Debug/net10.0/xunit-project.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="A1Testsuite.Implementierungen.a_solo_3_Tests" name="TF_A_F3_1_Filter_nach_Spielstaette" />
+    </UnitTest>
+    <UnitTest name="A1Testsuite.Implementierungen.a_solo_3_Tests.TF_A_F4_1_Detailansicht" storage="/home/alex/dev/bachelor/bmad-vergleichsstudie/a1-testsuite/xunit-project/bin/debug/net10.0/xunit-project.dll" id="dad8d499-ce1a-98bf-2bcb-8438e31e1d24">
+      <Execution id="6158caaa-21b2-415a-8017-0a38a4792836" />
+      <TestMethod codeBase="/home/alex/dev/Bachelor/bmad-vergleichsstudie/a1-testsuite/xunit-project/bin/Debug/net10.0/xunit-project.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="A1Testsuite.Implementierungen.a_solo_3_Tests" name="TF_A_F4_1_Detailansicht" />
+    </UnitTest>
+    <UnitTest name="A1Testsuite.Implementierungen.a_solo_3_Tests.TF_A_F5_1_Sitzplan_mit_beidseitigen_Seitengaengen" storage="/home/alex/dev/bachelor/bmad-vergleichsstudie/a1-testsuite/xunit-project/bin/debug/net10.0/xunit-project.dll" id="9b971b25-a48b-8194-afe1-3ad0eb23ac2b">
+      <Execution id="694c4ccf-73ce-41b5-952b-08740623a89b" />
+      <TestMethod codeBase="/home/alex/dev/Bachelor/bmad-vergleichsstudie/a1-testsuite/xunit-project/bin/Debug/net10.0/xunit-project.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="A1Testsuite.Implementierungen.a_solo_3_Tests" name="TF_A_F5_1_Sitzplan_mit_beidseitigen_Seitengaengen" />
+    </UnitTest>
+    <UnitTest name="A1Testsuite.Implementierungen.a_solo_3_Tests.TF_A_F13_2_Ablehnung_bei_bereits_belegtem_Platz" storage="/home/alex/dev/bachelor/bmad-vergleichsstudie/a1-testsuite/xunit-project/bin/debug/net10.0/xunit-project.dll" id="be85ef5b-4cdf-1b38-6eb7-5f0e31de1ae3">
+      <Execution id="a7eec3aa-6b44-4367-b0df-c6b2a5299c71" />
+      <TestMethod codeBase="/home/alex/dev/Bachelor/bmad-vergleichsstudie/a1-testsuite/xunit-project/bin/Debug/net10.0/xunit-project.dll" adapterTypeName="executor://xunit/VsTestRunner3/netcore/" className="A1Testsuite.Implementierungen.a_solo_3_Tests" name="TF_A_F13_2_Ablehnung_bei_bereits_belegtem_Platz" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="608bf636-6e84-3b0c-e3c3-e42d1a58bd80" executionId="23f367d2-ec66-45a3-a28b-d55a0f7abf8d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="34196ca1-4b5b-8bfc-219d-2cce8151904f" executionId="cd57a2d9-7f7d-4950-850c-4fe4bc5ba822" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="234f78f0-21c2-0a03-d736-1a8de87abb2b" executionId="b309606a-d4d2-44b8-8dc2-03891a58f9c2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7cf4a972-7517-9882-f9c8-9b9198a0d312" executionId="528c6b91-00bb-4d9e-838f-2acc92af3270" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7a793b9a-fd90-6e67-7767-b616ed2dad26" executionId="2c5e8064-5431-41ea-9c62-c20f2532deb9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="baa945e5-801c-2a0a-45f2-940d25489d15" executionId="399affaa-c2be-4358-9cc9-18acf87ef1b8" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="fc19c0a9-260c-f225-dd10-c8b77d760f86" executionId="4267143c-8fc4-4f80-af16-5185e99551f2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="572be738-338e-5070-fc95-5cc7eedd96bf" executionId="316c27a7-4553-4bf3-bc81-a0d00ccd566c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9b971b25-a48b-8194-afe1-3ad0eb23ac2b" executionId="694c4ccf-73ce-41b5-952b-08740623a89b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2ea2a097-9759-f8a1-4352-17641d6fd69f" executionId="18724201-6db9-473d-a559-982750892043" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="dad8d499-ce1a-98bf-2bcb-8438e31e1d24" executionId="6158caaa-21b2-415a-8017-0a38a4792836" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="be85ef5b-4cdf-1b38-6eb7-5f0e31de1ae3" executionId="a7eec3aa-6b44-4367-b0df-c6b2a5299c71" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="cb8d1c86-8508-f890-88a2-86cc1c4b60ec" executionId="86efec51-3955-4f50-bc8f-5e27dd8af3ad" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="13" executed="13" passed="13" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v3.1.5+1b188a7b0a (64-bit .NET 10.0.11)
+[xUnit.net 00:00:00.09]   Discovering: xunit-project
+[xUnit.net 00:00:00.21]   Discovered:  xunit-project
+[xUnit.net 00:00:00.30]   Starting:    xunit-project
+[xUnit.net 00:00:00.67]   Finished:    xunit-project (ID = '330f316446b6846cebb4bbd40aeeffc0d3c832fa1513aa6723e5d8647986172a')
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>

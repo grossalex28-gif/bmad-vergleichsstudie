@@ -40,3 +40,22 @@ __pycache__/
 # Vom Harness entfernte, veraltete Verzeichnisinhalte, zum manuellen Loeschen
 # vorgemerkt (siehe Hinweis in der jeweiligen Unterhaltung).
 _to_delete/
+
+# SonarQube-Zugangsdaten (lokal, nicht versionieren)
+.env.sonarqube
+sonar-ergebnisse/*.token
+
+# SonarScanner-Arbeitsverzeichnisse (Cache/Report je Scan-Aufruf), ueberall im
+# Baum -- weder Quellcode noch Analyseergebnis, wird bei jedem erneuten Lauf
+# neu erzeugt. sonar-ergebnisse/*.json (die eigentlichen Kennzahlen) bleiben
+# davon unberuehrt und werden weiterhin versioniert.
+**/.sonarqube/
+**/.scannerwork/
+
+# .NET-Build-Ausgabe der A1-Akzeptanztest-Suite (analog zu runs/**/bin|obj/)
+a1-testsuite/**/bin/
+a1-testsuite/**/obj/
+
+# SonarQube User-Token, falls lokal in einer eigenen Datei abgelegt (siehe
+# docs/SonarQube_Setup.md Abschnitt 3) -- analog zu .env.sonarqube
+.env.sonar-token

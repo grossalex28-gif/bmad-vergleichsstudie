@@ -1,0 +1,94 @@
+{"header" : {
+  "cloc_url"           : "github.com/AlDanial/cloc",
+  "cloc_version"       : "1.98",
+  "elapsed_seconds"    : 0.0585098266601562,
+  "n_files"            : 328,
+  "n_lines"            : 27623,
+  "files_per_second"   : 5605.89594471248,
+  "lines_per_second"   : 472108.730734124,
+  "report_file"        : "/home/alex/dev/Bachelor/bmad-vergleichsstudie/cloc-ergebnisse/projektB_vollstaendig.json"},
+"C#" :{
+  "nFiles": 93,
+  "blank": 1103,
+  "comment": 1398,
+  "code": 5653},
+"TypeScript" :{
+  "nFiles": 70,
+  "blank": 614,
+  "comment": 256,
+  "code": 3229},
+"C# Designer" :{
+  "nFiles": 1,
+  "blank": 2176,
+  "comment": 2081,
+  "code": 2749},
+"JavaScript" :{
+  "nFiles": 41,
+  "blank": 3,
+  "comment": 245,
+  "code": 2594},
+"HTML" :{
+  "nFiles": 37,
+  "blank": 116,
+  "comment": 54,
+  "code": 1260},
+"CSS" :{
+  "nFiles": 21,
+  "blank": 113,
+  "comment": 8,
+  "code": 958},
+"JSON" :{
+  "nFiles": 18,
+  "blank": 1,
+  "comment": 0,
+  "code": 865},
+"Visual Studio Solution" :{
+  "nFiles": 3,
+  "blank": 17,
+  "comment": 3,
+  "code": 721},
+"MSBuild script" :{
+  "nFiles": 6,
+  "blank": 30,
+  "comment": 0,
+  "code": 423},
+"XML" :{
+  "nFiles": 14,
+  "blank": 10,
+  "comment": 22,
+  "code": 345},
+"XAML" :{
+  "nFiles": 11,
+  "blank": 6,
+  "comment": 3,
+  "code": 276},
+"Markdown" :{
+  "nFiles": 5,
+  "blank": 60,
+  "comment": 0,
+  "code": 126},
+"Text" :{
+  "nFiles": 2,
+  "blank": 16,
+  "comment": 0,
+  "code": 53},
+"SVG" :{
+  "nFiles": 4,
+  "blank": 0,
+  "comment": 0,
+  "code": 16},
+"Dockerfile" :{
+  "nFiles": 1,
+  "blank": 6,
+  "comment": 0,
+  "code": 13},
+"YAML" :{
+  "nFiles": 1,
+  "blank": 0,
+  "comment": 0,
+  "code": 1},
+"SUM": {
+  "blank": 4271,
+  "comment": 4070,
+  "code": 19282,
+  "nFiles": 328} }

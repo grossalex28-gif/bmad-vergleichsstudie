@@ -1,0 +1,733 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "seed-a-backend.Api | v1",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5001/"
+    }
+  ],
+  "paths": {
+    "/api/buchungen": {
+      "post": {
+        "tags": [
+          "Buchungen"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBuchungRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBuchungRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBuchungRequestDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuchungDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuchungDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuchungDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/buchungen/{referenz}": {
+      "get": {
+        "tags": [
+          "Buchungen"
+        ],
+        "parameters": [
+          {
+            "name": "referenz",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuchungDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuchungDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuchungDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/buchungen/{referenz}/stornieren": {
+      "post": {
+        "tags": [
+          "Buchungen"
+        ],
+        "parameters": [
+          {
+            "name": "referenz",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuchungDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuchungDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuchungDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/spielstaetten": {
+      "get": {
+        "tags": [
+          "Spielstaetten"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SpielstaetteListItemDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SpielstaetteListItemDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SpielstaetteListItemDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/veranstaltungen": {
+      "get": {
+        "tags": [
+          "Veranstaltungen"
+        ],
+        "parameters": [
+          {
+            "name": "von",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "bis",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "spielstaetteId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/VeranstaltungListItemDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/VeranstaltungListItemDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/VeranstaltungListItemDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/veranstaltungen/{id}": {
+      "get": {
+        "tags": [
+          "Veranstaltungen"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/VeranstaltungDetailDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VeranstaltungDetailDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VeranstaltungDetailDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/veranstaltungen/{id}/sitzplan": {
+      "get": {
+        "tags": [
+          "Veranstaltungen"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SitzplanDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SitzplanDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SitzplanDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BuchungDto": {
+        "required": [
+          "referenz",
+          "veranstaltungId",
+          "veranstaltungTitel",
+          "veranstaltungZeitpunkt",
+          "name",
+          "email",
+          "erstelltAm",
+          "status",
+          "sitzplaetze",
+          "gesamtpreis"
+        ],
+        "type": "object",
+        "properties": {
+          "referenz": {
+            "type": "string"
+          },
+          "veranstaltungId": {
+            "type": "string"
+          },
+          "veranstaltungTitel": {
+            "type": "string"
+          },
+          "veranstaltungZeitpunkt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "erstelltAm": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "$ref": "#/components/schemas/BuchungStatus"
+          },
+          "sitzplaetze": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BuchungspositionDto"
+            }
+          },
+          "gesamtpreis": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double"
+          }
+        }
+      },
+      "BuchungspositionDto": {
+        "required": [
+          "reihe",
+          "spalte",
+          "preiskategorieId",
+          "preiskategorieName",
+          "preis"
+        ],
+        "type": "object",
+        "properties": {
+          "reihe": {
+            "type": "string"
+          },
+          "spalte": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "preiskategorieId": {
+            "type": "string"
+          },
+          "preiskategorieName": {
+            "type": "string"
+          },
+          "preis": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double"
+          }
+        }
+      },
+      "BuchungStatus": {
+        "type": "integer"
+      },
+      "CreateBuchungRequestDto": {
+        "required": [
+          "veranstaltungId",
+          "name",
+          "email",
+          "sitzplaetze"
+        ],
+        "type": "object",
+        "properties": {
+          "veranstaltungId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "sitzplaetze": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SitzplatzAuswahlDto"
+            }
+          }
+        }
+      },
+      "PreiskategorieDto": {
+        "required": [
+          "id",
+          "name",
+          "preis"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "preis": {
+            "pattern": "^-?(?:0|[1-9]\\d*)(?:\\.\\d+)?$",
+            "type": [
+              "number",
+              "string"
+            ],
+            "format": "double"
+          }
+        }
+      },
+      "RaumInfoDto": {
+        "required": [
+          "id",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "RaumSitzplanDto": {
+        "required": [
+          "reihen",
+          "spalten",
+          "gangSpalten",
+          "gangHinweis"
+        ],
+        "type": "object",
+        "properties": {
+          "reihen": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "spalten": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "gangSpalten": {
+            "type": "array",
+            "items": {
+              "pattern": "^-?(?:0|[1-9]\\d*)$",
+              "type": [
+                "integer",
+                "string"
+              ],
+              "format": "int32"
+            }
+          },
+          "gangHinweis": {
+            "type": [
+              "null",
+              "string"
+            ]
+          }
+        }
+      },
+      "SitzplanDto": {
+        "required": [
+          "veranstaltungId",
+          "raum",
+          "sitzplaetze",
+          "preiskategorien"
+        ],
+        "type": "object",
+        "properties": {
+          "veranstaltungId": {
+            "type": "string"
+          },
+          "raum": {
+            "$ref": "#/components/schemas/RaumSitzplanDto"
+          },
+          "sitzplaetze": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SitzplatzDto"
+            }
+          },
+          "preiskategorien": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PreiskategorieDto"
+            }
+          }
+        }
+      },
+      "SitzplatzAuswahlDto": {
+        "required": [
+          "reihe",
+          "spalte",
+          "preiskategorieId"
+        ],
+        "type": "object",
+        "properties": {
+          "reihe": {
+            "type": "string"
+          },
+          "spalte": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "preiskategorieId": {
+            "type": "string"
+          }
+        }
+      },
+      "SitzplatzDto": {
+        "required": [
+          "reihe",
+          "spalte",
+          "typ",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "reihe": {
+            "type": "string"
+          },
+          "spalte": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "typ": {
+            "$ref": "#/components/schemas/SitzplatzTyp"
+          },
+          "status": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/SitzplatzStatus"
+              }
+            ]
+          }
+        }
+      },
+      "SitzplatzStatus": {
+        "type": "integer"
+      },
+      "SitzplatzTyp": {
+        "type": "integer"
+      },
+      "SpielstaetteListItemDto": {
+        "required": [
+          "id",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "VeranstaltungDetailDto": {
+        "required": [
+          "id",
+          "titel",
+          "beschreibung",
+          "zeitpunkt",
+          "dauerMinuten",
+          "altersfreigabe",
+          "spielstaette",
+          "raum",
+          "preiskategorien"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "titel": {
+            "type": "string"
+          },
+          "beschreibung": {
+            "type": "string"
+          },
+          "zeitpunkt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dauerMinuten": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "altersfreigabe": {
+            "pattern": "^-?(?:0|[1-9]\\d*)$",
+            "type": [
+              "integer",
+              "string"
+            ],
+            "format": "int32"
+          },
+          "spielstaette": {
+            "$ref": "#/components/schemas/SpielstaetteListItemDto"
+          },
+          "raum": {
+            "$ref": "#/components/schemas/RaumInfoDto"
+          },
+          "preiskategorien": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PreiskategorieDto"
+            }
+          }
+        }
+      },
+      "VeranstaltungListItemDto": {
+        "required": [
+          "id",
+          "titel",
+          "spielstaetteId",
+          "spielstaetteName",
+          "zeitpunkt"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "titel": {
+            "type": "string"
+          },
+          "spielstaetteId": {
+            "type": "string"
+          },
+          "spielstaetteName": {
+            "type": "string"
+          },
+          "zeitpunkt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Buchungen"
+    },
+    {
+      "name": "Spielstaetten"
+    },
+    {
+      "name": "Veranstaltungen"
+    }
+  ]
+}

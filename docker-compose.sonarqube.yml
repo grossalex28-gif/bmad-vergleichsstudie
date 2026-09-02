@@ -1,0 +1,55 @@
+# SonarQube-Instanz fuer die Erhebung von A3, A5, A6, A7, A8.
+# Version eingefroren am 01.09.2026 (siehe docs/SonarQube_Setup.md):
+#   SonarQube Community Build 26.8.0.126808 (Docker-Tag exakt gepinnt)
+#   PostgreSQL 16 (von SonarQube offiziell unterstuetzt; H2/eingebettet ist
+#   laut Sonar-Dokumentation nur fuer Kurz-Evaluierung gedacht, nicht fuer
+#   eine echte Erhebung mit 12 Laeufen + 2 Baselines).
+#
+# Vor dem ersten Start auf dem Host (nicht im Container!) einmalig setzen,
+# sonst startet der eingebettete Elasticsearch-Prozess nicht:
+#   sudo sysctl -w vm.max_map_count=524288
+#   sudo sysctl -w fs.file-max=131072
+# Fuer Dauerhaftigkeit in /etc/sysctl.conf bzw. /etc/sysctl.d/ eintragen.
+#
+# Start:   docker compose -f docker-compose.sonarqube.yml --env-file .env.sonarqube up -d
+# Login:   http://localhost:9000  (Erstanmeldung admin/admin, danach Passwort aendern)
+
+services:
+  sonarqube-db:
+    image: postgres:16
+    container_name: bmad-sonar-db
+    environment:
+      POSTGRES_USER: ${SONAR_DB_USER:-sonar}
+      POSTGRES_PASSWORD: ${SONAR_DB_PASSWORD:?bitte in .env.sonarqube setzen}
+      POSTGRES_DB: ${SONAR_DB_NAME:-sonarqube}
+    volumes:
+      - sonar_db_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  sonarqube:
+    image: sonarqube:26.8.0.126808-community
+    container_name: bmad-sonarqube
+    depends_on:
+      - sonarqube-db
+    environment:
+      SONAR_JDBC_URL: jdbc:postgresql://sonarqube-db:5432/${SONAR_DB_NAME:-sonarqube}
+      SONAR_JDBC_USERNAME: ${SONAR_DB_USER:-sonar}
+      SONAR_JDBC_PASSWORD: ${SONAR_DB_PASSWORD:?bitte in .env.sonarqube setzen}
+    ports:
+      - "9000:9000"
+    ulimits:
+      nofile:
+        soft: 131072
+        hard: 131072
+      nproc: 8192
+    volumes:
+      - sonar_data:/opt/sonarqube/data
+      - sonar_extensions:/opt/sonarqube/extensions
+      - sonar_logs:/opt/sonarqube/logs
+    restart: unless-stopped
+
+volumes:
+  sonar_db_data:
+  sonar_data:
+  sonar_extensions:
+  sonar_logs:
