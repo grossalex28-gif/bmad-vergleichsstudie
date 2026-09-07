@@ -1,0 +1,24 @@
+{
+  "projekt_key": "bmad-vgl-a-bmad-01-backend",
+  "sonarqube_host": "http://localhost:9000",
+  "measures": {
+    "complexity": "255",
+    "duplicated_lines_density": "0.0",
+    "code_smells": "10",
+    "functions": "194",
+    "cognitive_complexity": "75",
+    "duplicated_blocks": "0",
+    "security_rating": "2.0",
+    "ncloc": "781",
+    "vulnerabilities": "1",
+    "sqale_debt_ratio": "0.2",
+    "sqale_index": "48"
+  },
+  "vulnerabilities_nach_schweregrad": {
+    "MINOR": 1,
+    "INFO": 0,
+    "MAJOR": 0,
+    "CRITICAL": 0,
+    "BLOCKER": 0
+  }
+}

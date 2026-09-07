@@ -1,0 +1,24 @@
+{
+  "projekt_key": "bmad-vgl-baseline-a-vollstaendig-frontend",
+  "sonarqube_host": "http://localhost:9000",
+  "measures": {
+    "complexity": "739",
+    "duplicated_lines_density": "5.1",
+    "code_smells": "352",
+    "functions": "443",
+    "cognitive_complexity": "427",
+    "duplicated_blocks": "42",
+    "security_rating": "1.0",
+    "ncloc": "6266",
+    "vulnerabilities": "0",
+    "sqale_debt_ratio": "0.9",
+    "sqale_index": "1671"
+  },
+  "vulnerabilities_nach_schweregrad": {
+    "INFO": 0,
+    "MINOR": 0,
+    "MAJOR": 0,
+    "CRITICAL": 0,
+    "BLOCKER": 0
+  }
+}

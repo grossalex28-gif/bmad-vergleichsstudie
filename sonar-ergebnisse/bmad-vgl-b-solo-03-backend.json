@@ -1,0 +1,24 @@
+{
+  "projekt_key": "bmad-vgl-b-solo-03-backend",
+  "sonarqube_host": "http://localhost:9000",
+  "measures": {
+    "complexity": "240",
+    "duplicated_lines_density": "0.0",
+    "code_smells": "7",
+    "functions": "188",
+    "cognitive_complexity": "44",
+    "duplicated_blocks": "0",
+    "security_rating": "1.0",
+    "ncloc": "746",
+    "vulnerabilities": "0",
+    "sqale_debt_ratio": "0.1",
+    "sqale_index": "20"
+  },
+  "vulnerabilities_nach_schweregrad": {
+    "INFO": 0,
+    "MINOR": 0,
+    "MAJOR": 0,
+    "CRITICAL": 0,
+    "BLOCKER": 0
+  }
+}

@@ -1,0 +1,864 @@
+{
+  "zellen_rohwerte": {
+    "A-bmad-01": {
+      "ncloc_backend": 781,
+      "ncloc_frontend": 2190,
+      "ncloc_gesamt": 2971,
+      "A3_mittlere_komplexitaet_je_funktion": 1.5617,
+      "A5_sqale_debt_ratio_kombiniert": 0.1263,
+      "A6_duplicated_lines_density_kombiniert": 0.0,
+      "A7_code_smells_je_1000_ncloc": 5.3854,
+      "A8_eigen_je_1000_ncloc": 0.3366,
+      "A8_eigen_schweregrade": {
+        "INFO": 0,
+        "MINOR": 1,
+        "MAJOR": 0,
+        "BLOCKER": 0,
+        "CRITICAL": 0
+      },
+      "A8_abhaengig_je_1000_ncloc": 1.0098,
+      "A8_abhaengig_schweregrade": {
+        "dotnet": {
+          "Low": 0,
+          "Moderate": 0,
+          "High": 1,
+          "Critical": 0
+        },
+        "npm": {
+          "info": 0,
+          "low": 0,
+          "moderate": 1,
+          "high": 1,
+          "critical": 0
+        }
+      }
+    },
+    "A-bmad-02": {
+      "ncloc_backend": 972,
+      "ncloc_frontend": 1908,
+      "ncloc_gesamt": 2880,
+      "A3_mittlere_komplexitaet_je_funktion": 1.7673,
+      "A5_sqale_debt_ratio_kombiniert": 0.1338,
+      "A6_duplicated_lines_density_kombiniert": 0.0,
+      "A7_code_smells_je_1000_ncloc": 6.25,
+      "A8_eigen_je_1000_ncloc": 0.0,
+      "A8_eigen_schweregrade": {
+        "INFO": 0,
+        "MINOR": 0,
+        "MAJOR": 0,
+        "BLOCKER": 0,
+        "CRITICAL": 0
+      },
+      "A8_abhaengig_je_1000_ncloc": 1.0417,
+      "A8_abhaengig_schweregrade": {
+        "dotnet": {
+          "Low": 0,
+          "Moderate": 0,
+          "High": 1,
+          "Critical": 0
+        },
+        "npm": {
+          "info": 0,
+          "low": 0,
+          "moderate": 1,
+          "high": 1,
+          "critical": 0
+        }
+      }
+    },
+    "A-bmad-03": {
+      "ncloc_backend": 944,
+      "ncloc_frontend": 2127,
+      "ncloc_gesamt": 3071,
+      "A3_mittlere_komplexitaet_je_funktion": 1.4691,
+      "A5_sqale_debt_ratio_kombiniert": 0.1844,
+      "A6_duplicated_lines_density_kombiniert": 0.0,
+      "A7_code_smells_je_1000_ncloc": 16.2813,
+      "A8_eigen_je_1000_ncloc": 0.0,
+      "A8_eigen_schweregrade": {
+        "INFO": 0,
+        "MINOR": 0,
+        "MAJOR": 0,
+        "BLOCKER": 0,
+        "CRITICAL": 0
+      },
+      "A8_abhaengig_je_1000_ncloc": 0.9769,
+      "A8_abhaengig_schweregrade": {
+        "dotnet": {
+          "Low": 0,
+          "Moderate": 0,
+          "High": 1,
+          "Critical": 0
+        },
+        "npm": {
+          "info": 0,
+          "low": 0,
+          "moderate": 1,
+          "high": 1,
+          "critical": 0
+        }
+      }
+    },
+    "A-solo-01": {
+      "ncloc_backend": 800,
+      "ncloc_frontend": 1184,
+      "ncloc_gesamt": 1984,
+      "A3_mittlere_komplexitaet_je_funktion": 1.339,
+      "A5_sqale_debt_ratio_kombiniert": 0.0806,
+      "A6_duplicated_lines_density_kombiniert": 0.0,
+      "A7_code_smells_je_1000_ncloc": 5.0403,
+      "A8_eigen_je_1000_ncloc": 0.0,
+      "A8_eigen_schweregrade": {
+        "INFO": 0,
+        "MINOR": 0,
+        "MAJOR": 0,
+        "BLOCKER": 0,
+        "CRITICAL": 0
+      },
+      "A8_abhaengig_je_1000_ncloc": 1.5121,
+      "A8_abhaengig_schweregrade": {
+        "dotnet": {
+          "Low": 0,
+          "Moderate": 0,
+          "High": 1,
+          "Critical": 0
+        },
+        "npm": {
+          "info": 0,
+          "low": 0,
+          "moderate": 1,
+          "high": 1,
+          "critical": 0
+        }
+      }
+    },
+    "A-solo-02": {
+      "ncloc_backend": 810,
+      "ncloc_frontend": 1193,
+      "ncloc_gesamt": 2003,
+      "A3_mittlere_komplexitaet_je_funktion": 1.3319,
+      "A5_sqale_debt_ratio_kombiniert": 0.1,
+      "A6_duplicated_lines_density_kombiniert": 0.0,
+      "A7_code_smells_je_1000_ncloc": 4.4933,
+      "A8_eigen_je_1000_ncloc": 0.0,
+      "A8_eigen_schweregrade": {
+        "INFO": 0,
+        "MINOR": 0,
+        "MAJOR": 0,
+        "BLOCKER": 0,
+        "CRITICAL": 0
+      },
+      "A8_abhaengig_je_1000_ncloc": 1.4978,
+      "A8_abhaengig_schweregrade": {
+        "dotnet": {
+          "Low": 0,
+          "Moderate": 0,
+          "High": 1,
+          "Critical": 0
+        },
+        "npm": {
+          "info": 0,
+          "low": 0,
+          "moderate": 1,
+          "high": 1,
+          "critical": 0
+        }
+      }
+    },
+    "A-solo-03": {
+      "ncloc_backend": 887,
+      "ncloc_frontend": 1335,
+      "ncloc_gesamt": 2222,
+      "A3_mittlere_komplexitaet_je_funktion": 1.4237,
+      "A5_sqale_debt_ratio_kombiniert": 0.1,
+      "A6_duplicated_lines_density_kombiniert": 0.0,
+      "A7_code_smells_je_1000_ncloc": 3.6004,
+      "A8_eigen_je_1000_ncloc": 0.0,
+      "A8_eigen_schweregrade": {
+        "INFO": 0,
+        "MINOR": 0,
+        "MAJOR": 0,
+        "BLOCKER": 0,
+        "CRITICAL": 0
+      },
+      "A8_abhaengig_je_1000_ncloc": 1.3501,
+      "A8_abhaengig_schweregrade": {
+        "dotnet": {
+          "Low": 0,
+          "Moderate": 0,
+          "High": 1,
+          "Critical": 0
+        },
+        "npm": {
+          "info": 0,
+          "low": 0,
+          "moderate": 1,
+          "high": 1,
+          "critical": 0
+        }
+      }
+    },
+    "B-bmad-01": {
+      "ncloc_backend": 1048,
+      "ncloc_frontend": 1271,
+      "ncloc_gesamt": 2319,
+      "A3_mittlere_komplexitaet_je_funktion": 1.3341,
+      "A5_sqale_debt_ratio_kombiniert": 0.0904,
+      "A6_duplicated_lines_density_kombiniert": 0.0,
+      "A7_code_smells_je_1000_ncloc": 4.7434,
+      "A8_eigen_je_1000_ncloc": 0.0,
+      "A8_eigen_schweregrade": {
+        "INFO": 0,
+        "MINOR": 0,
+        "MAJOR": 0,
+        "BLOCKER": 0,
+        "CRITICAL": 0
+      },
+      "A8_abhaengig_je_1000_ncloc": 1.2937,
+      "A8_abhaengig_schweregrade": {
+        "dotnet": {
+          "Low": 0,
+          "Moderate": 0,
+          "High": 1,
+          "Critical": 0
+        },
+        "npm": {
+          "info": 0,
+          "low": 0,
+          "moderate": 1,
+          "high": 1,
+          "critical": 0
+        }
+      }
+    },
+    "B-bmad-02": {
+      "ncloc_backend": 1485,
+      "ncloc_frontend": 1087,
+      "ncloc_gesamt": 2572,
+      "A3_mittlere_komplexitaet_je_funktion": 1.3502,
+      "A5_sqale_debt_ratio_kombiniert": 0.1,
+      "A6_duplicated_lines_density_kombiniert": 0.0,
+      "A7_code_smells_je_1000_ncloc": 7.3872,
+      "A8_eigen_je_1000_ncloc": 0.0,
+      "A8_eigen_schweregrade": {
+        "INFO": 0,
+        "MINOR": 0,
+        "MAJOR": 0,
+        "BLOCKER": 0,
+        "CRITICAL": 0
+      },
+      "A8_abhaengig_je_1000_ncloc": 1.1664,
+      "A8_abhaengig_schweregrade": {
+        "dotnet": {
+          "Low": 0,
+          "Moderate": 0,
+          "High": 1,
+          "Critical": 0
+        },
+        "npm": {
+          "info": 0,
+          "low": 0,
+          "moderate": 1,
+          "high": 1,
+          "critical": 0
+        }
+      }
+    },
+    "B-bmad-03": {
+      "ncloc_backend": 714,
+      "ncloc_frontend": 1052,
+      "ncloc_gesamt": 1766,
+      "A3_mittlere_komplexitaet_je_funktion": 1.5118,
+      "A5_sqale_debt_ratio_kombiniert": 0.0404,
+      "A6_duplicated_lines_density_kombiniert": 0.0,
+      "A7_code_smells_je_1000_ncloc": 5.6625,
+      "A8_eigen_je_1000_ncloc": 0.0,
+      "A8_eigen_schweregrade": {
+        "INFO": 0,
+        "MINOR": 0,
+        "MAJOR": 0,
+        "BLOCKER": 0,
+        "CRITICAL": 0
+      },
+      "A8_abhaengig_je_1000_ncloc": 1.6988,
+      "A8_abhaengig_schweregrade": {
+        "dotnet": {
+          "Low": 0,
+          "Moderate": 0,
+          "High": 1,
+          "Critical": 0
+        },
+        "npm": {
+          "info": 0,
+          "low": 0,
+          "moderate": 1,
+          "high": 1,
+          "critical": 0
+        }
+      }
+    },
+    "B-solo-01": {
+      "ncloc_backend": 740,
+      "ncloc_frontend": 1460,
+      "ncloc_gesamt": 2200,
+      "A3_mittlere_komplexitaet_je_funktion": 1.5331,
+      "A5_sqale_debt_ratio_kombiniert": 0.1345,
+      "A6_duplicated_lines_density_kombiniert": 0.0,
+      "A7_code_smells_je_1000_ncloc": 15.0,
+      "A8_eigen_je_1000_ncloc": 0.0,
+      "A8_eigen_schweregrade": {
+        "INFO": 0,
+        "MINOR": 0,
+        "MAJOR": 0,
+        "BLOCKER": 0,
+        "CRITICAL": 0
+      },
+      "A8_abhaengig_je_1000_ncloc": 1.3636,
+      "A8_abhaengig_schweregrade": {
+        "dotnet": {
+          "Low": 0,
+          "Moderate": 0,
+          "High": 1,
+          "Critical": 0
+        },
+        "npm": {
+          "info": 0,
+          "low": 0,
+          "moderate": 1,
+          "high": 1,
+          "critical": 0
+        }
+      }
+    },
+    "B-solo-02": {
+      "ncloc_backend": 710,
+      "ncloc_frontend": 1475,
+      "ncloc_gesamt": 2185,
+      "A3_mittlere_komplexitaet_je_funktion": 1.5022,
+      "A5_sqale_debt_ratio_kombiniert": 0.065,
+      "A6_duplicated_lines_density_kombiniert": 0.0,
+      "A7_code_smells_je_1000_ncloc": 4.5767,
+      "A8_eigen_je_1000_ncloc": 0.0,
+      "A8_eigen_schweregrade": {
+        "INFO": 0,
+        "MINOR": 0,
+        "MAJOR": 0,
+        "BLOCKER": 0,
+        "CRITICAL": 0
+      },
+      "A8_abhaengig_je_1000_ncloc": 1.373,
+      "A8_abhaengig_schweregrade": {
+        "dotnet": {
+          "Low": 0,
+          "Moderate": 0,
+          "High": 1,
+          "Critical": 0
+        },
+        "npm": {
+          "info": 0,
+          "low": 0,
+          "moderate": 1,
+          "high": 1,
+          "critical": 0
+        }
+      }
+    },
+    "B-solo-03": {
+      "ncloc_backend": 746,
+      "ncloc_frontend": 1454,
+      "ncloc_gesamt": 2200,
+      "A3_mittlere_komplexitaet_je_funktion": 1.3591,
+      "A5_sqale_debt_ratio_kombiniert": 0.0339,
+      "A6_duplicated_lines_density_kombiniert": 0.0,
+      "A7_code_smells_je_1000_ncloc": 3.1818,
+      "A8_eigen_je_1000_ncloc": 0.0,
+      "A8_eigen_schweregrade": {
+        "INFO": 0,
+        "MINOR": 0,
+        "MAJOR": 0,
+        "BLOCKER": 0,
+        "CRITICAL": 0
+      },
+      "A8_abhaengig_je_1000_ncloc": 1.3636,
+      "A8_abhaengig_schweregrade": {
+        "dotnet": {
+          "Low": 0,
+          "Moderate": 0,
+          "High": 1,
+          "Critical": 0
+        },
+        "npm": {
+          "info": 0,
+          "low": 0,
+          "moderate": 1,
+          "high": 1,
+          "critical": 0
+        }
+      }
+    }
+  },
+  "baseline_rohwerte": {
+    "A-modulscharf": {
+      "ncloc_backend": 1795,
+      "ncloc_frontend": 2222,
+      "ncloc_gesamt": 4017,
+      "A3_mittlere_komplexitaet_je_funktion": 1.5436,
+      "A5_sqale_debt_ratio_kombiniert": 0.9872,
+      "A6_duplicated_lines_density_kombiniert": 2.6106,
+      "A7_code_smells_je_1000_ncloc": 51.2821,
+      "A8_eigen_je_1000_ncloc": 4.7299,
+      "A8_eigen_schweregrade": {
+        "INFO": 0,
+        "MINOR": 17,
+        "MAJOR": 2,
+        "BLOCKER": 0,
+        "CRITICAL": 0
+      },
+      "A8_abhaengig_je_1000_ncloc": 51.531,
+      "A8_abhaengig_schweregrade": {
+        "dotnet": {
+          "Low": 0,
+          "Moderate": 14,
+          "High": 23,
+          "Critical": 2
+        },
+        "npm": {
+          "info": 0,
+          "low": 8,
+          "moderate": 35,
+          "high": 85,
+          "critical": 40
+        }
+      }
+    },
+    "A-vollstaendig": {
+      "ncloc_backend": 2872,
+      "ncloc_frontend": 6266,
+      "ncloc_gesamt": 9138,
+      "A3_mittlere_komplexitaet_je_funktion": 1.6328,
+      "A5_sqale_debt_ratio_kombiniert": 0.7743,
+      "A6_duplicated_lines_density_kombiniert": 4.0,
+      "A7_code_smells_je_1000_ncloc": 48.9166,
+      "A8_eigen_je_1000_ncloc": 2.4075,
+      "A8_eigen_schweregrade": {
+        "INFO": 0,
+        "MINOR": 20,
+        "MAJOR": 2,
+        "BLOCKER": 0,
+        "CRITICAL": 0
+      },
+      "A8_abhaengig_je_1000_ncloc": 22.6527,
+      "A8_abhaengig_schweregrade": {
+        "dotnet": {
+          "Low": 0,
+          "Moderate": 14,
+          "High": 23,
+          "Critical": 2
+        },
+        "npm": {
+          "info": 0,
+          "low": 8,
+          "moderate": 35,
+          "high": 85,
+          "critical": 40
+        }
+      }
+    },
+    "B-modulscharf": {
+      "ncloc_backend": 2469,
+      "ncloc_frontend": 2674,
+      "ncloc_gesamt": 5143,
+      "A3_mittlere_komplexitaet_je_funktion": 1.3783,
+      "A5_sqale_debt_ratio_kombiniert": 0.492,
+      "A6_duplicated_lines_density_kombiniert": 0.9601,
+      "A7_code_smells_je_1000_ncloc": 66.887,
+      "A8_eigen_je_1000_ncloc": 0.3889,
+      "A8_eigen_schweregrade": {
+        "INFO": 0,
+        "MINOR": 0,
+        "MAJOR": 2,
+        "BLOCKER": 0,
+        "CRITICAL": 0
+      },
+      "A8_abhaengig_je_1000_ncloc": 43.3599,
+      "A8_abhaengig_schweregrade": {
+        "dotnet": {
+          "Low": 0,
+          "Moderate": 23,
+          "High": 25,
+          "Critical": 2
+        },
+        "npm": {
+          "info": 0,
+          "low": 8,
+          "moderate": 42,
+          "high": 80,
+          "critical": 43
+        }
+      }
+    },
+    "B-vollstaendig": {
+      "ncloc_backend": 3842,
+      "ncloc_frontend": 5453,
+      "ncloc_gesamt": 9295,
+      "A3_mittlere_komplexitaet_je_funktion": 1.3485,
+      "A5_sqale_debt_ratio_kombiniert": 0.5653,
+      "A6_duplicated_lines_density_kombiniert": 0.7133,
+      "A7_code_smells_je_1000_ncloc": 69.6073,
+      "A8_eigen_je_1000_ncloc": 0.6455,
+      "A8_eigen_schweregrade": {
+        "INFO": 0,
+        "MINOR": 1,
+        "MAJOR": 3,
+        "BLOCKER": 2,
+        "CRITICAL": 0
+      },
+      "A8_abhaengig_je_1000_ncloc": 23.9914,
+      "A8_abhaengig_schweregrade": {
+        "dotnet": {
+          "Low": 0,
+          "Moderate": 23,
+          "High": 25,
+          "Critical": 2
+        },
+        "npm": {
+          "info": 0,
+          "low": 8,
+          "moderate": 42,
+          "high": 80,
+          "critical": 43
+        }
+      }
+    }
+  },
+  "zellen_median_iqr": {
+    "A-bmad": {
+      "A3_mittlere_komplexitaet_je_funktion": {
+        "median": 1.5617,
+        "q1": 1.5154,
+        "q3": 1.6645,
+        "iqr": 0.1491,
+        "n": 3
+      },
+      "A5_sqale_debt_ratio_kombiniert": {
+        "median": 0.1338,
+        "q1": 0.13,
+        "q3": 0.1591,
+        "iqr": 0.0291,
+        "n": 3
+      },
+      "A6_duplicated_lines_density_kombiniert": {
+        "median": 0.0,
+        "q1": 0.0,
+        "q3": 0.0,
+        "iqr": 0.0,
+        "n": 3
+      },
+      "A7_code_smells_je_1000_ncloc": {
+        "median": 6.25,
+        "q1": 5.8177,
+        "q3": 11.2657,
+        "iqr": 5.448,
+        "n": 3
+      },
+      "A8_eigen_je_1000_ncloc": {
+        "median": 0.0,
+        "q1": 0.0,
+        "q3": 0.1683,
+        "iqr": 0.1683,
+        "n": 3
+      },
+      "A8_abhaengig_je_1000_ncloc": {
+        "median": 1.0098,
+        "q1": 0.9933,
+        "q3": 1.0257,
+        "iqr": 0.0324,
+        "n": 3
+      }
+    },
+    "A-solo": {
+      "A3_mittlere_komplexitaet_je_funktion": {
+        "median": 1.339,
+        "q1": 1.3355,
+        "q3": 1.3813,
+        "iqr": 0.0459,
+        "n": 3
+      },
+      "A5_sqale_debt_ratio_kombiniert": {
+        "median": 0.1,
+        "q1": 0.0903,
+        "q3": 0.1,
+        "iqr": 0.0097,
+        "n": 3
+      },
+      "A6_duplicated_lines_density_kombiniert": {
+        "median": 0.0,
+        "q1": 0.0,
+        "q3": 0.0,
+        "iqr": 0.0,
+        "n": 3
+      },
+      "A7_code_smells_je_1000_ncloc": {
+        "median": 4.4933,
+        "q1": 4.0469,
+        "q3": 4.7668,
+        "iqr": 0.7199,
+        "n": 3
+      },
+      "A8_eigen_je_1000_ncloc": {
+        "median": 0.0,
+        "q1": 0.0,
+        "q3": 0.0,
+        "iqr": 0.0,
+        "n": 3
+      },
+      "A8_abhaengig_je_1000_ncloc": {
+        "median": 1.4978,
+        "q1": 1.424,
+        "q3": 1.505,
+        "iqr": 0.081,
+        "n": 3
+      }
+    },
+    "B-bmad": {
+      "A3_mittlere_komplexitaet_je_funktion": {
+        "median": 1.3502,
+        "q1": 1.3422,
+        "q3": 1.431,
+        "iqr": 0.0888,
+        "n": 3
+      },
+      "A5_sqale_debt_ratio_kombiniert": {
+        "median": 0.0904,
+        "q1": 0.0654,
+        "q3": 0.0952,
+        "iqr": 0.0298,
+        "n": 3
+      },
+      "A6_duplicated_lines_density_kombiniert": {
+        "median": 0.0,
+        "q1": 0.0,
+        "q3": 0.0,
+        "iqr": 0.0,
+        "n": 3
+      },
+      "A7_code_smells_je_1000_ncloc": {
+        "median": 5.6625,
+        "q1": 5.2029,
+        "q3": 6.5248,
+        "iqr": 1.3219,
+        "n": 3
+      },
+      "A8_eigen_je_1000_ncloc": {
+        "median": 0.0,
+        "q1": 0.0,
+        "q3": 0.0,
+        "iqr": 0.0,
+        "n": 3
+      },
+      "A8_abhaengig_je_1000_ncloc": {
+        "median": 1.2937,
+        "q1": 1.2301,
+        "q3": 1.4963,
+        "iqr": 0.2662,
+        "n": 3
+      }
+    },
+    "B-solo": {
+      "A3_mittlere_komplexitaet_je_funktion": {
+        "median": 1.5022,
+        "q1": 1.4306,
+        "q3": 1.5176,
+        "iqr": 0.087,
+        "n": 3
+      },
+      "A5_sqale_debt_ratio_kombiniert": {
+        "median": 0.065,
+        "q1": 0.0495,
+        "q3": 0.0998,
+        "iqr": 0.0503,
+        "n": 3
+      },
+      "A6_duplicated_lines_density_kombiniert": {
+        "median": 0.0,
+        "q1": 0.0,
+        "q3": 0.0,
+        "iqr": 0.0,
+        "n": 3
+      },
+      "A7_code_smells_je_1000_ncloc": {
+        "median": 4.5767,
+        "q1": 3.8792,
+        "q3": 9.7883,
+        "iqr": 5.9091,
+        "n": 3
+      },
+      "A8_eigen_je_1000_ncloc": {
+        "median": 0.0,
+        "q1": 0.0,
+        "q3": 0.0,
+        "iqr": 0.0,
+        "n": 3
+      },
+      "A8_abhaengig_je_1000_ncloc": {
+        "median": 1.3636,
+        "q1": 1.3636,
+        "q3": 1.3683,
+        "iqr": 0.0047,
+        "n": 3
+      }
+    }
+  },
+  "mann_whitney_cliffs_delta_bmad_vs_solo": {
+    "A3_mittlere_komplexitaet_je_funktion": {
+      "U": 24.0,
+      "U_min": 12.0,
+      "p_exakt_zweiseitig": 0.39394,
+      "kombinationen_geprueft": 924,
+      "cliffs_delta": 0.3333,
+      "bmad_n": 6,
+      "solo_n": 6,
+      "bmad_werte": [
+        1.5617,
+        1.7673,
+        1.4691,
+        1.3341,
+        1.3502,
+        1.5118
+      ],
+      "solo_werte": [
+        1.339,
+        1.3319,
+        1.4237,
+        1.5331,
+        1.5022,
+        1.3591
+      ]
+    },
+    "A5_sqale_debt_ratio_kombiniert": {
+      "U": 24.0,
+      "U_min": 12.0,
+      "p_exakt_zweiseitig": 0.38961,
+      "kombinationen_geprueft": 924,
+      "cliffs_delta": 0.3333,
+      "bmad_n": 6,
+      "solo_n": 6,
+      "bmad_werte": [
+        0.1263,
+        0.1338,
+        0.1844,
+        0.0904,
+        0.1,
+        0.0404
+      ],
+      "solo_werte": [
+        0.0806,
+        0.1,
+        0.1,
+        0.1345,
+        0.065,
+        0.0339
+      ]
+    },
+    "A6_duplicated_lines_density_kombiniert": {
+      "U": 18.0,
+      "U_min": 18.0,
+      "p_exakt_zweiseitig": 1.0,
+      "kombinationen_geprueft": 924,
+      "cliffs_delta": 0.0,
+      "bmad_n": 6,
+      "solo_n": 6,
+      "bmad_werte": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "solo_werte": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "A7_code_smells_je_1000_ncloc": {
+      "U": 30.0,
+      "U_min": 6.0,
+      "p_exakt_zweiseitig": 0.06494,
+      "kombinationen_geprueft": 924,
+      "cliffs_delta": 0.6667,
+      "bmad_n": 6,
+      "solo_n": 6,
+      "bmad_werte": [
+        5.3854,
+        6.25,
+        16.2813,
+        4.7434,
+        7.3872,
+        5.6625
+      ],
+      "solo_werte": [
+        5.0403,
+        4.4933,
+        3.6004,
+        15.0,
+        4.5767,
+        3.1818
+      ]
+    },
+    "A8_eigen_je_1000_ncloc": {
+      "U": 21.0,
+      "U_min": 15.0,
+      "p_exakt_zweiseitig": 1.0,
+      "kombinationen_geprueft": 924,
+      "cliffs_delta": 0.1667,
+      "bmad_n": 6,
+      "solo_n": 6,
+      "bmad_werte": [
+        0.3366,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "solo_werte": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "A8_abhaengig_je_1000_ncloc": {
+      "U": 6.0,
+      "U_min": 6.0,
+      "p_exakt_zweiseitig": 0.05844,
+      "kombinationen_geprueft": 924,
+      "cliffs_delta": -0.6667,
+      "bmad_n": 6,
+      "solo_n": 6,
+      "bmad_werte": [
+        1.0098,
+        1.0417,
+        0.9769,
+        1.2937,
+        1.1664,
+        1.6988
+      ],
+      "solo_werte": [
+        1.5121,
+        1.4978,
+        1.3501,
+        1.3636,
+        1.373,
+        1.3636
+      ]
+    }
+  }
+}

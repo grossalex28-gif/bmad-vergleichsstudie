@@ -1,0 +1,82 @@
+  Determining projects to restore...
+/usr/share/dotnet/sdk/10.0.111/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.EolTargetFrameworks.targets(32,5): warning NETSDK1138: The target framework 'netcoreapp2.1' is out of support and will not receive security updates in the future. Please refer to https://aka.ms/dotnet-core-support for more information about the support policy. [/home/alex/dev/Bachelor/baseline/Godsend/Godsend/Godsend.csproj]
+/usr/share/dotnet/sdk/10.0.111/Sdks/Microsoft.NET.Sdk/targets/Microsoft.NET.EolTargetFrameworks.targets(32,5): warning NETSDK1138: The target framework 'netcoreapp2.1' is out of support and will not receive security updates in the future. Please refer to https://aka.ms/dotnet-core-support for more information about the support policy. [/home/alex/dev/Bachelor/baseline/Godsend/Godsend/Godsend.csproj]
+/home/alex/dev/Bachelor/baseline/Godsend/Godsend/Godsend.csproj : warning NU1902: Package 'Microsoft.AspNetCore.App' 2.1.2 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-23cv-jh4v-vffm
+/home/alex/dev/Bachelor/baseline/Godsend/Godsend/Godsend.csproj : warning NU1903: Package 'Microsoft.AspNetCore.App' 2.1.2 has a known high severity vulnerability, https://github.com/advisories/GHSA-655q-9gvg-q4cm
+/home/alex/dev/Bachelor/baseline/Godsend/Godsend/Godsend.csproj : warning NU1903: Package 'Microsoft.AspNetCore.App' 2.1.2 has a known high severity vulnerability, https://github.com/advisories/GHSA-6px8-22w5-w334
+/home/alex/dev/Bachelor/baseline/Godsend/Godsend/Godsend.csproj : warning NU1903: Package 'Microsoft.AspNetCore.App' 2.1.2 has a known high severity vulnerability, https://github.com/advisories/GHSA-f8qx-mjcq-wfgx
+/home/alex/dev/Bachelor/baseline/Godsend/Godsend/Godsend.csproj : warning NU1903: Package 'Microsoft.AspNetCore.App' 2.1.2 has a known high severity vulnerability, https://github.com/advisories/GHSA-hxrm-9w7p-39cc
+/home/alex/dev/Bachelor/baseline/Godsend/Godsend/Godsend.csproj : warning NU1903: Package 'Microsoft.AspNetCore.App' 2.1.2 has a known high severity vulnerability, https://github.com/advisories/GHSA-j378-6mmw-hqfr
+/home/alex/dev/Bachelor/baseline/Godsend/Godsend/Godsend.csproj : warning NU1902: Package 'Microsoft.AspNetCore.App' 2.1.2 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-prrf-397v-83xh
+/home/alex/dev/Bachelor/baseline/Godsend/Godsend/Godsend.csproj : warning NU1903: Package 'Microsoft.AspNetCore.SignalR.Protocols.MessagePack' 1.0.3 has a known high severity vulnerability, https://github.com/advisories/GHSA-4jxx-4qxw-prxm
+/home/alex/dev/Bachelor/baseline/Godsend/Godsend/Godsend.csproj : warning NU1903: Package 'Microsoft.NETCore.App' 2.1.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-2xjx-v99w-gqf3
+/home/alex/dev/Bachelor/baseline/Godsend/Godsend/Godsend.csproj : warning NU1902: Package 'Microsoft.NETCore.App' 2.1.0 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-3gp9-h8hw-pxpw
+/home/alex/dev/Bachelor/baseline/Godsend/Godsend/Godsend.csproj : warning NU1903: Package 'Microsoft.NETCore.App' 2.1.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-3w5p-jhp5-c29q
+/home/alex/dev/Bachelor/baseline/Godsend/Godsend/Godsend.csproj : warning NU1902: Package 'Microsoft.NETCore.App' 2.1.0 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-5633-f33j-c6f7
+/home/alex/dev/Bachelor/baseline/Godsend/Godsend/Godsend.csproj : warning NU1903: Package 'Microsoft.NETCore.App' 2.1.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-6px8-22w5-w334
+/home/alex/dev/Bachelor/baseline/Godsend/Godsend/Godsend.csproj : warning NU1903: Package 'Microsoft.NETCore.App' 2.1.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-g5vf-38cp-4px9
+/home/alex/dev/Bachelor/baseline/Godsend/Godsend/Godsend.csproj : warning NU1902: Package 'Microsoft.NETCore.App' 2.1.0 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-vgwq-hfqc-58wv
+/home/alex/dev/Bachelor/baseline/Godsend/Godsend/Godsend.csproj : warning NU1902: Package 'Microsoft.NETCore.App' 2.1.0 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-x5qj-9vmx-7g6g
+/home/alex/dev/Bachelor/baseline/Godsend/Godsend/Godsend.csproj : warning NU1903: Package 'Newtonsoft.Json' 11.0.2 has a known high severity vulnerability, https://github.com/advisories/GHSA-5crp-9r3c-p9vr
+  Restored /home/alex/dev/Bachelor/baseline/Godsend/Godsend/Godsend.csproj (in 8.01 sec).
+
+The following sources were used:
+   https://api.nuget.org/v3/index.json
+
+Project `Godsend` has the following vulnerable packages
+   [netcoreapp2.1]: 
+   Top-level Package                                            Requested   Resolved   Severity   Advisory URL                                     
+   > Microsoft.AspNetCore.App                                   2.1.2       2.1.2      High       https://github.com/advisories/GHSA-j378-6mmw-hqfr
+                                                                                       High       https://github.com/advisories/GHSA-655q-9gvg-q4cm
+                                                                                       Moderate   https://github.com/advisories/GHSA-23cv-jh4v-vffm
+                                                                                       Moderate   https://github.com/advisories/GHSA-prrf-397v-83xh
+                                                                                       High       https://github.com/advisories/GHSA-6px8-22w5-w334
+                                                                                       High       https://github.com/advisories/GHSA-hxrm-9w7p-39cc
+                                                                                       High       https://github.com/advisories/GHSA-f8qx-mjcq-wfgx
+   > Microsoft.AspNetCore.SignalR.Protocols.MessagePack         1.0.3       1.0.3      High       https://github.com/advisories/GHSA-4jxx-4qxw-prxm
+   > Microsoft.NETCore.App                                (A)   [2.1.0, )   2.1.0      Moderate   https://github.com/advisories/GHSA-5633-f33j-c6f7
+                                                                                       High       https://github.com/advisories/GHSA-6px8-22w5-w334
+                                                                                       Moderate   https://github.com/advisories/GHSA-x5qj-9vmx-7g6g
+                                                                                       High       https://github.com/advisories/GHSA-2xjx-v99w-gqf3
+                                                                                       Moderate   https://github.com/advisories/GHSA-vgwq-hfqc-58wv
+                                                                                       High       https://github.com/advisories/GHSA-g5vf-38cp-4px9
+                                                                                       High       https://github.com/advisories/GHSA-3w5p-jhp5-c29q
+                                                                                       Moderate   https://github.com/advisories/GHSA-3gp9-h8hw-pxpw
+   > Newtonsoft.Json                                            11.0.2      11.0.2     High       https://github.com/advisories/GHSA-5crp-9r3c-p9vr
+
+   Transitive Package                                           Resolved   Severity   Advisory URL                                     
+   > MessagePack                                                1.7.3.4    Moderate   https://github.com/advisories/GHSA-7q36-4xx7-xcxf
+                                                                           Moderate   https://github.com/advisories/GHSA-4qm4-8hg2-g2xm
+                                                                           High       https://github.com/advisories/GHSA-hv8m-jj95-wg3x
+                                                                           High       https://github.com/advisories/GHSA-vh6j-jc39-fggf
+                                                                           Moderate   https://github.com/advisories/GHSA-2f33-pr97-265q
+                                                                           Moderate   https://github.com/advisories/GHSA-v72x-2h86-7f8m
+                                                                           Moderate   https://github.com/advisories/GHSA-2x83-8g95-xh59
+                                                                           Moderate   https://github.com/advisories/GHSA-cj9g-3mj2-g8vv
+                                                                           Moderate   https://github.com/advisories/GHSA-wfr3-xj75-pfwh
+                                                                           Moderate   https://github.com/advisories/GHSA-w567-gjr2-hm5j
+                                                                           Moderate   https://github.com/advisories/GHSA-cxmj-83gh-fp49
+                                                                           Moderate   https://github.com/advisories/GHSA-q2h6-ghwm-5qm8
+                                                                           Moderate   https://github.com/advisories/GHSA-qhmf-xw27-6rqr
+   > Microsoft.AspNetCore.Authentication.JwtBearer              2.1.1      Moderate   https://github.com/advisories/GHSA-q7cg-43mg-qp69
+   > Microsoft.AspNetCore.Http                                  2.1.1      High       https://github.com/advisories/GHSA-hxrm-9w7p-39cc
+   > Microsoft.AspNetCore.Http.Connections                      1.0.2      High       https://github.com/advisories/GHSA-655q-9gvg-q4cm
+                                                                           Moderate   https://github.com/advisories/GHSA-23cv-jh4v-vffm
+   > Microsoft.AspNetCore.Identity                              2.1.2      High       https://github.com/advisories/GHSA-25c8-p796-jg6r
+   > Microsoft.AspNetCore.Server.HttpSys                        2.1.1      Moderate   https://github.com/advisories/GHSA-prrf-397v-83xh
+   > Microsoft.AspNetCore.Server.Kestrel.Core                   2.1.2      Critical   https://github.com/advisories/GHSA-5rrx-jjjq-q2r5
+                                                                           High       https://github.com/advisories/GHSA-242j-2gm6-5rwx
+                                                                           High       https://github.com/advisories/GHSA-6px8-22w5-w334
+   > Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets      2.1.2      High       https://github.com/advisories/GHSA-vmch-3w2x-vhgq
+   > Microsoft.AspNetCore.SpaServices                           2.1.1      Moderate   https://github.com/advisories/GHSA-xr8f-59pp-rxxh
+   > Microsoft.AspNetCore.WebSockets                            2.1.1      High       https://github.com/advisories/GHSA-6px8-22w5-w334
+   > System.Data.SqlClient                                      4.5.1      Moderate   https://github.com/advisories/GHSA-8g2p-5pqh-5jmc
+                                                                           High       https://github.com/advisories/GHSA-98g6-xh36-x2p7
+   > System.IO.Pipelines                                        4.5.0      High       https://github.com/advisories/GHSA-j378-6mmw-hqfr
+   > System.Net.Http                                            4.3.0      High       https://github.com/advisories/GHSA-7jgj-8wvc-jh57
+   > System.Net.WebSockets.WebSocketProtocol                    4.5.1      High       https://github.com/advisories/GHSA-6px8-22w5-w334
+   > System.Security.Cryptography.Xml                           4.5.0      Moderate   https://github.com/advisories/GHSA-vh55-786g-wjwj
+   > System.Text.Encodings.Web                                  4.5.0      Critical   https://github.com/advisories/GHSA-ghhp-997w-qr28
+   > System.Text.RegularExpressions                             4.3.0      High       https://github.com/advisories/GHSA-cmhx-cq75-c4mj
+
+(A) : Auto-referenced package.

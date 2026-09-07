@@ -1,0 +1,12 @@
+  Determining projects to restore...
+/home/alex/dev/Bachelor/bmad-vergleichsstudie/runs/B/solo/02/code/seed-b-backend.Api/seed-b-backend.Api.csproj : warning NU1903: Package 'Microsoft.OpenApi' 2.0.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-v5pm-xwqc-g5wc
+  All projects are up-to-date for restore.
+
+The following sources were used:
+   https://api.nuget.org/v3/index.json
+
+Project `seed-b-backend.Api` has the following vulnerable packages
+   [net10.0]: 
+   Transitive Package       Resolved   Severity   Advisory URL                                     
+   > Microsoft.OpenApi      2.0.0      High       https://github.com/advisories/GHSA-v5pm-xwqc-g5wc
+

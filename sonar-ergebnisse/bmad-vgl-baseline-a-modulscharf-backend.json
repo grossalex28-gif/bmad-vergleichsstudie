@@ -1,0 +1,24 @@
+{
+  "projekt_key": "bmad-vgl-baseline-a-modulscharf-backend",
+  "sonarqube_host": "http://localhost:9000",
+  "measures": {
+    "complexity": "386",
+    "duplicated_lines_density": "2.5",
+    "code_smells": "69",
+    "functions": "266",
+    "cognitive_complexity": "166",
+    "duplicated_blocks": "2",
+    "security_rating": "3.0",
+    "ncloc": "1795",
+    "vulnerabilities": "19",
+    "sqale_debt_ratio": "0.6",
+    "sqale_index": "323"
+  },
+  "vulnerabilities_nach_schweregrad": {
+    "MINOR": 17,
+    "MAJOR": 2,
+    "INFO": 0,
+    "CRITICAL": 0,
+    "BLOCKER": 0
+  }
+}
