@@ -1,0 +1,23 @@
+❯ Building...
+✔ Building...
+Initial chunk files | Names                    |  Raw size
+main.js             | main                     |   6.35 kB | 
+styles.css          | styles                   |   1.70 kB | 
+chunk-VUJOFXKG.js   | -                        | 987 bytes | 
+
+                    | Initial total            |   9.03 kB
+
+Lazy chunk files    | Names                    |  Raw size
+chunk-CGBC3R3R.js   | seat-selection-component |  30.39 kB | 
+chunk-45QVYBBD.js   | event-list-component     |  16.67 kB | 
+chunk-ZSUK4END.js   | booking-detail-component |  16.05 kB | 
+chunk-I5FCN6C5.js   | event-detail-component   |  10.82 kB | 
+chunk-VRGWE4ZW.js   | booking-lookup-component |   7.04 kB | 
+chunk-DPQSHDUS.js   | -                        |   1.36 kB | 
+chunk-IUXOF4UA.js   | -                        |   1.13 kB | 
+
+Application bundle generation complete. [0.750 seconds] - 2026-09-14T20:30:03.127Z
+
+Watch mode enabled. Watching for file changes...
+NOTE: Raw file sizes do not reflect development server per-request transformations.
+  ➜  Local:   http://localhost:4200/

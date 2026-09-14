@@ -1,0 +1,27 @@
+{
+  "lauf": "a_solo_1",
+  "fassung": "1.1",
+  "url": "http://localhost:4200/",
+  "zeitpunkt": "2026-09-14T20:29:55.794Z",
+  "urteil": "bestanden",
+  "dokumentStatus": 200,
+  "textlaengeStartseite": 613,
+  "datenAufrufe": 2,
+  "fehlerhafteAufrufe": [],
+  "anzahlKonsolenfehler": 0,
+  "konsolenfehler": [],
+  "seitenfehler": [],
+  "ladefehler": null,
+  "alleDatenAufrufe": [
+    {
+      "url": "http://localhost:4200/api/spielstaetten",
+      "typ": "fetch",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4200/api/veranstaltungen",
+      "typ": "fetch",
+      "status": 200
+    }
+  ]
+}

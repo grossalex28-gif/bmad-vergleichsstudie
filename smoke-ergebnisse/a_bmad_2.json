@@ -1,0 +1,27 @@
+{
+  "lauf": "a_bmad_2",
+  "fassung": "1.1",
+  "url": "http://localhost:4200/",
+  "zeitpunkt": "2026-09-14T20:29:28.382Z",
+  "urteil": "bestanden",
+  "dokumentStatus": 200,
+  "textlaengeStartseite": 624,
+  "datenAufrufe": 2,
+  "fehlerhafteAufrufe": [],
+  "anzahlKonsolenfehler": 0,
+  "konsolenfehler": [],
+  "seitenfehler": [],
+  "ladefehler": null,
+  "alleDatenAufrufe": [
+    {
+      "url": "http://localhost:4200/api/venues",
+      "typ": "fetch",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4200/api/events",
+      "typ": "fetch",
+      "status": 200
+    }
+  ]
+}

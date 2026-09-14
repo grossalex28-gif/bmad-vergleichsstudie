@@ -1,0 +1,27 @@
+{
+  "lauf": "b_bmad_3",
+  "fassung": "1.1",
+  "url": "http://localhost:4200/",
+  "zeitpunkt": "2026-09-14T20:31:04.467Z",
+  "urteil": "bestanden",
+  "dokumentStatus": 200,
+  "textlaengeStartseite": 814,
+  "datenAufrufe": 2,
+  "fehlerhafteAufrufe": [],
+  "anzahlKonsolenfehler": 0,
+  "konsolenfehler": [],
+  "seitenfehler": [],
+  "ladefehler": null,
+  "alleDatenAufrufe": [
+    {
+      "url": "http://localhost:4200/api/categories",
+      "typ": "fetch",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4200/api/products?page=1&sortBy=name&sortDirection=asc",
+      "typ": "fetch",
+      "status": 200
+    }
+  ]
+}

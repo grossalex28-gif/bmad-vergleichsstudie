@@ -1,0 +1,24 @@
+❯ Building...
+✔ Building...
+Initial chunk files | Names                        |  Raw size
+main.js             | main                         |   6.81 kB | 
+styles.css          | styles                       |   2.89 kB | 
+chunk-LCWYO63Y.js   | -                            |   2.84 kB | 
+chunk-VUJOFXKG.js   | -                            | 987 bytes | 
+
+                    | Initial total                |  13.54 kB
+
+Lazy chunk files    | Names                        |  Raw size
+chunk-W5ZRRPKB.js   | product-list-component       |  30.43 kB | 
+chunk-HKD25FTU.js   | product-detail-component     |  28.23 kB | 
+chunk-NKG7ZDZ3.js   | checkout-component           |  18.50 kB | 
+chunk-XTANU73Y.js   | order-confirmation-component |  12.59 kB | 
+chunk-WYOR66TQ.js   | cart-component               |  11.15 kB | 
+chunk-GEETKC4D.js   | -                            |   1.85 kB | 
+chunk-DCHL56JA.js   | -                            |   1.02 kB | 
+
+Application bundle generation complete. [0.794 seconds] - 2026-09-14T20:31:25.614Z
+
+Watch mode enabled. Watching for file changes...
+NOTE: Raw file sizes do not reflect development server per-request transformations.
+  ➜  Local:   http://localhost:4200/

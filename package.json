@@ -1,0 +1,24 @@
+{
+  "name": "bmad-vergleichsstudie",
+  "version": "1.0.0",
+  "description": "Version `0.1.0-probe`. Setzt H1–H7 aus dem Analysekonzept und das Zeitregime T1–T3 in ausführbaren Code um. Nur Python-Standardbibliothek, keine Abhängigkeiten.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grossalex28-gif/bmad-vergleichsstudie.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/grossalex28-gif/bmad-vergleichsstudie/issues"
+  },
+  "homepage": "https://github.com/grossalex28-gif/bmad-vergleichsstudie#readme"
+}

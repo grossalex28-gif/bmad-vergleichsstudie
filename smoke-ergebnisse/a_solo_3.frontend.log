@@ -1,0 +1,23 @@
+❯ Building...
+✔ Building...
+Initial chunk files | Names                 |  Raw size
+main.js             | main                  |   5.96 kB | 
+styles.css          | styles                |   3.06 kB | 
+chunk-VUJOFXKG.js   | -                     | 987 bytes | 
+
+                    | Initial total         |  10.01 kB
+
+Lazy chunk files    | Names                 |  Raw size
+chunk-CLSC5VW3.js   | sitzplatzauswahl      |  35.05 kB | 
+chunk-QD3K5K2P.js   | buchung-anzeige       |  18.62 kB | 
+chunk-FI7T36WW.js   | veranstaltungen-liste |  16.13 kB | 
+chunk-RTDFWPUM.js   | veranstaltung-detail  |  13.42 kB | 
+chunk-HASQRUKT.js   | buchung-suche         |   5.01 kB | 
+chunk-MCBIVKJO.js   | -                     |   1.64 kB | 
+chunk-5P72AKOZ.js   | -                     |   1.18 kB | 
+
+Application bundle generation complete. [0.776 seconds] - 2026-09-14T20:30:16.898Z
+
+Watch mode enabled. Watching for file changes...
+NOTE: Raw file sizes do not reflect development server per-request transformations.
+  ➜  Local:   http://localhost:4200/

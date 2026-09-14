@@ -1,0 +1,24 @@
+{
+  "lauf": "b_solo_2",
+  "url": "http://localhost:4200/",
+  "zeitpunkt": "2026-09-14T19:57:40.467Z",
+  "urteil": "bestanden",
+  "dokumentStatus": 200,
+  "textlaengeStartseite": 1396,
+  "apiAufrufe": 2,
+  "apiFehlerhaft": [],
+  "anzahlKonsolenfehler": 0,
+  "konsolenfehler": [],
+  "seitenfehler": [],
+  "ladefehler": null,
+  "alleApiAufrufe": [
+    {
+      "url": "http://localhost:4200/api/categories",
+      "status": 200
+    },
+    {
+      "url": "http://localhost:4200/api/products?sortBy=name&sortDir=asc&page=1",
+      "status": 200
+    }
+  ]
+}

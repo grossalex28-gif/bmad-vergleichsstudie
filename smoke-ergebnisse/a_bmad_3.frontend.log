@@ -1,0 +1,13 @@
+❯ Building...
+✔ Building...
+Initial chunk files | Names         |  Raw size
+main.js             | main          | 171.92 kB | 
+styles.css          | styles        |   2.98 kB | 
+
+                    | Initial total | 174.90 kB
+
+Application bundle generation complete. [0.793 seconds] - 2026-09-14T20:29:35.721Z
+
+Watch mode enabled. Watching for file changes...
+NOTE: Raw file sizes do not reflect development server per-request transformations.
+  ➜  Local:   http://localhost:4200/
