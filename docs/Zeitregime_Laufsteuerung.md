@@ -23,7 +23,7 @@ Ein einzelner Zeitwert reicht nicht, weil Wartezeiten aus dem Abo-Rate-Limit son
 
 **T2 – Kalenderdeckel.** Schützt den Gesamtplan. Ein Lauf, der acht Stunden Arbeit auf drei Kalendertage verteilt, weil er ständig in Limitpausen fällt, sprengt die Kampagne, obwohl T1 nie greift. T2 beendet ihn. Wichtig für die Auswertung: Ein durch T2 beendeter Lauf ist **kein** Befund über BMAD oder Claude, sondern über die Abo-Bedingungen. Solche Läufe werden gesondert ausgewiesen und sind Kandidaten für eine Wiederholung, wenn der Zeitplan sie hergibt.
 
-**T3 – Schrittdeckel.** Dient der Stall-Erkennung, nicht der Terminierung. Wenn ein einzelner Schritt — eine Story, eine Planungsphase — 90 Minuten überschreitet, hängt mit hoher Wahrscheinlichkeit etwas (Endlosschleife im Build, wartender Prozess). Das ist ein Blockertatbestand nach H7 und gehört in C4.
+**T3 – Schrittdeckel.** Dient der Stall-Erkennung, nicht der Terminierung. Wenn ein einzelner Schritt — eine Story, eine Planungsphase — 90 Minuten überschreitet, hängt mit hoher Wahrscheinlichkeit etwas (Endlosschleife im Build, wartender Prozess). Das ist ein Blockertatbestand nach H7 und gehört in B4.
 
 **T4 – Kampagnendeckel.** Der äußere Rahmen von rund drei Wochen inklusive Wochenenden.
 
@@ -57,7 +57,7 @@ Ergänzend gilt dasselbe für das Tokenbudget: Auch dort ist vorab zu fixieren, 
 
 Erstens muss der Harness **unbeaufsichtigt über Nacht** laufen können, einschließlich selbsttätiger Fortsetzung nach einer Limitpause. Wenn jeder Lauf deine Anwesenheit braucht, halbiert sich die nutzbare Zeit. Das ist derselbe Mechanismus wie das gewünschte Pausieren und Fortsetzen; er wird ohnehin gebaut.
 
-Zweitens laufen die Läufe **strikt sequenziell**. Parallele Läufe teilen sich dasselbe Rate-Limit, treiben sich gegenseitig in Wartezeiten und verfälschen dadurch C1c in beiden. Der scheinbare Zeitgewinn ist keiner.
+Zweitens laufen die Läufe **strikt sequenziell**. Parallele Läufe teilen sich dasselbe Rate-Limit, treiben sich gegenseitig in Wartezeiten und verfälschen dadurch B1c in beiden. Der scheinbare Zeitgewinn ist keiner.
 
 **Reihenfolge.** Die Bedingungen werden abwechselnd gefahren, nicht blockweise:
 
@@ -75,7 +75,7 @@ Das hat zwei Gründe. Erstens sind bei jedem vorzeitigen Ende vollständige, bal
 ## 5. Was daraus für das Harness-Skript folgt
 
 - Drei Timer je Lauf (T1, T2, T3), wobei T1 bei erkannter Limitpause und bei Blocker-Wartezeit angehalten wird.
-- Jede Pause wird mit Beginn, Ende und Ursache in `protokoll.csv` geschrieben, damit C1c nachträglich um Wartezeiten bereinigt werden kann. Ohne diese Einträge ist C1c nicht auswertbar.
+- Jede Pause wird mit Beginn, Ende und Ursache in `protokoll.csv` geschrieben, damit B1c nachträglich um Wartezeiten bereinigt werden kann. Ohne diese Einträge ist B1c nicht auswertbar.
 - Die Prüfung aller Deckel erfolgt **zwischen** zwei Schritten, nie mitten in einem laufenden Prompt — identisch zur manuellen Stopp-Anforderung.
 - `config.yaml` je Lauf hält T1, T2, T3 und das Tokenbudget fest, damit belegbar ist, dass die Werte nicht zwischen den Läufen verändert wurden.
 - Die Terminierungsursache wird als eigenes Feld protokolliert: regulärer Abschluss · T1 · T2 · Tokenbudget · Iterationsobergrenze · Blocker ohne Auflösung. Diese Verteilung ist selbst ein Ergebnis und gehört in die Ergebnisdarstellung zu FF2.

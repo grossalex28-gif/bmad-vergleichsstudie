@@ -4,15 +4,17 @@
 
 **Festgelegter Rahmen aus der Vorabklärung:** BMAD v6 (Modulstruktur `bmad/bmm`) · Ausführung lokal auf Arch Linux · Modellzugang über Claude-Abo (Pro/Max) via CLI · Kontextstrategie: frische Session je Phase mit explizitem Einlesen der zuvor erzeugten Artefakte.
 
+**Status-Update (11.08.2026).** Mehrere hier als offen geführte Punkte sind inzwischen entschieden bzw. vorangetrieben: Feature-Kataloge eingefroren (`claude/Feature-Kataloge_final.md`, löst die Zeile „Entwurf vorhanden" in Abschnitt 3 ab), Datenbankfrage für Projekt B entschieden — lokaler SQL Server, unter Arch Linux per offiziellem Docker-Image, siehe `claude/Seed-Repository_Anleitung.md` Abschnitt 5.1 (löst die offene Frage in Abschnitt 2 ab) —, Seed-Repository-Bauanleitung samt aktuellen Stack-Versionen liegt vor (`claude/Seed-Repository_Anleitung.md`, löst die Zeile „Seed-Repository" in Abschnitt 3 teilweise ab; der tatsächliche Bau steht noch aus). Aktueller Gesamtstand mit vollständiger offen/erledigt-Liste: `claude/Harness_Probelauf_Befunde.md`, Abschnitt 5. Der übrige Inhalt dieses Dokuments (BMAD-Installationsfragen, Laufzeitumgebung, Steuerungsparameter, Antwortautomat, Pausieren/Fortsetzen, Messerfassung) bleibt als Vorbereitungsdokument gültig — die meisten seiner Fragen sind seither in `claude/BMAD_Installationsbefund.md`, `claude/Zeitregime_Laufsteuerung.md` und `claude/Harness_Probelauf_Befunde.md` beantwortet worden.
+
 ---
 
 ## 0. Was diese Entscheidungen bereits erzwingen
 
 Drei Konsequenzen, die den Skriptaufbau vorwegnehmen und deshalb hier vorangestellt sind:
 
-**Abo statt API-Key.** Es gibt keinen Preis pro Token aus der Abrechnung. C8 muss vollständig aus den `usage`-Feldern der Session-Logs rekonstruiert und zum dokumentierten Listenpreisstand *rechnerisch* bewertet werden; das ist im Methodikkapitel als Ersatzgröße auszuweisen. Wichtiger noch: das Abo hat rollierende 5-Stunden-Limits. Ein Lauf über mehrere Stunden **wird** darauf treffen. Der Harness braucht damit zwingend eine Limit-Erkennung, die den Lauf sauber an einer Phasengrenze anhält und später an derselben Stelle fortsetzt — das ist dieselbe Mechanik wie das gewünschte manuelle Pausieren und wird gemeinsam gebaut.
+**Abo statt API-Key.** Es gibt keinen Preis pro Token aus der Abrechnung. B8 muss vollständig aus den `usage`-Feldern der Session-Logs rekonstruiert und zum dokumentierten Listenpreisstand *rechnerisch* bewertet werden; das ist im Methodikkapitel als Ersatzgröße auszuweisen. Wichtiger noch: das Abo hat rollierende 5-Stunden-Limits. Ein Lauf über mehrere Stunden **wird** darauf treffen. Der Harness braucht damit zwingend eine Limit-Erkennung, die den Lauf sauber an einer Phasengrenze anhält und später an derselben Stelle fortsetzt — das ist dieselbe Mechanik wie das gewünschte manuelle Pausieren und wird gemeinsam gebaut.
 
-**Frische Session je Phase.** Das ist die einzige Variante, die die Kernforderung erfüllt, dass BMAD-Artefakte tatsächlich genutzt werden: Wenn der Kontext leer startet, kann eine Phase nur das wissen, was sie aus den Dateien liest. Nutzung wird dadurch nachweisbar statt nur wahrscheinlich. Nebeneffekt: Tokenverbrauch je Phase ist sauber zurechenbar (nötig für C8) und Auto-Compact — das C7 und C8 sonst verfälscht — tritt nicht auf.
+**Frische Session je Phase.** Das ist die einzige Variante, die die Kernforderung erfüllt, dass BMAD-Artefakte tatsächlich genutzt werden: Wenn der Kontext leer startet, kann eine Phase nur das wissen, was sie aus den Dateien liest. Nutzung wird dadurch nachweisbar statt nur wahrscheinlich. Nebeneffekt: Tokenverbrauch je Phase ist sauber zurechenbar (nötig für B8) und Auto-Compact — das B7 und B8 sonst verfälscht — tritt nicht auf.
 
 **Beide Bedingungen, ein Harness.** Die Solo-Bedingung braucht dieselbe Phasensteuerung, dieselbe Zustandsdatei, dasselbe Logging. Unterschied ist ausschließlich, dass in der Solo-Bedingung keine BMAD-Definitionen im Arbeitsverzeichnis liegen und die Phasen keine Agentenaufrufe, sondern feste Fortsetzungsintervalle sind.
 
@@ -45,7 +47,7 @@ Ohne diese Angaben lässt sich die Aufrufkette nicht schreiben. Das meiste kann 
 - **Claude-Code-CLI-Version** (`claude --version`) — gehört als Skriptversion in jede `config.yaml`.
 - **Modellbezeichner**, der in allen zwölf Läufen erzwungen wird, plus Zugriffsdatum. Muss explizit gesetzt werden, nicht dem Default überlassen, sonst wechselt er dir mitten in der Erhebung.
 - **Toolchain-Versionen:** Node/npm, .NET SDK, Angular CLI. Diese Versionen sind identisch mit denen, die im Seed-Repository gepinnt werden.
-- **Datenbank für Projekt B.** Der Katalog verlangt Katalog, Warenkorb und Bestellungen. Zu klären: lokal installierter SQL Server, Container, oder eine leichtere Engine, die im Seed vorkonfiguriert ist. Das ist keine Nebensache — wenn das Modell selbst eine Datenbank aufsetzen muss, misst du auch Infrastrukturarbeit, und wenn es keine bekommt, scheitern die Akzeptanztests aus einem Grund, der nichts mit dem Framework zu tun hat.
+- **Datenbank für Projekt B.** *Entschieden (11.08.2026), siehe Status-Update oben:* lokaler SQL Server, unter Arch Linux per offiziellem Docker-Image (`mcr.microsoft.com/mssql/server`, Developer Edition), eine Instanz für beide Projekte, eine Datenbank je Lauf. Details: `claude/Seed-Repository_Anleitung.md` Abschnitt 5.
 - **Berechtigungsprofil.** Welche Werkzeuge vorab freigegeben sind (Dateisystem, Shell, Netzwerk/Paketinstallation, Git). Muss für beide Bedingungen byteidentisch sein und wird in `config.yaml` festgehalten. Netzwerkzugriff ist unvermeidbar, weil `npm install` und `dotnet restore` ihn brauchen.
 - **Ablageort** der Laufdaten nach dem Schema `runs/<Projekt>/<Ansatz>/<RunNr>/{logs,artifacts,code,metrics}` und der voraussichtliche Platzbedarf. Zwölf Läufe mit je einem vollständigen `node_modules` sind mehrere Gigabyte; sinnvoll ist, den Code nach Laufende zu committen und den Arbeitsbaum ohne Abhängigkeiten zu archivieren.
 
@@ -53,14 +55,15 @@ Ohne diese Angaben lässt sich die Aufrufkette nicht schreiben. Das meiste kann 
 
 ## 3. Eingefrorene Studienartefakte
 
-Diese Dateien sind Voraussetzung, nicht Ergebnis des Skripts. Nach Abschnitt 16 des Gesamtstands sind sie noch offen.
+Diese Dateien sind Voraussetzung, nicht Ergebnis des Skripts.
 
-| Artefakt | Status | Wird gebraucht für |
+| Artefakt | Status (11.08.2026) | Wird gebraucht für |
 |---|---|---|
 | Eingabedatei Projekt A (nach Vorlage Eingabespezifikation §7) | offen | H2, Input-Hash |
 | Eingabedatei Projekt B | offen | H2, Input-Hash |
-| Seed-Repository mit gepinnten Versionen, Testrunner, lauffähigem Build- und Testbefehl | offen | H1, Seed-Hash |
-| Feature-Kataloge, verifiziert und eingefroren | Entwurf vorhanden | A2, B1, B1b, B6, B11 |
+| Seed-Repository mit gepinnten Versionen, Testrunner, lauffähigem Build- und Testbefehl | Bauanleitung liegt vor (`claude/Seed-Repository_Anleitung.md`), Bau selbst offen | H1, Seed-Hash |
+| Feature-Kataloge, verifiziert und eingefroren | **eingefroren** (`claude/Feature-Kataloge_final.md`) | A2 |
+| Anfangsdatenbestand je Projekt | **inhaltlich bestätigt** (`claude/Anfangsdatenbestand_Spezifikation.md`), Übernahme in Seed-Datei offen | Ausgangszustand für A1/A2 |
 | Aufrufrahmen je Bedingung (der minimale Text um die Eingabedatei herum) | offen | einziger struktureller Unterschied, dokumentationspflichtig |
 
 Der Aufrufrahmen verdient besondere Aufmerksamkeit: Er ist in der BMAD-Bedingung die Übergabe an den ersten Agenten, in der Solo-Bedingung der komplette Auftrag. Beide Fassungen müssen so knapp wie möglich sein und dürfen keine Prozessanweisung enthalten — sonst behandelst du die Solo-Bedingung unbeabsichtigt mit.
@@ -72,16 +75,18 @@ Der Aufrufrahmen verdient besondere Aufmerksamkeit: Er ist in der BMAD-Bedingung
 Zahlen, die vor dem ersten Messlauf feststehen müssen, weil sie sonst nachträglich wie eine Anpassung an Ergebnisse aussehen:
 
 - **Token-Budget je Lauf**, identisch für beide Bedingungen. Kalibriert aus den Vorstudien-Läufen.
-- **Zeitbudget je Lauf** (Wall-Clock), identisch für beide Bedingungen.
-- **Iterationsobergrenze** für die Solo-Bedingung (C7).
+- **Zeitbudget je Lauf** (Wall-Clock), identisch für beide Bedingungen. *Konkretisiert in `claude/Zeitregime_Laufsteuerung.md` (T1–T4).*
+- **Iterationsobergrenze** für die Solo-Bedingung (B7).
 - **Phasenintervall in der Solo-Bedingung** — nach wie vielen Turns oder Minuten committet und taggt der Harness, damit H5 in beiden Bedingungen vergleichbar greift.
 - **Abbruchkriterium „erklärte Fertigstellung" in der Solo-Bedingung.** Das ist die heikelste Definition im ganzen Skript: Woran genau erkennt der Automat, dass das Modell sich für fertig hält? Ein Textmuster ist fragil. Robuster ist ein am Phasenende gestellter, immer gleicher Fragesatz mit erzwungenem Ja/Nein-Format. Diese Frage ist selbst eine Prozessanweisung und muss als solche im Methodikkapitel offengelegt und in beiden Bedingungen identisch angewandt werden.
 - **Blocker-Definition (H7).** Wann hält der Lauf an und verlangt einen Eingriff? Kandidaten: Prozess bricht ab, Build schlägt in Folge N-mal fehl, keine Dateiänderung über N Turns, Werkzeug fordert eine nicht vorab erteilte Berechtigung, Antwortautomat findet keine passende Regel. Jede Schwelle braucht einen Zahlenwert.
-- **Verhalten bei Rate-Limit.** Warten und automatisch fortsetzen, oder anhalten und auf deinen Start warten? Die Wartezeit zählt in C1c (Wall-Clock) und würde diese Kennzahl verzerren — daher der Vorschlag, Limit-Pausen als eigene Zeitspanne zu protokollieren und aus C1c herauszurechnen. Das gehört in die Limitationen.
+- **Verhalten bei Rate-Limit.** Warten und automatisch fortsetzen, oder anhalten und auf deinen Start warten? Die Wartezeit zählt in B1c (Wall-Clock) und würde diese Kennzahl verzerren — daher der Vorschlag, Limit-Pausen als eigene Zeitspanne zu protokollieren und aus B1c herauszurechnen. Das gehört in die Limitationen.
 
 ---
 
 ## 5. Antwortautomat H4 und Vorstudiendaten
+
+*Weitgehend beantwortet durch `claude/BMAD_Installationsbefund.md` Abschnitt 2 — BMAD v6 hat einen eingebauten Headless-Modus, der H4 auf eine Rückfallregel schrumpft. Dieser Abschnitt bleibt als Aufzeichnung stehen, was ursprünglich benötigt wurde.*
 
 Der deterministische Antwortautomat braucht empirisches Material. Aus deinen beiden manuellen Vorstudien-Läufen benötige ich:
 
@@ -91,17 +96,19 @@ Der deterministische Antwortautomat braucht empirisches Material. Aus deinen bei
 - **Grobe Verbrauchswerte**: Dauer und, falls verfügbar, Tokenverbrauch je Phase. Ohne diese Kalibrierung sind Budget und Iterationsobergrenze geraten.
 - Die **erzeugten Artefakte** und deren Dateinamen, damit ich die Handoff-Kette gegen die tatsächliche Ausgabe verifizieren kann statt gegen die Dokumentation.
 
-Falls die Chatverläufe nicht mehr vollständig vorliegen: sag mir, was noch da ist. Ein retrospektives Protokoll steht ohnehin als offener Punkt in Abschnitt 16, und beides lässt sich in einem Zug erledigen.
+Falls die Chatverläufe nicht mehr vollständig vorliegen: sag mir, was noch da ist. Ein retrospektives Protokoll steht ohnehin als offener Punkt, und beides lässt sich in einem Zug erledigen.
 
 ---
 
 ## 6. Was ich zum Pausieren und Fortsetzen wissen muss
 
+*Umgesetzt im tatsächlichen Harness — siehe `claude/Harness_Probelauf_Befunde.md` Abschnitt 4 („Pausieren"). Dieser Abschnitt bleibt als Aufzeichnung der ursprünglichen Fragestellung stehen.*
+
 Das gewünschte Verhalten — laufenden Prompt zu Ende führen, dann anhalten, später an derselben Stelle weiter — ist umsetzbar, verlangt aber drei Festlegungen von dir:
 
 1. **Granularität der Wiederaufnahme.** Der kleinste wiederaufnehmbare Schritt ist ein abgeschlossener Prompt. Bei sehr langen Phasen (eine Implementierungsphase kann Stunden laufen) bedeutet ein Abbruch mittendrin, dass diese Phase verloren ist. Frage: Soll der Harness die Implementierung in kleinere, einzeln wiederaufnehmbare Schritte zerlegen — etwa eine Story pro Prompt? Für BMAD ist das ohnehin die natürliche Granularität; in der Solo-Bedingung müsste ein entsprechendes Intervall gesetzt werden, damit beide Bedingungen gleich behandelt sind.
 2. **Was bei einem harten Absturz gelten soll.** Wenn der Rechner ausgeht oder der Prozess stirbt: Phase als unvollständig verwerfen und neu starten, oder aus dem letzten Git-Tag heraus fortsetzen? Beides ist vertretbar, aber es muss vorher feststehen und für alle Läufe gleich gelten.
-3. **Ob mehrere Läufe parallel laufen dürfen.** Sequenziell ist methodisch sauberer und beim Abo ohnehin fast erzwungen, weil parallele Läufe sich dasselbe Rate-Limit teilen und sich gegenseitig in Wartezeiten treiben — was C1c verfälscht. Ich empfehle strikt sequenziell.
+3. **Ob mehrere Läufe parallel laufen dürfen.** Sequenziell ist methodisch sauberer und beim Abo ohnehin fast erzwungen, weil parallele Läufe sich dasselbe Rate-Limit teilen und sich gegenseitig in Wartezeiten treiben — was B1c verfälscht. Ich empfehle strikt sequenziell.
 
 Der Mechanismus selbst braucht keine Entscheidung von dir: eine Zustandsdatei je Lauf, die nach jedem abgeschlossenen Schritt fortgeschrieben wird, plus eine Stopp-Markierung, die der Harness zwischen den Schritten prüft. Fortsetzen heißt dann, dasselbe Skript mit derselben Lauf-ID erneut zu starten.
 
@@ -116,7 +123,7 @@ Der Mechanismus selbst braucht keine Entscheidung von dir: eine Zustandsdatei je
 
 ---
 
-## 8. Nächster Schritt
+## 8. Nächster Schritt *(Stand 07.08.2026 — inzwischen erledigt, siehe Status-Update oben)*
 
 Am schnellsten kommen wir voran, wenn ich mir die BMAD-Installation ansehen kann. Verbinde dazu im Desktop-App den Ordner, in dem BMAD liegt (bzw. das Projektverzeichnis, in dem du die Vorstudien-Läufe gemacht hast) — dann klärt sich Abschnitt 1 fast vollständig von selbst, und ich kann die Phasenliste, die Artefaktpfade und die Handoff-Kette direkt aus den Workflow-Definitionen ableiten statt aus der Dokumentation.
 

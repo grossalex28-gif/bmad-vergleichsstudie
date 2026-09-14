@@ -44,7 +44,7 @@ Aus `bmad-prd/references/headless.md` wörtlich:
 
 **Zweitens wird H7 robust statt fragil.** Blocker müssen nicht über Textmuster erkannt werden, sondern kommen als `status: "blocked"` mit `reason` zurück. Der Harness liest ein JSON-Feld. `partial` mit nicht-leeren `open_questions[]` ist die Zwischenstufe: Lauf geht weiter, Eintrag ins Defizitregister.
 
-**Drittens entsteht eine unerwartet gute Datenquelle für Ebene B.** `assumptions[]` und `open_questions[]` sind maschinenlesbar und genau das, was FF3 qualitativ sucht: Wo hat das Framework Lücken selbst geschlossen, wo hat es sie offen stehen lassen? Das lässt sich ohne Zusatzaufwand je Phase auszählen.
+**Drittens entsteht eine unerwartet gute Datenquelle für das Defizitregister (B9).** `assumptions[]` und `open_questions[]` sind maschinenlesbar und zeigen, wo das Framework Lücken selbst geschlossen und wo es sie offen stehen lassen hat. Das lässt sich ohne Zusatzaufwand je Phase auszählen.
 
 **Viertens muss die Solo-Bedingung gleichgestellt werden.** Die Headless-Instruktion „do not ask, record assumptions" ist eine Prozessanweisung. Sie kommt in der BMAD-Bedingung aus dem Framework — also legitim, sie ist Teil der Behandlung. Die Solo-Bedingung läuft ebenfalls nicht-interaktiv, bekommt diese Anweisung aber nicht. Das ist konsistent mit dem Studiendesign, gehört aber ausdrücklich ins Methodikkapitel: Die Solo-Bedingung kann in einer nicht-interaktiven Session stehenbleiben, wo BMAD weiterläuft — und genau das wäre ein Befund über das Framework, kein Messfehler.
 
@@ -86,7 +86,7 @@ Zusätzlich gibt es `bmad-dev-auto` — *„One iteration of an unattended devel
 
 **Variante A – fest verdrahtet.** Der Harness ruft die Pflichtkette in der obigen Reihenfolge auf. Maximal reproduzierbar, aber die Auswahl der optionalen Schritte (Product Brief, UX, Code Review, QA-Tests) trifft dann der Forscher — und das ist eine Behandlungsentscheidung, die R2 aufweicht.
 
-**Variante B – vom Framework geroutet.** Der Skill `bmad-help` liest den Katalog `_bmad/_config/bmad-help.csv`, erkennt aus vorhandenen Artefakten, was schon erledigt ist, und empfiehlt den nächsten Schritt. Der Harness fragt nach jedem Schritt „was ist der nächste Schritt?" und wendet R3 (Accept-Default) auf die Empfehlung an. Die Sequenz stammt dann vom Framework, nicht vom Forscher — methodisch deutlich sauberer und exakt das, wofür R3 gedacht war. Preis: ein zusätzlicher Modellaufruf je Phase (Tokenkosten, in C8 sichtbar) und eine Sequenz, die zwischen Wiederholungsläufen variieren kann — was allerdings selbst ein Ergebnis zu FF1 (Konsistenz) ist.
+**Variante B – vom Framework geroutet.** Der Skill `bmad-help` liest den Katalog `_bmad/_config/bmad-help.csv`, erkennt aus vorhandenen Artefakten, was schon erledigt ist, und empfiehlt den nächsten Schritt. Der Harness fragt nach jedem Schritt „was ist der nächste Schritt?" und wendet R3 (Accept-Default) auf die Empfehlung an. Die Sequenz stammt dann vom Framework, nicht vom Forscher — methodisch deutlich sauberer und exakt das, wofür R3 gedacht war. Preis: ein zusätzlicher Modellaufruf je Phase (Tokenkosten, in B8 sichtbar) und eine Sequenz, die zwischen Wiederholungsläufen variieren kann — was allerdings selbst ein Ergebnis zu FF1 (Konsistenz) ist.
 
 Empfehlung: **Variante B**, mit der Pflichtkette als Rückfallebene, falls `bmad-help` keine eindeutige Empfehlung liefert.
 
@@ -96,11 +96,10 @@ Empfehlung: **Variante B**, mit der Pflichtkette als Rückfallebene, falls `bmad
 
 Jeder Skill-Lauf führt in seinem Arbeitsordner eine `.memlog.md`: append-only, typisiert, über ein gemeinsames Skript geschrieben. Typen im Vorstudien-Lauf: `decision`, `change`, `override`, `assumption`, `event`, `direction`, `question`, `version`, `constraint`.
 
-Das deckt drei Bedarfe auf einmal:
+Das deckt zwei Bedarfe auf einmal:
 
-- **C9 Defizitregister** — `question`-Einträge sind explizit als „Deferred" markierte, bewusst offen gelassene Punkte.
-- **B11 Traceability** — `decision`-Einträge tragen im Vorstudien-Lauf durchgängig `Binds CAP-x, FR-y`, also bereits eine Rückbindung an Anforderungen. Für die Kette Katalog → PRD → Story → Commit ist das ein zusätzliches Zwischenglied, kein Ersatz, aber es macht das Auszählen erheblich leichter.
-- **C4 Blocker-Eingriffe** — `override`-Einträge protokollieren ausdrücklich, wenn vom Standardverhalten abgewichen wurde, „including headless overrides".
+- **B9 Defizitregister** — `question`-Einträge sind explizit als „Deferred" markierte, bewusst offen gelassene Punkte.
+- **B4 Blocker-Eingriffe** — `override`-Einträge protokollieren ausdrücklich, wenn vom Standardverhalten abgewichen wurde, „including headless overrides".
 
 Die Dateien sind mit Zeitstempel versehen. Sie gehören ins Replikationspaket und sollten in der Datensicherung neben den JSONL-Session-Logs stehen.
 

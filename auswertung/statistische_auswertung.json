@@ -10,11 +10,11 @@
       "A7_code_smells_je_1000_ncloc": 5.3854,
       "A8_eigen_je_1000_ncloc": 0.3366,
       "A8_eigen_schweregrade": {
-        "INFO": 0,
         "MINOR": 1,
         "MAJOR": 0,
-        "BLOCKER": 0,
-        "CRITICAL": 0
+        "CRITICAL": 0,
+        "INFO": 0,
+        "BLOCKER": 0
       },
       "A8_abhaengig_je_1000_ncloc": 1.0098,
       "A8_abhaengig_schweregrade": {
@@ -43,11 +43,11 @@
       "A7_code_smells_je_1000_ncloc": 6.25,
       "A8_eigen_je_1000_ncloc": 0.0,
       "A8_eigen_schweregrade": {
-        "INFO": 0,
         "MINOR": 0,
         "MAJOR": 0,
-        "BLOCKER": 0,
-        "CRITICAL": 0
+        "CRITICAL": 0,
+        "INFO": 0,
+        "BLOCKER": 0
       },
       "A8_abhaengig_je_1000_ncloc": 1.0417,
       "A8_abhaengig_schweregrade": {
@@ -76,11 +76,11 @@
       "A7_code_smells_je_1000_ncloc": 16.2813,
       "A8_eigen_je_1000_ncloc": 0.0,
       "A8_eigen_schweregrade": {
-        "INFO": 0,
         "MINOR": 0,
         "MAJOR": 0,
-        "BLOCKER": 0,
-        "CRITICAL": 0
+        "CRITICAL": 0,
+        "INFO": 0,
+        "BLOCKER": 0
       },
       "A8_abhaengig_je_1000_ncloc": 0.9769,
       "A8_abhaengig_schweregrade": {
@@ -109,11 +109,11 @@
       "A7_code_smells_je_1000_ncloc": 5.0403,
       "A8_eigen_je_1000_ncloc": 0.0,
       "A8_eigen_schweregrade": {
-        "INFO": 0,
         "MINOR": 0,
         "MAJOR": 0,
-        "BLOCKER": 0,
-        "CRITICAL": 0
+        "CRITICAL": 0,
+        "INFO": 0,
+        "BLOCKER": 0
       },
       "A8_abhaengig_je_1000_ncloc": 1.5121,
       "A8_abhaengig_schweregrade": {
@@ -142,11 +142,11 @@
       "A7_code_smells_je_1000_ncloc": 4.4933,
       "A8_eigen_je_1000_ncloc": 0.0,
       "A8_eigen_schweregrade": {
-        "INFO": 0,
         "MINOR": 0,
         "MAJOR": 0,
-        "BLOCKER": 0,
-        "CRITICAL": 0
+        "CRITICAL": 0,
+        "INFO": 0,
+        "BLOCKER": 0
       },
       "A8_abhaengig_je_1000_ncloc": 1.4978,
       "A8_abhaengig_schweregrade": {
@@ -175,11 +175,11 @@
       "A7_code_smells_je_1000_ncloc": 3.6004,
       "A8_eigen_je_1000_ncloc": 0.0,
       "A8_eigen_schweregrade": {
-        "INFO": 0,
         "MINOR": 0,
         "MAJOR": 0,
-        "BLOCKER": 0,
-        "CRITICAL": 0
+        "CRITICAL": 0,
+        "INFO": 0,
+        "BLOCKER": 0
       },
       "A8_abhaengig_je_1000_ncloc": 1.3501,
       "A8_abhaengig_schweregrade": {
@@ -208,11 +208,11 @@
       "A7_code_smells_je_1000_ncloc": 4.7434,
       "A8_eigen_je_1000_ncloc": 0.0,
       "A8_eigen_schweregrade": {
-        "INFO": 0,
         "MINOR": 0,
         "MAJOR": 0,
-        "BLOCKER": 0,
-        "CRITICAL": 0
+        "CRITICAL": 0,
+        "INFO": 0,
+        "BLOCKER": 0
       },
       "A8_abhaengig_je_1000_ncloc": 1.2937,
       "A8_abhaengig_schweregrade": {
@@ -241,11 +241,11 @@
       "A7_code_smells_je_1000_ncloc": 7.3872,
       "A8_eigen_je_1000_ncloc": 0.0,
       "A8_eigen_schweregrade": {
-        "INFO": 0,
         "MINOR": 0,
         "MAJOR": 0,
-        "BLOCKER": 0,
-        "CRITICAL": 0
+        "CRITICAL": 0,
+        "INFO": 0,
+        "BLOCKER": 0
       },
       "A8_abhaengig_je_1000_ncloc": 1.1664,
       "A8_abhaengig_schweregrade": {
@@ -274,11 +274,11 @@
       "A7_code_smells_je_1000_ncloc": 5.6625,
       "A8_eigen_je_1000_ncloc": 0.0,
       "A8_eigen_schweregrade": {
-        "INFO": 0,
         "MINOR": 0,
         "MAJOR": 0,
-        "BLOCKER": 0,
-        "CRITICAL": 0
+        "CRITICAL": 0,
+        "INFO": 0,
+        "BLOCKER": 0
       },
       "A8_abhaengig_je_1000_ncloc": 1.6988,
       "A8_abhaengig_schweregrade": {
@@ -307,11 +307,11 @@
       "A7_code_smells_je_1000_ncloc": 15.0,
       "A8_eigen_je_1000_ncloc": 0.0,
       "A8_eigen_schweregrade": {
-        "INFO": 0,
         "MINOR": 0,
         "MAJOR": 0,
-        "BLOCKER": 0,
-        "CRITICAL": 0
+        "CRITICAL": 0,
+        "INFO": 0,
+        "BLOCKER": 0
       },
       "A8_abhaengig_je_1000_ncloc": 1.3636,
       "A8_abhaengig_schweregrade": {
@@ -340,11 +340,11 @@
       "A7_code_smells_je_1000_ncloc": 4.5767,
       "A8_eigen_je_1000_ncloc": 0.0,
       "A8_eigen_schweregrade": {
-        "INFO": 0,
         "MINOR": 0,
         "MAJOR": 0,
-        "BLOCKER": 0,
-        "CRITICAL": 0
+        "CRITICAL": 0,
+        "INFO": 0,
+        "BLOCKER": 0
       },
       "A8_abhaengig_je_1000_ncloc": 1.373,
       "A8_abhaengig_schweregrade": {
@@ -373,11 +373,11 @@
       "A7_code_smells_je_1000_ncloc": 3.1818,
       "A8_eigen_je_1000_ncloc": 0.0,
       "A8_eigen_schweregrade": {
-        "INFO": 0,
         "MINOR": 0,
         "MAJOR": 0,
-        "BLOCKER": 0,
-        "CRITICAL": 0
+        "CRITICAL": 0,
+        "INFO": 0,
+        "BLOCKER": 0
       },
       "A8_abhaengig_je_1000_ncloc": 1.3636,
       "A8_abhaengig_schweregrade": {
@@ -408,11 +408,11 @@
       "A7_code_smells_je_1000_ncloc": 51.2821,
       "A8_eigen_je_1000_ncloc": 4.7299,
       "A8_eigen_schweregrade": {
-        "INFO": 0,
         "MINOR": 17,
         "MAJOR": 2,
-        "BLOCKER": 0,
-        "CRITICAL": 0
+        "CRITICAL": 0,
+        "INFO": 0,
+        "BLOCKER": 0
       },
       "A8_abhaengig_je_1000_ncloc": 51.531,
       "A8_abhaengig_schweregrade": {
@@ -441,11 +441,11 @@
       "A7_code_smells_je_1000_ncloc": 48.9166,
       "A8_eigen_je_1000_ncloc": 2.4075,
       "A8_eigen_schweregrade": {
-        "INFO": 0,
         "MINOR": 20,
         "MAJOR": 2,
-        "BLOCKER": 0,
-        "CRITICAL": 0
+        "CRITICAL": 0,
+        "INFO": 0,
+        "BLOCKER": 0
       },
       "A8_abhaengig_je_1000_ncloc": 22.6527,
       "A8_abhaengig_schweregrade": {
@@ -466,21 +466,21 @@
     },
     "B-modulscharf": {
       "ncloc_backend": 2469,
-      "ncloc_frontend": 2674,
-      "ncloc_gesamt": 5143,
-      "A3_mittlere_komplexitaet_je_funktion": 1.3783,
-      "A5_sqale_debt_ratio_kombiniert": 0.492,
-      "A6_duplicated_lines_density_kombiniert": 0.9601,
-      "A7_code_smells_je_1000_ncloc": 66.887,
-      "A8_eigen_je_1000_ncloc": 0.3889,
+      "ncloc_frontend": 2861,
+      "ncloc_gesamt": 5330,
+      "A3_mittlere_komplexitaet_je_funktion": 1.3801,
+      "A5_sqale_debt_ratio_kombiniert": 0.4853,
+      "A6_duplicated_lines_density_kombiniert": 0.9265,
+      "A7_code_smells_je_1000_ncloc": 65.1032,
+      "A8_eigen_je_1000_ncloc": 0.3752,
       "A8_eigen_schweregrade": {
-        "INFO": 0,
-        "MINOR": 0,
         "MAJOR": 2,
-        "BLOCKER": 0,
-        "CRITICAL": 0
+        "MINOR": 0,
+        "CRITICAL": 0,
+        "INFO": 0,
+        "BLOCKER": 0
       },
-      "A8_abhaengig_je_1000_ncloc": 43.3599,
+      "A8_abhaengig_je_1000_ncloc": 41.8386,
       "A8_abhaengig_schweregrade": {
         "dotnet": {
           "Low": 0,
@@ -507,11 +507,11 @@
       "A7_code_smells_je_1000_ncloc": 69.6073,
       "A8_eigen_je_1000_ncloc": 0.6455,
       "A8_eigen_schweregrade": {
-        "INFO": 0,
-        "MINOR": 1,
         "MAJOR": 3,
-        "BLOCKER": 2,
-        "CRITICAL": 0
+        "MINOR": 1,
+        "CRITICAL": 0,
+        "INFO": 0,
+        "BLOCKER": 2
       },
       "A8_abhaengig_je_1000_ncloc": 23.9914,
       "A8_abhaengig_schweregrade": {

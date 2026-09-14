@@ -1,7 +1,16 @@
-# Feature-Kataloge – einfrierbereite Fassung
+# Feature-Kataloge – eingefrorene Fassung
 
 *Stand 11.08.2026 · ersetzt `claude/Feature-Kataloge_Entwurf.md` (v1.6, Entwurfsstatus)*
-*Status: **einfrierbereit** nach Klärung der zwei offenen Punkte in Abschnitt 5*
+*Status: **EINGEFROREN am 11.08.2026.** Ab hier keine Änderung mehr an ID, Reihenfolge oder Wortlaut. Die beiden Punkte aus Abschnitt 5 betreffen die Eingabedatei bzw. die Akzeptanztest-Architektur, nicht die Katalog-Nummerierung; beide sind inzwischen erledigt (siehe unten) — die tatsächliche Seed-Datei aus 5.1 entsteht erst beim Bau des Seed-Repositorys.*
+
+**Frei­gegebene Katalogdateien.** Die maßgebliche, maschinenlesbare Fassung liegt im Harness-Arbeitsverzeichnis unter `catalogs/A/katalog.md` und `catalogs/B/katalog.md` (inhaltlich identisch mit Abschnitt 2/3 dieses Dokuments), mit Freeze-Metadaten in `katalog.meta.json`:
+
+| Projekt | Datei | SHA-256 |
+|---|---|---|
+| A | `catalogs/A/katalog.md` | `4b52e7212916d0a54fd0b575ad075fb93c73968c55f6e9b7c9497292b4f85097` |
+| B | `catalogs/B/katalog.md` | `b2fa337b9c10ebee465053c7c95626f0aa3852a3e21b1d32e5cfbcb9ed5c5cbe` |
+
+Diese Hashes sind Kontrollwerte für die Katalogdateien selbst, nicht für die spätere Eingabedatei (H2) — deren Hash entsteht erst, wenn der Katalog nach `claude/Eingabespezifikation.md` in Abschnitt 2 der Eingabedatei eingebettet wird (offener Punkt in Abschnitt 6).
 
 ---
 
@@ -24,7 +33,7 @@ Wertvoll waren die *Beobachtungen* beider Läufe: BMAD identifizierte in Projekt
 
 ---
 
-## 2. Projekt A – Buchungssystem (13 Features)
+## 2. Projekt A – Buchungssystem (13 Features) — EINGEFROREN
 
 | ID | Feature |
 |---|---|
@@ -58,7 +67,7 @@ Wertvoll waren die *Beobachtungen* beider Läufe: BMAD identifizierte in Projekt
 
 ---
 
-## 3. Projekt B – E-Commerce-Plattform (14 Features)
+## 3. Projekt B – E-Commerce-Plattform (14 Features) — EINGEFROREN
 
 | ID | Feature |
 |---|---|
@@ -81,7 +90,7 @@ Wertvoll waren die *Beobachtungen* beider Läufe: BMAD identifizierte in Projekt
 
 *Lieferantenbeziehung aufgenommen* (B-F7, B-F8, B-F9, B-F10, B-F14). BMAD hat als zentrale Fachstruktur herausgearbeitet, dass ein Produkt von mehreren Lieferanten zu unterschiedlichen Preisen angeboten wird und die Warenkorbposition den Lieferanten trägt. Das ist die architektonisch aufschlussreichste Anforderung des Projekts: Sie erzwingt eine n:m-Beziehung mit Attribut, macht die Warenkorbposition zusammengesetzt und liefert mit dem Festschreiben des Preises zum Bestellzeitpunkt eine echte Konsistenzregel. Aufgenommen wird ausdrücklich **nur die Beziehung**, nicht die Lieferantenverwaltung — kein Anlegen, kein Bearbeiten, keine Lieferantenübersicht.
 
-*Bewertungsanzeige zusammengeführt.* Die getrennten Features „Bewertung abgeben" und „Durchschnitt anzeigen" waren zwei Katalogplätze für einen fachlichen Vorgang. Zusammengelegt in B-F7 und B-F12, wobei B-F12 um die von BMAD belegte Ersetzungsregel ergänzt wurde.
+*Bewertungsanzeige zusammengeführt.* Die getrennten Features „Bewertung abgeben“ und „Durchschnitt anzeigen“ waren zwei Katalogplätze für einen fachlichen Vorgang. Zusammengelegt in B-F7 und B-F12, wobei B-F12 um die von BMAD belegte Ersetzungsregel ergänzt wurde.
 
 *Aufrufzähler aufgenommen* (B-F13). In beiden Quellen des Originals belegt, im manuellen Entwurf übersehen. Fachlich klein, architektonisch interessant: eine Schreiboperation auf dem Lesepfad, die Konsistenz- und Nebenläufigkeitsfragen aufwirft.
 
@@ -113,50 +122,38 @@ Wertvoll waren die *Beobachtungen* beider Läufe: BMAD identifizierte in Projekt
 | A: Optimistische Sperre bei Verwaltungsänderungen | verworfen — an entfallenen Verwaltungsbereich gebunden |
 | A/B: Verwaltungsbereiche, Artikelmodul, Lieferantenverwaltung, Kommentarbäume | verworfen — Ausschlussbegründungen des Entwurfs tragen weiterhin |
 
-**Für die Arbeit:** Der manuelle Entwurf wurde durch eine unabhängige, werkzeuggestützte Ableitung validiert. Von 19 bzw. 23 abgeleiteten Anforderungen deckten sich die Kernbereiche vollständig; fünf Präzisierungen wurden übernommen, davon zwei fachlich neue. Das ist ein belastbarer Konstruktvaliditätsnachweis für die Kataloge und zugleich ein deskriptiver Befund über BMADs Anforderungsableitung.
+**Für die Arbeit:** Der manuelle Entwurf wurde durch eine unabhängige, werkzeuggestützte Ableitung validiert. Von 19 bzw. 23 abgeleiteten Anforderungen deckten sich die Kernbereiche vollständig; fünf Präzisierungen wurden übernommen, davon zwei fachlich neu. Das ist ein belastbarer Konstruktvaliditätsnachweis für die Kataloge und zugleich ein deskriptiver Befund über BMADs Anforderungsableitung.
 
 ---
 
-## 5. Zwei Punkte, die vor dem Einfrieren zu entscheiden sind
+## 5. Zwei nachgelagerte Punkte — berühren die Nummerierung nicht, beide erledigt
 
-### 5.1 Anfangsdatenbestand — bisher ungeklärt
+Diese Kataloge (Abschnitt 2/3) sind mit der Nummerierung A-F1…A-F13 und B-F1…B-F14 eingefroren. Die beiden folgenden Punkte waren eigenständige Aufgaben auf dem Weg zur Eingabedatei (H2) und zum Seed-Repository — sie ändern weder Feature-Wortlaut noch -Nummerierung und waren deshalb kein Freeze-Hindernis. Beide sind inzwischen erledigt.
+
+### 5.1 Anfangsdatenbestand — Inhalt bestätigt (11.08.2026)
 
 Beide Kataloge setzen voraus, dass Daten vorhanden sind: A-F1 zeigt Veranstaltungen an, B-F1 zeigt Produkte an. **Keiner der Kataloge enthält ein Feature, das diese Daten anlegt** — die Verwaltungsbereiche sind ausgeschlossen. Damit ist A-F1 gegen eine leere Anwendung nicht prüfbar, und die Akzeptanztests haben keinen definierten Ausgangszustand.
 
-Das ist keine Kleinigkeit: Ohne Festlegung erfindet jede der zwölf Implementierungen ihren eigenen Weg, an Daten zu kommen, und A1 wird unmessbar.
+Der vollständige Inhalt steht in `claude/Anfangsdatenbestand_Spezifikation.md` — für Projekt A zwei Spielstätten mit je zwei Räumen unterschiedlicher Sitzplan-Geometrie, sechs Veranstaltungen über fünf Wochen, zwei Preiskategorien je Veranstaltung, drei bereits belegte Sitzplätze bei einer Veranstaltung; für Projekt B ein zweistufiger Kategoriebaum, kategoriespezifische Eigenschaften, 14 Produkte, vier Lieferanten, drei Produkte mit zwei Lieferanten zu unterschiedlichen Preisen. Nach Selbstprüfung (Konsistenz, vollständige Feature-Abdeckung, kein Änderungsbedarf) am 11.08.2026 bestätigt. Arbeitsentwürfe als JSON liegen unter `HarnessTesting/anfangsdatenbestand/{A,B}/daten.json` (Format nicht bindend, siehe Hinweis in den Dateien).
 
-**Vorschlag:** Der Anfangsdatenbestand kommt als Datei im **Seed-Repository** und wird in den technischen Rahmenbedingungen der Eingabedatei verlangt — nicht als Feature, weil er nicht nutzersichtbar ist. Formulierung etwa:
+**Noch offen:** Übernahme des bestätigten Inhalts in die tatsächliche Seed-Datei im vom Backend erwarteten Format (Anleitung dazu in `claude/Seed-Repository_Anleitung.md`) und Aufnahme des Hashes in `config.messlauf.json`. Das Dateiformat wird bewusst nicht in der Eingabedatei vorgegeben — nur der Hinweis, dass eine solche Datei existiert und beim Start geladen wird.
 
-> Im Projektverzeichnis liegt eine Datei mit dem Anfangsdatenbestand. Die Anwendung lädt diesen Bestand beim Start, sofern noch keine Daten vorhanden sind.
+### 5.2 Treiberschnittstelle B — erledigt (11.08.2026)
 
-Der Bestand ist in allen zwölf Läufen identisch, geht über die Ausschlussliste nicht in die Metriken ein und gibt den Akzeptanztests einen definierten Ausgangszustand. Zu erstellen: je Projekt eine Datendatei mit genug Substanz für alle Testfälle (Projekt A: mindestens zwei Spielstätten, je zwei Räume mit unterschiedlichen Sitzplänen, mehrere Veranstaltungen über einen Datumsbereich, Preiskategorien; Projekt B: zwei Oberkategorien mit je zwei Unterkategorien, kategoriespezifische Eigenschaften, mehrere Produkte, mindestens zwei Lieferanten mit unterschiedlichen Preisen für dasselbe Produkt).
-
-**Wichtig:** Das Dateiformat darf nicht vorgegeben werden — es wäre eine Entwurfsvorgabe. Vorgegeben wird der *Inhalt* als fachliche Aufzählung, nicht das Schema.
-
-### 5.2 Treiberschnittstelle B muss angepasst werden
-
-Die in `claude/Akzeptanztests_Architektur.md` entworfene Treiberschnittstelle für Projekt B passt nicht mehr zur Lieferantenbeziehung. Zu ändern:
-
-| Operation | Änderung |
-|---|---|
-| `LegeInWarenkorb(sitzung, produktId, menge)` | → zusätzlicher Parameter `lieferantId` |
-| `HoleProdukt(id)` | liefert zusätzlich Lieferanten mit Preisen, Durchschnittsbewertung, Bewertungsanzahl, Aufrufzähler |
-| `HoleWarenkorb(sitzung)` | Positionen tragen zusätzlich den Lieferanten |
-| `ListeProdukte(seite, kategorieId?, sortierung?, eigenschaftsfilter?)` | `sortierung` akzeptiert zusätzlich den Aufrufzähler |
-| `ÄndereMenge(...)`, `EntferneAusWarenkorb(...)` | adressieren die Position, nicht das Produkt |
-
-Die Treiberschnittstelle für Projekt A bleibt unverändert; nur `HoleVeranstaltung(id)` liefert zwei Felder mehr.
+Die Treiberschnittstelle für Projekt B in `claude/Akzeptanztests_Architektur.md` wurde an die Lieferantenbeziehung angepasst: `LegeInWarenkorb` erhält `lieferantId`, `HoleProdukt` liefert Lieferanten mit Preisen sowie Bewertungs- und Aufrufkennzahlen, Warenkorbpositionen tragen den Lieferanten, `ÄndereMenge`/`EntferneAusWarenkorb` adressieren jetzt die Position statt des Produkts, `sortierung` akzeptiert den Aufrufzähler. Die Treiberschnittstelle für Projekt A blieb unverändert bis auf zwei zusätzliche Felder bei `HoleVeranstaltung`.
 
 ---
 
 ## 6. Einfrier-Checkliste
 
-- [ ] Anfangsdatenbestand je Projekt festgelegt und als Datei im Seed-Repository abgelegt (5.1)
-- [ ] Treiberschnittstelle B in `claude/Akzeptanztests_Architektur.md` angepasst (5.2)
-- [ ] Eingabedateien A und B nach `claude/Eingabespezifikation.md` erstellt: Projektkontext ohne Eigennamen, Katalog als nummerierte Liste, technische Rahmenbedingungen mit konkreten Versionen, Abgrenzung
+- [x] **Katalog-Nummerierung und -Wortlaut eingefroren** (11.08.2026) — `catalogs/A/katalog.md` und `catalogs/B/katalog.md` im Harness-Arbeitsverzeichnis, SHA-256 in `katalog.meta.json` je Projekt, Prüflisten (`pruefliste.md`) mit Anonymisierung, Zuschnitt, Umfang und Abgleich bestätigt.
+- [x] Anfangsdatenbestand-**Inhalt** je Projekt festgelegt und bestätigt (5.1) — `claude/Anfangsdatenbestand_Spezifikation.md`
+- [ ] Anfangsdatenbestand als tatsächliche **Datei im Seed-Repository** abgelegt, Format je Backend gewählt, Hash in `config.messlauf.json` — steht noch aus, siehe `claude/Seed-Repository_Anleitung.md`
+- [x] Treiberschnittstelle B in `claude/Akzeptanztests_Architektur.md` angepasst (5.2)
+- [ ] Eingabedateien A und B nach `claude/Eingabespezifikation.md` erstellt: Projektkontext ohne Eigennamen, den eingefrorenen Katalog als nummerierte Liste übernehmen, technische Rahmenbedingungen mit konkreten Versionen, Abgrenzung
 - [ ] Eingabedateien auf Implementierungsdetails geprüft (keine Endpunkte, keine Klassennamen, kein Schema)
 - [ ] SHA-256 beider Eingabedateien gebildet und in `config.messlauf.json` hinterlegt
-- [ ] Testfälle je Feature ausformuliert, für A-F13 und B-F14 zusätzlich der negative Fall
-- [ ] `catalogs/` aus dem Arbeitsbereich der Messläufe fernhalten — dort liegen Analysedokumente des Originals
+- [x] Testfälle je Feature ausformuliert, für A-F13 und B-F14 zusätzlich der negative Fall, für B-F8–B-F10 zusätzlich der Mehr-Lieferanten-Fall — **beide Projekte als Entwurf erledigt** (`claude/Akzeptanztestfaelle_ProjektA.md`, `claude/Akzeptanztestfaelle_ProjektB.md`, Stand 19.08.2026). Noch offen: Umsetzung als xUnit-Code und Einfrieren gegen die Treiberschnittstelle, plus die in beiden Dokumenten benannten Klärungsbedarfe (Fehlerformat, Sortierschlüssel bei Mehr-Lieferanten-Produkten, Struktur von Liefer-/Kontaktdaten)
+- [ ] `catalogs/` aus dem Arbeitsbereich der Messläufe fernhalten — dort liegen Analysedokumente des Originals sowie die Entwürfe (`katalog-entwurf.md`, `quelle.json`, `lauf.jsonl`)
 
-**Ab dem Einfrieren keine Änderung mehr.** Die Nummerierung A-F1…A-F13 und B-F1…B-F14 ist Bezugsgröße für A2, B1, B1b, B6 und B11.
+**Ab dem Einfrieren keine Änderung mehr.** Die Nummerierung A-F1…A-F13 und B-F1…B-F14 ist Bezugsgröße für A2.
